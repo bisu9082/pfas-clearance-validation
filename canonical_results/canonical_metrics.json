@@ -1,0 +1,43 @@
+{
+  "data_lock": {
+    "envirotox_rows_parsed": 4068,
+    "envirotox_duplicate_structure_rows": 213,
+    "broad_pfas_matches_removed": 73,
+    "broad_nonpfas_unique_structures": 3788,
+    "broad_high_hazard_unique_structures": 936,
+    "measured_pfas": 138,
+    "measured_pfas_high_hazard": 57,
+    "inventory_rows": 19028,
+    "inventory_invalid_smiles": 22,
+    "inventory_measured_overlap_rows": 140,
+    "untested_unique_parsable_structures": 18851
+  },
+  "external_pfas": {
+    "r2": -0.5798711542649122,
+    "spearman_rho": -0.07111443644040086,
+    "n": 138
+  },
+  "broad_cv": {
+    "fold_r2_mean": 0.38740975871347094,
+    "fold_r2_sd": 0.02351647327147615,
+    "n_unique_structures": 3788
+  },
+  "conditional_deployment": {
+    "nominal": 0.9,
+    "q": 1.6581640244021176,
+    "beta": 1.5081832304502238,
+    "median_width_all": 10.17268142148449,
+    "median_width_in_domain": 10.123831637458276,
+    "ad_threshold": 5.886831353118184,
+    "in_domain": 17128,
+    "out_domain": 1723,
+    "clearable_90": 0
+  },
+  "marginal_deployment": {
+    "nominal": 0.9,
+    "q": 0.8349712142221477,
+    "beta": 0.9053173887206856,
+    "median_width_in_domain": 4.0911207784712555,
+    "clearable_90": 3138
+  }
+}

@@ -1,0 +1,4 @@
+model,ext_r2,ext_rho
+RandomForest (canonical),-0.58,-0.071
+GradientBoosting,-0.596,-0.041
+Ridge,-0.28,0.086

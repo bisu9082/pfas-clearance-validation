@@ -1,0 +1,4 @@
+threshold_percentile,ad_threshold,in_domain,in_domain_pct
+90,5.253,15037,79.8
+95,5.887,17128,90.9
+99,6.872,18295,97.1

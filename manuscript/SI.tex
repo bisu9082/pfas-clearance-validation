@@ -1,0 +1,189 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{booktabs,array,url,graphicx}
+\setlength{\emergencystretch}{3em}
+\title{Supporting Information\\[4pt]
+\large Can Structure-Based Models Clear Untested PFAS? External Validation Reveals Endpoint-, Representation-, and Distribution-Dependent Reliability}
+\author{Jeongyun Kim, Jin Yoo, Ku Kang}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Reproducible data lock}
+
+All counts in the revised manuscript derive from the files under
+\texttt{canonical\_results/} in the public repository
+(\url{https://github.com/bisu9082/pfas-clearance-validation}). Canonical isomeric SMILES were generated with RDKit.
+PFAS were removed from broad training by CAS match, PFASSTRUCTV6 canonical-structure
+match, or direct measured-PFAS structure match. Identical desalted structures in the
+broad data were represented once, using the minimum log toxicity across duplicate
+registry rows. The inventory was independently deduplicated and measured PFAS were
+removed before it was described as ``untested.''
+
+\begin{table}[h]
+\centering
+\caption{Data-lock reconciliation.}
+\begin{tabular}{lr}
+\toprule
+Quantity & Count \\
+\midrule
+EnviroTox effect records & 80,912 \\
+EnviroTox substance entries & 4,267 \\
+Parsable broad chemical records & 4,068 \\
+Duplicate canonical-structure rows among parsable records & 213 \\
+Broad rows matching PFAS & 73 \\
+Unique non-PFAS training structures & 3,788 \\
+High-hazard training structures ($\leq0.1$ mg/L) & 936 \\
+Measured PFAS structures & 138 \\
+High-hazard measured PFAS & 57 \\
+Raw PFASSTRUCTV6 inventory records & 19,028 \\
+Inventory records with invalid SMILES & 22 \\
+Inventory records overlapping measured PFAS & 140 \\
+Unique parsable untested inventory structures & 18,851 \\
+Untested structures within the applicability domain & 17,128 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The 140 overlapping inventory rows are not expected to equal the 138 measured PFAS
+one-to-one because inventory records can match a measured substance through alternative
+registry or structural forms. The exact matching rows are retained in
+\texttt{inventory\_measured\_overlap.csv}.
+
+\section{Model and conformal settings}
+
+The default model used 2,048-bit ECFP4 fingerprints and a random forest with 300 trees,
+\texttt{max\_features=sqrt}, and seed 20260620. Broad cross-validation used 160 trees per
+fold, five folds, and five repeats. Conformal validation used 40 repeats. Broad marginal
+calibration used a random 80/20 non-PFAS train/calibration split and evaluated the fixed
+PFAS external set. PFAS-conditional validation used a fixed model trained on all non-PFAS
+structures and disjoint 69/69 PFAS calibration/test halves. Repeated-split percentile
+ranges are reported because test observations recur across repeats.
+
+\begin{table}[h]
+\centering
+\caption{Repeated-split coverage and interval width on PFAS. Values are means across 40
+repeats; ranges in parentheses are the 2.5th--97.5th percentiles across repeats. Width is
+in $\log_{10}$ mg/L.}
+\small
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{ccccc}
+\toprule
+Nominal & Marginal coverage & Conditional coverage & Marginal width & Conditional width \\
+\midrule
+0.50 & 0.214 (0.188--0.247) & 0.526 (0.362--0.668) & 1.94 & 3.83 \\
+0.60 & 0.283 (0.239--0.326) & 0.630 (0.463--0.755) & 2.41 & 4.62 \\
+0.70 & 0.385 (0.319--0.457) & 0.724 (0.593--0.843) & 2.97 & 5.88 \\
+0.80 & 0.530 (0.471--0.580) & 0.828 (0.753--0.942) & 3.73 & 7.09 \\
+0.90 & 0.659 (0.623--0.703) & 0.922 (0.841--0.986) & 4.84 & 10.53 \\
+0.95 & 0.740 (0.696--0.805) & 0.972 (0.899--1.000) & 5.83 & 14.46 \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+At nominal 0.90, no known-low-hazard PFAS in the held-out conditional test halves was
+cleared in any repeat. This is an out-of-split power check: each tested substance was not
+used in the calibration half for that repeat.
+
+\section{External endpoint and representation sensitivity}
+
+\begin{table}[h]
+\centering
+\caption{External PFAS performance after structure locking.}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{llrrrr}
+\toprule
+Endpoint & Representation & Training $n$ & PFAS $n$ & $R^2$ & Spearman $\rho$ \\
+\midrule
+Most-sensitive & ECFP4 binary & 3,788 & 138 & $-0.68$ & $-0.03$ \\
+Most-sensitive & Morgan counts & 3,788 & 138 & $-0.62$ & $-0.02$ \\
+Most-sensitive & RDKit descriptors (165) & 3,788 & 138 & $-0.06$ & $+0.42$ \\
+Acute-only & ECFP4 binary & 3,438 & 97 & $-0.06$ & $+0.30$ \\
+Acute-only & Morgan counts & 3,438 & 97 & $-0.02$ & $+0.32$ \\
+Acute-only & RDKit descriptors (165) & 3,438 & 97 & $+0.23$ & $+0.48$ \\
+Chronic-only & ECFP4 binary & 1,714 & 108 & $-0.68$ & $+0.02$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+The paired endpoint comparison used the same 97 PFAS. The most-sensitive rank correlation
+was $+0.047$ and the acute-only correlation was $+0.296$, giving
+$\Delta\rho=+0.250$ with substance-level bootstrap 95\% CI $[+0.090,+0.418]$. The per-configuration sensitivity fits in this section (e.g., most-sensitive ECFP4, $R^2=-0.68$, $\rho=-0.03$) use the repeated cross-validation protocol and differ slightly from the single full-training deployment fit reported in the main text ($R^2=-0.58$, $\rho=-0.07$); both are negative and rank-indistinguishable from zero.
+
+\section{Applicability domain and deployment}
+
+The training leave-self-out five-neighbor threshold was 5.887 in Euclidean binary-ECFP4
+space. Of 18,851 unique untested structures, 17,128 were in domain. Cross-fitted broad
+marginal calibration produced median in-domain 90\% width 4.09 log units and classified
+3,138 structures as clearable. Because this calibration achieved only 0.659 mean PFAS
+coverage at nominal 0.90, that count is reported as an invalid-on-PFAS comparison, not a
+decision output. Calibration on all 138 measured PFAS produced median in-domain width
+10.12 log units and zero clearable structures.
+
+Deployment conditional coverage requires exchangeability between measured and untested
+PFAS. The present data cannot prove this assumption. Therefore, the inventory intervals
+are an assumption-qualified extrapolation, while the repeated-split coverage results are
+the empirical validation claim.
+
+\section{Algorithm, applicability-domain, and calibration robustness}
+
+The external negative transfer on the protective (most-sensitive) endpoint is not specific
+to random forests. Re-fitting the same structure-locked non-PFAS training set with two
+alternative learners on identical ECFP4 features reproduced the failure (Table~\ref{tab:alg}).
+
+\begin{table}[h]
+\centering
+\caption{Algorithm sensitivity of external PFAS validation (most-sensitive endpoint,
+binary ECFP4, $n_{\mathrm{train}}=3{,}788$, $n_{\mathrm{PFAS}}=138$). All learners fail
+externally.}
+\label{tab:alg}
+\begin{tabular}{lrr}
+\toprule
+Learner & $R^2$ & Spearman $\rho$ \\
+\midrule
+Random forest (canonical) & $-0.580$ & $-0.071$ \\
+Gradient boosting & $-0.596$ & $-0.041$ \\
+Ridge regression & $-0.280$ & $+0.086$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The applicability-domain membership of the untested inventory is moderately sensitive to
+the distance threshold, but the deployment conclusion is not: no in-domain structure was
+clearable at any threshold (Table~\ref{tab:ad}).
+
+\begin{table}[h]
+\centering
+\caption{Applicability-domain sensitivity. In-domain counts among the 18,851 unique
+untested structures at three percentiles of the training leave-self-out five-neighbour
+distance. The manuscript uses the 95th percentile.}
+\label{tab:ad}
+\begin{tabular}{lrrr}
+\toprule
+Training-distance percentile & Threshold & In domain & In domain (\%) \\
+\midrule
+90th & 5.253 & 15,037 & 79.8 \\
+95th (used) & 5.887 & 17,128 & 90.9 \\
+99th & 6.872 & 18,295 & 97.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Finally, the zero-clearance result is stable to the calibration sample: under
+leave-one-PFAS-out recalibration of the conditional 90\% quantile, the quantile varied with
+a coefficient of variation of 0.8\%, and the in-domain clearable count remained zero in all
+138 leave-one-out recalibrations. The deployment conclusion is therefore not an artifact of
+a single calibration draw.
+
+\section{Files supporting the numerical audit}
+
+\begin{itemize}
+\item \texttt{canonical\_metrics.json}: final manuscript metrics.
+\item \texttt{conformal\_repeated\_split.csv}: all repeat-level coverage and width results.
+\item \texttt{conformal\_summary.csv}: the values in Table S2.
+\item \texttt{endpoint\_representation\_results.csv}: Table S3 values.
+\item \texttt{inventory\_measured\_overlap.csv}: records removed from the untested inventory.
+\item \texttt{untested\_pfas\_marginal\_and\_conditional90.csv}: structure-level deployment output.
+\end{itemize}
+
+\end{document}

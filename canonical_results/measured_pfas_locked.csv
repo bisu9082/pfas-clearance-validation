@@ -1,0 +1,139 @@
+cas,name,SMILES,canonical_smiles,logTox,high_hazard
+101908229,"(1RS,2RS)-2-(4-Hydroxyphenyl)-2-methyl-1-(9-(4,4,5,5,5-pentafluoropentyl)sulfinylnonyl)-1,2,3,4-tetrahydronaphth-6-ol",C[C@@]1(CCC2=C(C=CC(O)=C2)[C@H]1CCCCCCCCCS(=O)CCCC(F)(F)C(F)(F)F)C1=CC=C(O)C=C1,C[C@]1(c2ccc(O)cc2)CCc2cc(O)ccc2[C@H]1CCCCCCCCCS(=O)CCCC(F)(F)C(F)(F)F,-4.0,1
+103055078,Lufenuron,FC(C(F)(F)F)C(F)(F)OC1=CC(Cl)=C(NC(=O)NC(=O)C2=C(F)C=CC=C2F)C=C1Cl,O=C(NC(=O)c1c(F)cccc1F)Nc1cc(Cl)c(OC(F)(F)C(F)C(F)(F)F)cc1Cl,-1.0,1
+108427527,Tetrabutylammonium perfluoro-1-butanesulfonate,CCCC[N+](CCCC)(CCCC)CCCC.[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCCC[N+](CCCC)(CCCC)CCCC.O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,0.99132226747091,0
+112281773,Tetraconazole,FC(F)C(F)(F)OCC(CN1C=NC=N1)C1=C(Cl)C=C(Cl)C=C1,FC(F)C(F)(F)OCC(Cn1cncn1)c1ccc(Cl)cc1Cl,-0.721246399047171,1
+114519856,"Sodium bis(1H,1H,2H,2H-perfluorodecyl)phosphate",[Na+].[O-]P(=O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P([O-])(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.5967977773502513,1
+120226600,10:2 Fluorotelomer sulfonic acid,OS(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.0,1
+1207727045,Broflanilide,CN(C(=O)C1=CC=CC=C1)C1=CC=CC(C(=O)NC2=C(C=C(C=C2Br)C(F)(C(F)(F)F)C(F)(F)F)C(F)(F)F)=C1F,CN(C(=O)c1ccccc1)c1cccc(C(=O)Nc2c(Br)cc(C(F)(C(F)(F)F)C(F)(F)F)cc2C(F)(F)F)c1F,-2.4100503986742923,1
+121451023,Noviflumuron,FC(C(F)(F)F)C(F)(F)OC1=C(Cl)C=C(NC(=O)NC(=O)C2=C(F)C=CC=C2F)C(F)=C1Cl,O=C(NC(=O)c1c(F)cccc1F)Nc1cc(Cl)c(OC(F)(F)C(F)C(F)(F)F)c(Cl)c1F,-3.7569619513137056,1
+129301424,"1H,1H,8H,8H-Perfluoro-3,6-dioxaoctane-1,8-diol",OCC(F)(F)OC(F)(F)C(F)(F)OC(F)(F)CO,OCC(F)(F)OC(F)(F)C(F)(F)OC(F)(F)CO,0.875177059814704,0
+129453618,Fulvestrant,[H][C@@]12CC[C@H](O)[C@@]1(C)CC[C@]1([H])C3=C(C[C@@H](CCCCCCCCCS(=O)CCCC(F)(F)C(F)(F)F)[C@@]21[H])C=C(O)C=C3,C[C@]12CC[C@@H]3c4ccc(O)cc4C[C@@H](CCCCCCCCCS(=O)CCCC(F)(F)C(F)(F)F)[C@H]3[C@@H]1CC[C@@H]2O,-4.522878745280337,1
+13252136,Perfluoro-2-methyl-3-oxahexanoic acid,OC(=O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F,O=C(O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F,-5.0,1
+13252147,"Perfluoro-2,5-dimethyl-3,6-dioxanonanoic acid",OC(=O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F,O=C(O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F,-3.0,1
+137780699,"Perfluoro-3,6-dioxadecanoic acid",OC(=O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1.8453022791430675,0
+1478611,Bisphenol AF,OC1=CC=C(C=C1)C(C1=CC=C(O)C=C1)(C(F)(F)F)C(F)(F)F,Oc1ccc(C(c2ccc(O)cc2)(C(F)(F)F)C(F)(F)F)cc1,-3.823908740944319,1
+151677,Halothane,FC(F)(F)C(Cl)Br,FC(F)(F)C(Cl)Br,1.6693168805661125,0
+151772586,"Perfluoro-3,6-dioxaheptanoic acid",OC(=O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)F,O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)F,2.1157980803895806,0
+151772597,"Perfluoro-3,6,9-trioxadecanoic acid",OC(=O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)F,O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)F,1.6149617229467992,0
+16517116,Perfluorooctadecanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.607619342340074,1
+1691992,N-Ethyl-N-(2-hydroxyethyl)perfluorooctane sulfonamide,CCN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.6989700043360187,1
+1763231,Perfluorooctanesulfonic acid,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-5.397829711880734,1
+2043472,Fluorotelomer alcohol 4:2,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.5228787452803376,1
+2058948,Perfluoroundecanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.5228787452803376,1
+21934509,Sodium perfluoroheptane sulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.600762920644538,1
+2252239099,8-Chloroperfluorooctylphosphonic acid,OP(O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl,O=P(O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl,-0.6056856620016642,1
+23282602,Sodium bis[2-(N-ethylperfluorooctane-1-sulfonamido)ethyl] phosphate,[Na+].CCN(CCOP([O-])(=O)OCCN(CC)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCN(CCOP(=O)([O-])OCCN(CC)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.6099652387954203,1
+2355319,2-(N-Methylperfluorooctanesulfonamido)acetic acid,CN(CC(O)=O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CN(CC(=O)O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.599754714915151,1
+2357473,"alpha,alpha,alpha-4-Tetrafluoro-m-toluidine",NC1=CC(=C(F)C=C1)C(F)(F)F,Nc1ccc(F)c(C(F)(F)F)c1,1.3979400086720375,0
+24448097,N-Methyl-N-(2-hydroxyethyl)perfluorooctanesulfonamide,CN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,3.130976691605617,0
+2624808,Sodium mono(N-ethyl-2-perfluorooctylsulfonaminoethyl) phosphate,[Na+].[Na+].CCN(CCOP([O-])([O-])=O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCN(CCOP(=O)([O-])[O-])S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+].[Na+],-0.6015922961579877,1
+2706903,Perfluoropentanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.6005944992404058,1
+2706914,Perfluoropentanesulfonic acid,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,0.0355582703293725,0
+272451657,Flubendiamide,CC1=CC(=CC=C1NC(=O)C1=CC=CC(I)=C1C(=O)NC(C)(C)CS(C)(=O)=O)C(F)(C(F)(F)F)C(F)(F)F,Cc1cc(C(F)(C(F)(F)F)C(F)(F)F)ccc1NC(=O)c1cccc(I)c1C(=O)NC(C)(C)CS(C)(=O)=O,-3.42021640338319,1
+27619949,6:2 Fluorotelomer sulfonate sodium salt,[Na+].[O-]S(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.5974862943857544,1
+27619961,8:2 Fluorotelomer sulfonate sodium salt,[Na+].[O-]S(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.6055015212112743,1
+27619972,6:2 Fluorotelomer sulfonic acid,OS(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.769551078621726,1
+27854315,2-(Perfluorooctyl)ethanoic acid,OC(=O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.0,1
+2795393,Potassium perfluorooctanesulfonate,[K+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+],-6.0,1
+2806157,Sodium perfluorodecanesulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.6033596755277074,1
+2806248,N-[(Perfluorooctyl)sulfonyl]glycine,OC(=O)CNS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CNS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.6007928246089042,1
+29081569,Ammonium perfluorooctanesulfonate,[NH4+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[NH4+],1.9294189257142929,0
+2923184,Sodium trifluoroacetate,[Na+].[O-]C(=O)C(F)(F)F,O=C([O-])C(F)(F)F.[Na+],-0.9208187539523752,1
+2926309,Sodium trifluoromethanesulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)F,O=S(=O)([O-])C(F)(F)F.[Na+],1.2382019693020383,0
+29311679,"Perfluoro-3,6-dioxa-4-methyl-7-octene-1-sulfonic acid",OS(=O)(=O)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)=C(F)F,O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)=C(F)F,1.1495270137543478,0
+293754559,"N-(4-(1,1,1,3,3,3-Hexafluoro-2-hydroxy-propan-2-yl)phenyl)-N-(2,2,2-trifluoroethyl)benzenesulfonamide",OC(C1=CC=C(C=C1)N(CC(F)(F)F)S(=O)(=O)C1=CC=CC=C1)(C(F)(F)F)C(F)(F)F,O=S(=O)(c1ccccc1)N(CC(F)(F)F)c1ccc(C(O)(C(F)(F)F)C(F)(F)F)cc1,-2.0165245470350497,1
+29420493,Potassium perfluorobutanesulfonate,[K+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+],-2.244582537189064,1
+29457725,Lithium perfluorooctanesulfonate,[Li+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Li+],0.6232492903979004,0
+29553262,"2-Methyl-3,3,4,4-tetrafluoro-2-butanol",CC(C)(O)C(F)(F)C(F)F,CC(C)(O)C(F)(F)C(F)F,2.7649229846498886,0
+2991506,2-(N-Ethylperfluorooctanesulfonamido)acetic acid,CCN(CC(O)=O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCN(CC(=O)O)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.5992029599938031,1
+30334691,Perfluorobutanesulfonamide,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.3872161432802645,1
+30381987,Ammonium bis(N-ethyl-2-perfluorooctylsulfonaminoethyl)phosphate,[NH4+].CCN(CCOP([O-])(=O)OCCN(CC)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCN(CCOP(=O)([O-])OCCN(CC)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[NH4+],1.3979400086720375,0
+307244,Perfluorohexanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-3.3010299956639813,1
+307357,Perfluorooctanesulfonyl fluoride,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)S(F)(=O)=O,O=S(=O)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,3.0,0
+307551,Perfluorododecanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.0,1
+330562419,"Perfluoro-3,6,9-trioxatridecanoic acid",OC(=O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1.0,0
+333368,Flurothyl,FC(F)(F)COCC(F)(F)F,FC(F)(F)COCC(F)(F)F,2.7535830588929064,0
+335240,Potassium perfluoro-4-ethylcyclohexanesulfonate,[K+].[O-]S(=O)(=O)C1(F)C(F)(F)C(F)(F)C(F)(C(F)(F)C(F)(F)F)C(F)(F)C1(F)F,O=S(=O)([O-])C1(F)C(F)(F)C(F)(F)C(F)(C(F)(F)C(F)(F)F)C(F)(F)C1(F)F.[K+],-4.0,1
+335364,Perfluoro-2-butyltetrahydrofuran,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C1(F)OC(F)(F)C(F)(F)C1(F)F,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C1(F)OC(F)(F)C(F)(F)C1(F)F,-1.853871964321762,1
+335671,Perfluorooctanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-6.0,1
+335706,"1,8-Diiodoperfluorooctane",FC(F)(I)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,FC(F)(I)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,0.912402354968131,0
+335762,Perfluorodecanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.058514963731699,1
+34455293,6:2 Fluorotelomer sulfonamide betaine,C[N+](C)(CCCNS(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)CC([O-])=O,C[N+](C)(CCCNS(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)CC(=O)[O-],0.6989700043360189,0
+355464,Perfluorohexanesulfonic acid,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.9100948885606024,1
+355806,"1H,1H,5H-Perfluoropentanol",OCC(F)(F)C(F)(F)C(F)(F)C(F)F,OCC(F)(F)C(F)(F)C(F)(F)C(F)F,2.0645953692846315,0
+356025,3:3 Fluorotelomer carboxylic acid,OC(=O)CCC(F)(F)C(F)(F)C(F)(F)F,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)F,-0.6031800049084142,1
+359868829,Sodium perfluoro-1-propanesulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.5999259363095599,1
+374254,"4-Bromo-3-chloro-3,4,4-trifluorobut-1-ene",FC(F)(Br)C(F)(Cl)C=C,C=CC(F)(Cl)C(F)(F)Br,0.3979400086720376,0
+375019,3:1 Fluorotelomer alcohol,OCC(F)(F)C(F)(F)C(F)(F)F,OCC(F)(F)C(F)(F)C(F)(F)F,2.74350976472843,0
+375224,Perfluorobutanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)F,-4.301029995663981,1
+375508,"Perfluoro-1,4-diiodobutane",FC(F)(I)C(F)(F)C(F)(F)C(F)(F)I,FC(F)(I)C(F)(F)C(F)(F)C(F)(F)I,-0.4400070510648488,1
+375735,Perfluorobutanesulfonic acid,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-5.0,1
+375804,"1,6-Diiodoperfluorohexane",FC(F)(I)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,FC(F)(I)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,2.4423667123568085,0
+375859,Perfluoroheptanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.5999743657650817,1
+375928,Perfluoroheptanesulfonic acid,OS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.1162235402973104,1
+375951,Perfluorononanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-5.430318470695887,1
+376067,Perfluorotetradecanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.6021622189078367,1
+381737,Difluoroacetic acid,OC(=O)C(F)F,O=C(O)C(F)F,-1.7212463990471711,1
+3825261,Ammonium perfluorooctanoate,[NH4+].[O-]C(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[NH4+],-1.5228787452803376,1
+383631,Ethyl trifluoroacetate,CCOC(=O)C(F)(F)F,CCOC(=O)C(F)(F)F,4.0,0
+3871996,Potassium perfluorohexanesulfonate,[K+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+],-2.056298081341261,1
+393395,"alpha,alpha,alpha-4-Tetrafluoro-o-toluidine",NC1=C(C=C(F)C=C1)C(F)(F)F,Nc1ccc(F)cc1C(F)(F)F,1.4712917110589383,0
+40143768,Perfluorohexyl phosphonic acid,OP(O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P(O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.6055123827922535,1
+40143780,(Perfluorooctyl)phosphonic acid,OP(O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P(O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.9030899869919436,1
+4021470,Sodium perfluorooctanesulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-1.0,1
+406860,"4,4,4-trifluorocrotononitrile",FC(F)(F)\C=C\C#N,N#C/C=C/C(F)(F)F,-1.1739251972991736,1
+4151502,N-Ethylperfluorooctane sulfonamide,CCNS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CCNS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.4870394184400215,1
+41997131,Perfluorohexanesulfonamide,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.0,1
+422640,Perfluoropropanoic acid,OC(=O)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)F,1.2149280506437132,0
+423392,Nonafluoro-1-iodobutane,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)I,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)I,-0.6020599913279624,1
+434640,"1-Trifluoromethyl-2,3,4,5,6-pentafluorobenzene",FC1=C(F)C(F)=C(C(F)=C1F)C(F)(F)F,Fc1c(F)c(F)c(C(F)(F)F)c(F)c1F,2.2479732663618064,0
+434902,Perfluorobiphenyl,FC1=C(F)C(F)=C(C(F)=C1F)C1=C(F)C(F)=C(F)C(F)=C1F,Fc1c(F)c(F)c(-c2c(F)c(F)c(F)c(F)c2F)c(F)c1F,1.6989700043360187,0
+500776692,Sodium bis(perfluorooctyl)phosphinate,[Na+].[O-]P(=O)(C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P([O-])(C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.4985299278995877,1
+507631,Perfluorooctyl iodide,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,-1.3010299956639813,1
+52299260,Perfluorodecylphosphonic acid,OP(O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P(O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.505149978319906,1
+53826123,2-(Perfluorohexyl)ethanoic acid,OC(=O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.0,1
+53826134,2-(Perfluorodecyl)ethanoic acid,OC(=O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.3045183235098023,1
+56773423,Tetraethylammonium perfluorooctanesulfonate,CC[N+](CC)(CC)CC.[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,CC[N+](CC)(CC)CC.O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.6989700043360187,1
+57677959,"Bis(3,3,4,4,5,5,6,6,7,7,8,8,8-tridecafluorooctyl) hydrogen phosphate",OP(=O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P(O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-6.301029995663981,1
+59587381,6:2 Fluorotelomer sulfonate potassium salt,[K+].[O-]S(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[K+],0.5514499979728752,0
+62037803,Ammonium perfluoro-2-methyl-3-oxahexanoate,[NH4+].[O-]C(=O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F,O=C([O-])C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F.[NH4+],-3.0457574905606752,1
+630402221,Sodium perfluoropentanesulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.6032825679221795,1
+646833,Perfluoro-p-ethylcyclohexylsulfonic acid,OS(=O)(=O)C1(F)C(F)(F)C(F)(F)C(F)(C(F)(F)C(F)(F)F)C(F)(F)C1(F)F,O=S(=O)(O)C1(F)C(F)(F)C(F)(F)C(F)(C(F)(F)C(F)(F)F)C(F)(F)C1(F)F,-5.0,1
+647427,Fluorotelomer alcohol 6:2,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.5228787452803376,1
+65294168,"Perfluoro-(2,5,8-trimethyl-3,6,9-trioxadodecanoic) acid",OC(=O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F)C(F)(F)F,O=C(O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F)C(F)(F)F,-0.5770162896037647,1
+653372,Pentafluorobenzaldehyde,FC1=C(F)C(F)=C(C=O)C(F)=C1F,O=Cc1c(F)c(F)c(F)c(F)c1F,0.041392685158225,0
+678262,Perfluoropentane,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.3372421683184259,1
+678397,Fluorotelomer alcohol 8:2,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.0,1
+678411,Bis(2-(perfluorooctyl)ethyl) hydrogen phosphate,OP(=O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P(O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-6.301029995663981,1
+70225148,Bis(2-hydroxyethyl)ammonium perfluorooctanesulfonic acid,OCC[NH2+]CCO.[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.OCC[NH2+]CCO,1.4913616938342726,0
+70609448,Sodium bis(perfluorohexyl)phosphinate,[Na+].[O-]P(=O)(C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=P([O-])(C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],-0.5955575896696841,1
+70829877,"4-(Perfluoro(2,2-bis(1-methylethyl)(1-methyl)ethen-1-yloxy))benzenesulfonic acid sodium salt",[Na+].[O-]S(=O)(=O)C1=CC=C(OC(=C(C(F)(C(F)(F)F)C(F)(F)F)C(F)(C(F)(F)F)C(F)(F)F)C(F)(F)F)C=C1,O=S(=O)([O-])c1ccc(OC(=C(C(F)(C(F)(F)F)C(F)(F)F)C(F)(C(F)(F)F)C(F)(F)F)C(F)(F)F)cc1.[Na+],-2.5228787452803374,1
+70887842,2H-Perfluoro-2-decenoic acid,OC(=O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.0,1
+70887886,3-(Perfluoropentyl)-3-fluoro-2-propenoic acid,OC(=O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.0,1
+70887897,"3,3,4,4,5,5,6,6,6‐Nonafluorohexanoic acid",OC(=O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,2.0,0
+70887900,"3,4,4,5,5,6,6,6‐Octafluorohex‐2‐enoic acid",OC(=O)C=C(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)F,2.0,0
+70887944,2H-Perfluoro-2-dodecenoate,OC(=O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-1.6989700043360187,1
+725893,"Benzoic acid, 3,5-bis(trifluoromethyl)-",OC(=O)C1=CC(=CC(=C1)C(F)(F)F)C(F)(F)F,O=C(O)c1cc(C(F)(F)F)cc(C(F)(F)F)c1,1.977723605288848,0
+72629948,Perfluorotridecanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.0,1
+73606196,Potassium 9-chlorohexadecafluoro-3-oxanonane-1-sulfonate,[K+].[O-]S(=O)(=O)C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl,O=S(=O)([O-])C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl.[K+],-5.0,1
+749836202,"5-(1,2,2,2-Tetrafluoro)ethoxy-perfluoro-3-oxa-4-methylpentanesulfonic acid",[H]C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)S(O)(=O)=O)C(F)(F)F)C(F)(F)F,O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)C(F)(F)F,-2.0,1
+754916,Perfluorooctanesulfonamide,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-2.939302159646388,1
+754961,"1H,1H,10H,10H-Perfluorodecane-1,10-diol",OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO,-3.428291168191312,1
+76051,Trifluoroacetic acid,OC(=O)C(F)(F)F,O=C(O)C(F)(F)F,2.4771212547196626,0
+76131,"1,1,2-Trichloro-1,2,2-trifluoroethane",FC(F)(Cl)C(F)(Cl)Cl,FC(F)(Cl)C(F)(Cl)Cl,0.0791812460476248,0
+771608,"2,3,4,5,6-Pentafluoroaniline",NC1=C(F)C(F)=C(F)C(F)=C1F,Nc1c(F)c(F)c(F)c(F)c1F,1.569373909615046,0
+77953710,"3H-Perfluoro-2,2,4,4-tetrahydroxypentane",OC(O)(C(F)C(O)(O)C(F)(F)F)C(F)(F)F,OC(O)(C(F)C(O)(O)C(F)(F)F)C(F)(F)F,1.4546924492394768,0
+801212599,Perfluoro-4-isopropoxybutanoic acid,OC(=O)C(F)(F)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)F,1.8808849021514853,0
+811972,"1,1,1,2-Tetrafluoroethane",FCC(F)(F)F,FCC(F)(F)F,2.912753303671323,0
+812704,3-(Perfluoroheptyl)propanoic acid,OC(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,-0.5985805626494307,1
+85068297,"3,5-Bis(trifluoromethyl)benzylamine",NCC1=CC(=CC(=C1)C(F)(F)F)C(F)(F)F,NCc1cc(C(F)(F)F)cc(C(F)(F)F)c1,-0.4436974992327127,1
+853394,Decafluorobenzophenone,FC1=C(F)C(F)=C(C(=O)C2=C(F)C(F)=C(F)C(F)=C2F)C(F)=C1F,O=C(c1c(F)c(F)c(F)c(F)c1F)c1c(F)c(F)c(F)c(F)c1F,-0.5228787452803376,1
+863090895,Perfluoro(4-methoxybutanoic acid),OC(=O)C(F)(F)C(F)(F)C(F)(F)OC(F)(F)F,O=C(O)C(F)(F)C(F)(F)C(F)(F)OC(F)(F)F,1.9243518692167196,0
+86479063,Hexaflumuron,FC(F)C(F)(F)OC1=C(Cl)C=C(NC(=O)NC(=O)C2=C(F)C=CC=C2F)C=C1Cl,O=C(NC(=O)c1c(F)cccc1F)Nc1cc(Cl)c(OC(F)(F)C(F)F)c(Cl)c1,-6.0,1
+90177961,"1H,1H,8H,8H-Perfluorooctane-1,8-diol",OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO,OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO,-1.744727494896694,1
+914637493,"2H,2H,3H,3H-Perfluorooctanoic acid",OC(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1.3521825181113625,0
+920661,2H-Perfluoro-2-propanol,OC(C(F)(F)F)C(F)(F)F,OC(C(F)(F)F)C(F)(F)F,2.2479732663618064,0
+958445448,"Ammonium 4,8-dioxa-3H-perfluorononanoate",[NH4+].[O-]C(=O)C(F)(F)C(F)OC(F)(F)C(F)(F)C(F)(F)OC(F)(F)F,O=C([O-])C(F)(F)C(F)OC(F)(F)C(F)(F)C(F)(F)OC(F)(F)F.[NH4+],0.9991305412873712,0
+98088,Benzotrifluoride,FC(F)(F)C1=CC=CC=C1,FC(F)(F)c1ccccc1,-0.2291479883578558,1
+98789572,Sodium Perfluorononanesulfonate,[Na+].[O-]S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,O=S(=O)([O-])C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F.[Na+],0.785329835010767,0
