@@ -1,49 +1,68 @@
-\documentclass[11pt]{article}
-\usepackage[margin=0.9in]{geometry}
+\documentclass[11pt]{letter}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
 \usepackage{parskip}
-\pagestyle{empty}
+\signature{Ku Kang, on behalf of all authors}
+\address{Ku Kang\\CBRN Defense Research Institute\\Republic of Korea\\bisu9082@gmail.com}
 \begin{document}
+\begin{letter}{The Editors\\Journal of Hazardous Materials}
+\opening{Dear Editors,}
 
-\noindent Ku Kang\\
-CBRN Defense Research Institute, Republic of Korea\\
-bisu9082@gmail.com
+We submit the research article \textit{``A testing-effort artefact in the
+most-sensitive aquatic endpoint: structure-based PFAS screening recovers
+predictive validity but still cannot support clearance''} for consideration in
+\textit{Journal of Hazardous Materials}.
 
-\vspace{0.6em}
-\noindent The Editors, \textit{Environmental Science \& Technology}
+\textbf{Is the studied subject an environmental contaminant?} The work concerns
+per- and polyfluoroalkyl substances, analysed through 15{,}991 measured
+freshwater aquatic toxicity records for 103 substances drawn from the U.S. EPA
+ECOTOX Knowledgebase, and applied to 17{,}619 untested structures from the EPA
+PFASSTRUCTV6 inventory. The broader diagnostic uses 106{,}095 freshwater acute
+records across 4{,}757 chemicals.
 
-\vspace{0.8em}
-\noindent Dear Editors,
+\textbf{Is the study conducted under environmentally relevant conditions?} The
+modelled quantity is a measured effect concentration in freshwater in mass
+units, and the decision analysis is evaluated against citable hazard
+boundaries rather than an arbitrary cut-off: we report clearance across a
+continuum of thresholds and at the Globally Harmonised System acute aquatic
+Category 1 boundary of 1 mg/L, as well as at a threshold matched for stringency
+to the protective convention.
 
-We submit the Article ``Can Structure-Based Models Clear Untested PFAS? External
-Validation Reveals Endpoint-, Representation-, and Distribution-Dependent Reliability''
-for consideration in \textit{Environmental Science \& Technology}.
+\textbf{The contribution.} Regulatory hazard screening conventionally summarises
+a substance by the lowest effect concentration reported for it. We show that
+this makes the response variable depend on how often the substance has been
+tested: across PFAS the protective minimum correlates with record count at
+$\rho=-0.73$, and subsampling to equal depth identifies about half of that as a
+pure extreme-order-statistic artefact. Because a structure-based model cannot
+predict testing history, this confound is by itself sufficient to produce the
+external validation failures reported in the PFAS screening literature. Holding
+a published model fixed and changing only how the same records are summarised
+moves external performance from $R^2=-0.75$ to $+0.22$. Rebuilding training and
+external sets consistently on an effort-stable endpoint restores external
+validity and halves the prediction interval --- and yet no untested structure
+clears at a stringency-matched threshold.
 
-The manuscript addresses a regulatory decision that is often left implicit in machine-
-learning screening: whether a model that prioritizes chemicals can also justify setting
-untested PFAS aside as low concern. We distinguish broad-space cross-validation from
-external PFAS validation and evaluate both point prediction and interval coverage. After
-removing PFAS matches, duplicate desalted structures, invalid inventory structures, and
-measured-inventory overlap, the analysis is based on 3,788 unique non-PFAS training
-structures, 138 measured PFAS, and 18,851 unique untested inventory structures.
+We believe this is useful to the journal's readership in two ways. It identifies
+a measurable defect in a widely used data-preparation convention, with a
+diagnostic that any screening study can compute in one line. And it corrects the
+interpretation of a negative result that is becoming established: structure-based
+models are not failing on PFAS because they cannot represent fluorinated
+chemistry, but substantially because they are being asked to predict a quantity
+that encodes testing effort.
 
-The central result is cautionary but actionable. Broad-space performance is moderate
-($R^2=0.39\pm0.02$), yet external PFAS prediction fails ($R^2=-0.58$; $\rho=-0.07$).
-At nominal 90\% coverage, broad marginal intervals cover only 0.659 of PFAS on average.
-PFAS-conditional split calibration restores held-out coverage to 0.922, but the resulting
-intervals are too wide to clear any in-domain untested structure. We explicitly qualify
-the deployment statement by the measured-to-untested exchangeability assumption. We also
-show that endpoint and representation choices materially alter PFAS transfer, so reliability
-belongs to the complete modeling pipeline rather than to the algorithm alone.
+\textbf{Prior submission.} An earlier and materially different version of this
+work, based on a curated subset of the aquatic record and without the
+testing-effort analysis, was reviewed and declined by \textit{Environmental
+Science \& Technology} (es-2026-093898). The present manuscript uses a different
+data source, reports a different central finding, and reaches its conclusion by
+a different mechanism; we mention the prior review in the interest of
+transparency and can supply those reviews on request.
 
-We believe the work fits ES\&T because it couples environmental data curation, aquatic
-hazard prediction, uncertainty validation, and decision consequences for a high-priority
-chemical class. The revised package contains structure-locked data, repeat-level results,
-and scripts that generate every reported number and figure. The manuscript is original,
-is not under consideration elsewhere, and is approved by all authors. The authors declare
-no competing financial interest.
+All extraction and analysis scripts, structure-locked tables and inventory-level
+predictions are openly available and tagged as an immutable release. The
+manuscript is original, is not under consideration elsewhere, and is approved by
+all authors. The authors declare no competing financial interest.
 
-\vspace{0.6em}
-\noindent Sincerely,\\
-Ku Kang, on behalf of all authors
-
+\closing{Sincerely,}
+\end{letter}
 \end{document}

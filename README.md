@@ -1,79 +1,109 @@
 # pfas-clearance-validation
 
-Data and code for the manuscript:
+Data and code for:
 
-**Can Structure-Based Models Clear Untested PFAS? External Validation Reveals
-Endpoint-, Representation-, and Distribution-Dependent Reliability**
-Jeongyun Kim*, Jin Yoo*, Ku Kang (\*equal contribution). Submitted to
-*Environmental Science & Technology*.
+**A testing-effort artefact in the most-sensitive aquatic endpoint: structure-based
+PFAS screening recovers predictive validity but still cannot support clearance**
+Jeongyun Kim\*, Jin Yoo\*, Ku Kang (\*equal contribution).
+Submitted to *Journal of Hazardous Materials*.
 
-## Summary
+> Release tags: `v3.0` is this work. `v2.0` and `v1.0` are earlier states of the
+> project, built on a curated subset of the aquatic record and reaching a
+> different conclusion by a different route; they are kept for provenance.
 
-A structure-based aquatic-toxicity model that is moderately accurate on general
-chemicals (5×5 repeated CV R² = 0.39 ± 0.02) **fails on fully unseen PFAS**
-(external R² = −0.58, Spearman ρ = −0.07). Standard (marginal) conformal
-intervals under-cover PFAS (0.659 vs nominal 0.90); PFAS-conditional (Mondrian)
-calibration restores held-out coverage (0.922) but the intervals become so wide
-(median ≈10.5 log₁₀ mg/L) that **no untested PFAS can be cleared** as low-hazard
-at 90% confidence. The failure is governed by the endpoint and the molecular
-representation, not by the algorithm: a clean acute endpoint and physicochemical
-descriptors recover *rank* prediction (ρ up to +0.48 / +0.42), though not
-clearance-grade accuracy. The message is that structure-based scores support
-**prioritization, not low-hazard clearance**.
+## What this paper reports
+
+Regulatory hazard screening summarises a substance by the **lowest** effect
+concentration reported for it. That makes the response variable depend on how
+often the substance has been tested, because the minimum of a sample falls as
+the sample grows.
+
+Across 103 PFAS with freshwater data in ECOTOX, the protective minimum correlates
+with the log number of available records at **ρ = −0.73** (p = 1×10⁻¹⁸).
+Substances with >300 records have a median protective value **6.4 log₁₀ units
+below** those with ≤3. Subsampling every substance to equal depth halves the
+association (ρ ≈ −0.29), so roughly half is a pure extreme-order-statistic
+artefact and roughly half is genuine reverse causation. The same holds across all
+4,757 chemicals with freshwater acute data: the acute **minimum** carries ρ = −0.46
+against record count, the acute **median** ρ = −0.16.
+
+A structure-based model cannot predict testing history. Holding one published
+model fixed and changing only how the same records are summarised:
+
+| external target | R² | ρ | effort confound |
+|---|---|---|---|
+| minimum (protective convention) | −0.745 | −0.015 | −0.734 |
+| median | −0.147 | +0.076 | −0.442 |
+| **acute median** | **+0.216** | **+0.424** | **−0.036** |
+
+Rebuilding training and external sets consistently on the acute median raises
+broad CV to R² = 0.443 ± 0.029, restores external validity on 58 structure-locked
+PFAS (R² = +0.367; ρ = +0.460, 95% CI [+0.22, +0.65]), and halves the
+PFAS-conditional 90% interval from 10.53 to 4.46 log₁₀ mg/L.
+
+**Clearance still fails.** The acute median is 2.69 log₁₀ units less protective
+than the minimum on the same substances, so the 0.1 mg/L threshold is not
+transferable between them. At a stringency-matched threshold, 0 of 16,070
+in-domain structures clear; at the GHS acute Category 1 boundary (1 mg/L), 1.9% do.
+
+The published conclusion that structure-based screening cannot clear untested
+PFAS therefore stands — but not because such models cannot predict PFAS aquatic
+toxicity. They can, on an endpoint built without an effort confound. What blocks
+clearance is interval width relative to the decision threshold, and at protective
+stringency the point predictions themselves.
 
 ## Repository structure
 
 ```
-manuscript/            LaTeX sources, figures, and compiled PDFs
-  main.tex, SI.tex, cover_letter.tex, myref.bib
-  figures/fig_01..04.png
-  main.pdf, SI.pdf, cover_letter.pdf
-canonical_results/     All authoritative numbers behind the manuscript
-  canonical_metrics.json          headline metrics
-  broad_nonpfas_structure_locked.csv   3,788 unique non-PFAS training structures
-  measured_pfas_locked.csv             138 measured PFAS (external test)
-  untested_pfas_structure_locked.csv   18,851 unique untested inventory structures
-  conformal_repeated_split.csv / conformal_summary.csv   40-repeat coverage/width
-  endpoint_*_predictions.csv, endpoint_representation_results.csv,
-  endpoint_paired_same_pfas.csv, endpoint_paired_summary.json
-  external_pfas_predictions.csv, inventory_measured_overlap.csv
-  untested_pfas_(marginal_and_)conditional90.csv
-  algorithm_comparison.csv, ad_threshold_sensitivity.csv,
-  deployment_loo_stability.csv         SI robustness tables
-scripts/               Reproduction scripts
-  reproduce_robustness.py    regenerates algorithm / AD-threshold / LOO tables
-  run_gnn_chemprop.py        optional D-MPNN supplementary check (GPU)
-  gnn_input_broad.csv, gnn_input_pfas.csv
+scripts/            extraction, diagnostics, rebuild, figures
+canonical_results/  per-substance summaries, metrics, inventory predictions
+manuscript/         LaTeX sources, figures, compiled PDFs
 ```
 
-## Data sources (not redistributed)
+## Reproducing
 
-- **EnviroTox** v2.0 — curated freshwater aquatic-toxicity records.
-- **U.S. EPA ECOTOX** Knowledgebase — measured PFAS aquatic effects.
-- **U.S. EPA CompTox Chemicals Dashboard, PFASSTRUCTV6** — screening inventory.
-
-Raw third-party databases are not redistributed here. `canonical_results/`
-contains the processed, structure-locked tables that the manuscript uses; the
-scripts document the exact, reproducible processing rules.
-
-## Reproduce
+Source data are public and not redistributed here:
+ECOTOX ASCII release `ecotox_ascii_09_15_2026` (https://gaftp.epa.gov/ecotox/),
+EPA PFASSTRUCTV6, and PubChem for CAS→SMILES. Seed 20260620 throughout.
 
 ```bash
-pip install numpy pandas scikit-learn scipy rdkit
-python scripts/reproduce_robustness.py        # algorithm / AD / LOO robustness
-# optional learned-representation check (needs a GPU + chemprop):
-pip install chemprop
-python scripts/run_gnn_chemprop.py
+python scripts/extract.py        <ecotox_raw_dir> <pfas_cas_dir> canonical_results
+python scripts/effort_test.py    <ecotox_raw_dir> <pfas_cas_dir> canonical_results
+python scripts/build_broad.py    <ecotox_raw_dir> canonical_results
+python scripts/resolve_smiles.py canonical_results/ecotox_acute_all.csv canonical_results
+python scripts/endpoint_fix.py   <broad.csv> canonical_results/ecotox_pfas_records.csv \
+                                 canonical_results/ecotox_pfas_measured.csv canonical_results
+python scripts/final_pipeline.py canonical_results/ecotox_acute_smiles.csv \
+                                 canonical_results/ecotox_pfas_records.csv \
+                                 canonical_results/ecotox_pfas_measured.csv \
+                                 <inventory.csv> canonical_results
 ```
 
-Random seed 20260620; ECFP4 = 2048-bit Morgan radius 2; random forest 300 trees,
-max_features = sqrt.
+`resolve_smiles.py` takes ~35 min at PubChem's 5 req/s limit and caches to
+`cas_smiles_cache.json`, so it is interruptible and resumable. 4,311 of 4,757
+chemicals (90.6%) resolve.
 
-## Citation
+Requirements: `rdkit`, `scikit-learn`, `pandas`, `numpy`, `scipy`, `matplotlib`,
+`requests`.
 
-Kim J.*, Yoo J.*, Kang K. *Can Structure-Based Models Clear Untested PFAS? …*
-(2026). (\*equal contribution.) Update with DOI on acceptance.
+## Choices that change the data, stated explicitly
 
-## License
+- **Censored records excluded.** Values carrying `>`, `<`, `>=`, `<=` are not
+  used as point observations. Left-censored entries have maximum leverage on a
+  minimum, which is the quantity under examination.
+- **Desalting keeps the fluorine-bearing fragment, not the largest.** For
+  tetrabutylammonium perfluoro-1-butanesulfonate the counterion is the larger
+  fragment, so the usual largest-fragment rule discards the analyte.
+- **Fragments are charge-neutralised** before canonicalisation. Without it,
+  perfluorooctanesulfonate persists as seven separate "substances" whose assigned
+  values span 7.93 log₁₀ units, and they can fall on both sides of a calibration
+  split.
+- **Subclass results are reported with bootstrap intervals.** At the available
+  per-class sizes (6–14 on the acute-median set) 80% power detects only
+  |ρ| ≥ 0.69. The manuscript reports that limit rather than the point estimates
+  alone; resolving ρ = 0.3 across seven OECD classes would need ~85 substances
+  per class.
 
-Code: MIT (see `LICENSE`). Processed result tables may be reused with attribution.
+## Licence
+
+See `LICENSE`.
