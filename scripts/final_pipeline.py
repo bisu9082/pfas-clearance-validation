@@ -4,7 +4,7 @@ Everything downstream of the endpoint is the manuscript's published protocol:
 ECFP4 + random forest, 5x5 broad CV, external PFAS validation, normalised
 split-conformal (marginal and PFAS-conditional), and inventory clearance.
 """
-import sys, json, time
+import os, sys, json, time
 import numpy as np, pandas as pd
 from rdkit import Chem, RDLogger
 from rdkit.Chem import AllChem
@@ -63,12 +63,19 @@ log=lambda *a: print(*a, flush=True)
 # ---------------- external PFAS: acute median -----------------------------
 rec=pd.read_csv(PFAS_REC, dtype={"test_cas":str})
 ACUTE={"LC50","EC50","IC50"}
-a=rec[rec.ep.isin(ACUTE)]
-pf=(a.groupby("test_cas").logTox.median().rename("y").reset_index())
+# Methods S2: exact duplicate rows are removed, and the records of every CAS
+# registration mapping to one parent structure are POOLED before the endpoint is
+# computed. A per-CAS median followed by a median of those medians is a
+# different estimator and is not what the Methods describe.
+n0=len(rec)
+rec=rec.drop_duplicates(subset=["test_id","ep","conc1_mean","conc1_unit"])
+log(f"records {n0} -> {len(rec)} after exact-duplicate removal")
 smap=pd.read_csv(PFASMAP,dtype={"cas_norm":str})[["cas_norm","canonical_smiles","name"]].drop_duplicates("cas_norm")
-pf=pf.merge(smap,left_on="test_cas",right_on="cas_norm").dropna(subset=["canonical_smiles"])
-pf["parent"]=pf.canonical_smiles.map(canon)
-pf=pf.dropna(subset=["parent"]).groupby("parent",as_index=False).agg(y=("y","median"),name=("name","first"))
+smap=smap.dropna(subset=["canonical_smiles"]).copy()
+smap["parent"]=smap.canonical_smiles.map(canon)
+smap=smap.dropna(subset=["parent"])
+a=rec[rec.ep.isin(ACUTE)].merge(smap,left_on="test_cas",right_on="cas_norm")
+pf=a.groupby("parent",as_index=False).agg(y=("logTox","median"),name=("name","first"))
 log(f"external PFAS (acute median, structure-locked): {len(pf)}")
 
 # ---------------- broad training: acute median, PFAS removed --------------
@@ -116,6 +123,22 @@ for rep in range(NREP):
 M=np.array(marg); C=np.array(cond)
 log(f"marginal    coverage {M[:,0].mean():.3f}  width {M[:,1].mean():5.2f}")
 log(f"conditional coverage {C[:,0].mean():.3f}  width {C[:,1].mean():5.2f}")
+# persist the per-repeat arrays: the reported means need a spread, and the
+# coverage estimates need a binomial interval on the number of TEST points.
+from statsmodels.stats.proportion import proportion_confint
+pd.DataFrame(dict(rep=np.arange(len(M)),marg_cov=M[:,0],marg_width=M[:,1],
+                  cond_cov=C[:,0],cond_width=C[:,1])).to_csv(
+    os.path.join(OUT,'conformal_repeats.csv') if os.path.isdir(OUT)
+    else OUT.replace('.json','_conformal_repeats.csv'), index=False)
+n_marg=len(ye); n_cond=len(ye)-len(ye)//2
+cov_ci={}
+for lab,arr,nn in (('marginal',M[:,0],n_marg),('conditional',C[:,0],n_cond)):
+    k=int(round(arr.mean()*nn))
+    lo,hi=proportion_confint(k,nn,alpha=0.05,method='beta')
+    cov_ci[lab]=dict(coverage=float(arr.mean()),n_test=int(nn),ci=[float(lo),float(hi)])
+    log(f"  {lab} coverage {arr.mean():.3f} on n={nn} test points, 95% CI [{lo:.3f},{hi:.3f}]")
+width_ci={lab:[float(np.percentile(a,2.5)),float(np.percentile(a,97.5))]
+          for lab,a in (('marginal',M[:,1]),('conditional',C[:,1]))}
 
 # ---------------- clearance -------------------------------------------------
 iv=pd.read_csv(INV); iv["parent"]=iv.canonical_smiles.map(canon)
@@ -129,7 +152,7 @@ lower=pi-h; cleared=(lower>THRESH)&dom
 log(f"\ninventory {len(iv)}  in-domain {dom.sum()}  median width {np.median(2*h[dom]):.2f}")
 log(f"CLEARED at 90% / 0.1 mg/L: {int(cleared.sum())}  ({cleared.sum()/dom.sum():.2%} of in-domain)")
 
-json.dump(dict(n_broad=int(len(yb)),n_ext=int(len(ye)),cv_r2=float(np.mean(folds)),
+json.dump(dict(coverage_ci=cov_ci,width_ci=width_ci,n_broad=int(len(yb)),n_ext=int(len(ye)),cv_r2=float(np.mean(folds)),
     cv_sd=float(np.std(folds)),ext_r2=float(r2),ext_rho=float(rho),
     rho_lo=float(lo),rho_hi=float(hi),marg_cov=float(M[:,0].mean()),
     marg_w=float(M[:,1].mean()),cond_cov=float(C[:,0].mean()),cond_w=float(C[:,1].mean()),

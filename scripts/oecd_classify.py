@@ -114,28 +114,84 @@ def classify(smi):
     # ---- category cascade: head group reached from a fluorinated carbon ----
     sulfonyl   = attached(m, fc, ("S",))
     phosphorus = attached(m, fc, ("P",))
-    carbonylC  = None
-    for i in fc:
+    def _is_acid(c):
+        """Carboxylic acid or carboxylate: C(=O) bearing a second O with H or a negative charge."""
+        dbl = any(b.GetBondType() == Chem.BondType.DOUBLE and
+                  b.GetOtherAtom(c).GetSymbol() == "O" for b in c.GetBonds())
+        if not dbl:
+            return False
+        for b in c.GetBonds():
+            o = b.GetOtherAtom(c)
+            if (o.GetSymbol() == "O" and b.GetBondType() == Chem.BondType.SINGLE
+                    and (o.GetTotalNumHs() > 0 or o.GetFormalCharge() < 0)):
+                return True
+        return False
+
+    def _carbonyl_from(i, depth):
+        """Walk out from a fluorinated carbon, optionally crossing one sp2 carbon.
+
+        An alpha,beta-unsaturated perfluoroalkenoic acid carries its acid carbon two
+        bonds from the nearest fluorinated carbon, across a =CH- that bears hydrogen
+        and is therefore not itself fluorinated; a one-bond walk misses it entirely.
+        """
         for nb in m.GetAtomWithIdx(i).GetNeighbors():
-            if nb.GetSymbol() == "C" and not nb.GetIsAromatic() and any(
-                    b.GetBondType() == Chem.BondType.DOUBLE and
-                    b.GetOtherAtom(nb).GetSymbol() == "O" for b in nb.GetBonds()):
-                carbonylC = nb
+            if nb.GetSymbol() != "C" or nb.GetIsAromatic():
+                continue
+            if _is_acid(nb):
+                return nb, True
+            if nb.GetHybridization() == Chem.HybridizationType.SP2 and depth > 0:
+                hit, acid = _carbonyl_from(nb.GetIdx(), depth - 1)
+                if hit is not None:
+                    return hit, acid
+            # a carbonyl that is not an acid: ketone, ester or acyl halide
+            if any(b.GetBondType() == Chem.BondType.DOUBLE and
+                   b.GetOtherAtom(nb).GetSymbol() == "O" for b in nb.GetBonds()):
+                return nb, False
+        return None, False
+
+    carbonylC, carbonyl_is_acid = None, False
+    for i in fc:
+        hit, acid = _carbonyl_from(i, 1)
+        if hit is not None and (carbonylC is None or acid):
+            carbonylC, carbonyl_is_acid = hit, acid
+            if acid:
+                break
     is_sulfonamide = bool(sulfonyl) and any(
         x.GetSymbol() == "N" for x in sulfonyl.GetNeighbors()) if sulfonyl else False
-    # fluorotelomer only with a real perfluoroalkyl chain (n >= 2)
-    telomer = (n >= 2) and (has(m, "ft_n2") or has(m, "ft_n1"))
-    aromatic = any(a.GetIsAromatic() for a in m.GetAtoms())
+    # Fluorotelomer-based substances are CnF2n+1-CH2CH2-R products of telomerisation;
+    # the 2018 OECD/UNEP series enumerates n = 4, 6, 8, 10. A C2F5 or C3F7 terminus on
+    # an otherwise non-fluorinated scaffold satisfies the SMARTS but is not a telomer
+    # product, so the chain-length floor is set at n >= 4 and shorter matches fall
+    # through to assignment by head group.
+    telomer = (n >= 4) and (has(m, "ft_n2") or has(m, "ft_n1"))
+    # 700 requires a fluorinated side chain ON an aromatic ring, not merely the
+    # presence of a ring somewhere in the molecule.
+    aromatic = False
+    for i in fc:
+        stack, seen = [(i, 0)], {i}
+        while stack:
+            j, dist = stack.pop()
+            if dist > 2:
+                continue
+            for nb in m.GetAtomWithIdx(j).GetNeighbors():
+                if nb.GetIsAromatic():
+                    aromatic = True; stack = []; break
+                if nb.GetIdx() not in seen:
+                    seen.add(nb.GetIdx()); stack.append((nb.GetIdx(), dist + 1))
+            if aromatic:
+                break
+        if aromatic:
+            break
 
     if telomer:
         c = "400 fluorotelomer"
-    elif ether and (carbonylC is not None or sulfonyl is not None):
+    elif ether and ((carbonylC is not None and carbonyl_is_acid) or sulfonyl is not None):
         c = "500 perfluoroalkyl ether acid"
     elif is_sulfonamide:
         c = "200b perfluoroalkane sulfonamide"
     elif sulfonyl is not None:
         c = "200a perfluoroalkane sulfonic"
-    elif carbonylC is not None:
+    elif carbonylC is not None and carbonyl_is_acid:
         c = "100 perfluoroalkyl carboxylic"
     elif phosphorus is not None:
         c = "300 perfluoroalkyl phosphorus"
@@ -162,4 +218,4 @@ print(t.to_string(float_format=lambda x: f"{x:6.2f}"))
 
 print("\n=== NOT PFAS under OECD 2021 (dropped from the PFAS set) ===")
 for _, r in out[~out.oecd_pfas].iterrows():
-    print(f"   [{r.old if 'old' in out else r.subclass:13s}] {str(r['name'])[:66]}")
+    print(f"   {str(r['name'])[:70]}")

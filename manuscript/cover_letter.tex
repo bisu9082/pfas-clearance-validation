@@ -14,32 +14,55 @@ predictive validity but still cannot support clearance''} for consideration in
 \textit{Journal of Hazardous Materials}.
 
 \textbf{Is the studied subject an environmental contaminant?} The work concerns
-per- and polyfluoroalkyl substances, analysed through 15{,}991 measured
-freshwater aquatic toxicity records for 103 substances drawn from the U.S. EPA
-ECOTOX Knowledgebase, and applied to 17{,}619 untested structures from the EPA
-PFASSTRUCTV6 inventory. The broader diagnostic uses 106{,}095 freshwater acute
-records across 4{,}757 chemicals.
+per- and polyfluoroalkyl substances, analysed through 4{,}744 distinct measured
+freshwater aquatic toxicity records for 87 parent structures drawn from the U.S.
+EPA ECOTOX Knowledgebase, and applied to 17{,}619 untested structures from the
+EPA PFASSTRUCTV6 inventory. The broader diagnostic uses 106{,}095 freshwater
+acute records across 4{,}757 chemicals.
 
-\textbf{Is the study conducted under environmentally relevant conditions?} The
-modelled quantity is a measured effect concentration in freshwater in mass
-units, and the decision analysis is evaluated against citable hazard
-boundaries rather than an arbitrary cut-off: we report clearance across a
-continuum of thresholds and at the Globally Harmonised System acute aquatic
-Category 1 boundary of 1 mg/L, as well as at a threshold matched for stringency
-to the protective convention.
+\textbf{Is the study conducted under environmentally relevant conditions?} We
+answer this directly rather than by reference to the data being measured. PFAS
+occur in surface water at ng/L to low \textmu g/L; the EU environmental quality
+standard for PFOS is 0.65 ng/L and the US maximum contaminant level for PFOA and
+PFOS is 4 ng/L. The effect concentrations modelled here, and the 0.1 to 1 mg/L
+decision boundaries applied to them, sit several orders of magnitude above that
+range --- as every hazard term does, since a predicted no-effect concentration
+is an effect concentration divided by an assessment factor. The environmental
+relevance of this work lies in what happens to that division: an assessment
+factor is a multiplicative constant and therefore leaves a 4.9 $\log_{10}$ unit
+effort gradient in the hazard term completely intact. A criterion derived at
+nanograms per litre from a minimum-based hazard term inherits the whole of it.
+We make this argument explicitly in \S3.7 and mark the occurrence range on
+Figure~2c so that a reader can see where real concentrations sit relative to the
+modelled ones. The required 100-word environmental implication statement
+accompanies this submission as a separate document.
+
+\textbf{A note on provenance.} This manuscript is a complete rebuild of work
+previously declined by another journal, and we have treated the referees'
+criticism of our data curation as correct. The per-substance table has been
+regenerated so that structure standardisation precedes rather than follows
+endpoint summarisation; exact duplicate records are now removed before testing
+effort is counted; the structure-class analysis has been recomputed on the
+present extraction, which removes a positive result we previously reported; and
+a claim that representation choice does not matter has been withdrawn as
+contradicted by our own deposited results. Each correction is stated in the
+text where it applies rather than only in the corrected number. The central
+finding is unchanged and slightly stronger after correction.
 
 \textbf{The contribution.} Regulatory hazard screening conventionally summarises
 a substance by the lowest effect concentration reported for it. We show that
 this makes the response variable depend on how often the substance has been
 tested: across PFAS the protective minimum correlates with record count at
-$\rho=-0.73$, and subsampling to equal depth identifies about half of that as a
-pure extreme-order-statistic artefact. Because a structure-based model cannot
+$\rho=-0.75$, and subsampling to equal depth, compared against the correct
+eligible-subset baseline, identifies 40--48\% of that as a pure
+extreme-order-statistic artefact. Because a structure-based model cannot
 predict testing history, this confound is by itself sufficient to produce the
 external validation failures reported in the PFAS screening literature. Holding
 a published model fixed and changing only how the same records are summarised
-moves external performance from $R^2=-0.75$ to $+0.22$. Rebuilding training and
+raises rank transfer on the same 58 structures by $\Delta\rho=+0.32$
+(95\% CI $[+0.08,+0.57]$). Rebuilding training and
 external sets consistently on an effort-stable endpoint restores external
-validity and halves the prediction interval --- and yet no untested structure
+validity and narrows the prediction interval --- and yet no untested structure
 clears at a stringency-matched threshold.
 
 We believe this is useful to the journal's readership in two ways. It identifies

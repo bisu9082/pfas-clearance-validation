@@ -5,6 +5,9 @@
 \usepackage{booktabs}
 \usepackage{graphicx}
 \usepackage{url}
+\usepackage[expansion=false,protrusion=true]{microtype}
+\urlstyle{same}
+\def\UrlBreaks{\do\/\do\.\do\-\do\_\do\?\do\&\do\=}
 \usepackage{caption}
 \captionsetup{font=small,labelfont=bf}
 \renewcommand{\thetable}{S\arabic{table}}
@@ -23,8 +26,8 @@ support clearance}
 \section{Extraction from the ECOTOX Knowledgebase}
 
 All toxicity data derive from the U.S. EPA ECOTOX Knowledgebase ASCII release
-\texttt{ecotox\_ascii\_09\_15\_2026}, obtained from
-\url{https://gaftp.epa.gov/ecotox/}. The release contains 725{,}636 test records
+\texttt{ecotox\_\allowbreak ascii\_\allowbreak 09\_15\_2026}, obtained from
+\sloppy\url{https://gaftp.epa.gov/ecotox/}\fussy. The release contains 725{,}636 test records
 and 1{,}250{,}612 result records. We used it directly rather than through a
 curated derivative, so that the number of records per substance --- the quantity
 at issue in this paper --- reflects the primary compilation.
@@ -60,23 +63,33 @@ Unique substances represented & 103 \\
 
 The endpoint composition of the PFAS set is strongly asymmetric
 (Table~S2) and this matters for the argument of the paper. Chronic sublethal
-endpoints outnumber acute endpoints by roughly fifteen to one, and they also lie
-lower on the concentration scale. A protective minimum taken over all strata is
-therefore drawn almost always from the chronic sublethal pool, and the size of
-that pool is what varies most between well- and poorly-studied substances.
+endpoints outnumber acute endpoints four to one among distinct records (fifteen
+to one before duplicate rows are collapsed), and they also lie lower on the
+concentration scale. For 67 of the 87 parent structures (77\%) the protective
+minimum is drawn from the chronic sublethal pool, and the size of that pool is
+what varies most between well- and poorly-studied substances.
 
 \begin{table}[h]
 \centering
-\caption{Endpoint composition of the 15{,}991 usable PFAS records.}
+\caption{Endpoint composition of the PFAS records, before and after exact
+duplicate rows are collapsed. The acute pool (LC50, EC50, IC50) is 953 distinct
+records against 3{,}791 chronic, so a minimum taken over all strata is drawn
+from the chronic pool in the large majority of cases.}
 \small
-\begin{tabular}{lrlr}
+\begin{tabular}{lrr}
 \toprule
-Endpoint & Records & Endpoint & Records \\
+Endpoint & Raw rows & Distinct records \\
 \midrule
-NOEC & 8{,}584 & LC50 & 437 \\
-LOEC & 6{,}360 & NOEL & 43 \\
-EC50 & 523    & IC50 & 18 \\
-MATC & 17     & LOEL & 9 \\
+NOEC & 8{,}584 & 1{,}918 \\
+LOEC & 6{,}360 & 1{,}811 \\
+EC50 & 523     & 514 \\
+LC50 & 437     & 421 \\
+NOEL & 43      & 43 \\
+IC50 & 18      & 18 \\
+MATC & 17      & 10 \\
+LOEL & 9       & 9 \\
+\midrule
+total & 15{,}991 & 4{,}744 \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -88,7 +101,10 @@ training pool in Section~S5.
 
 \section{Endpoint constructions and the effort diagnostic}
 
-Four summaries of the same records were compared, all expressed as
+All summaries are formed after structure standardisation and after exact
+duplicate rows are removed, so the unit of analysis is the parent structure and
+the unit of effort is the distinct record. Four summaries of the same records
+were compared, all expressed as
 $y=\log_{10}(T/\mathrm{mg\,L^{-1}})$: the minimum over all strata (the
 protective convention), the median over the same records, the median over acute
 records only, and a depth-equalised minimum described in Section~S3. Testing
@@ -103,9 +119,11 @@ involved; this is a property of the response variable.}
 \toprule
 Set & Endpoint & $n$ substances & Spearman $\rho$ vs $\log_{10}$ records \\
 \midrule
-PFAS & minimum (all strata) & 103 & $-0.734$ \\
-PFAS & median (all strata)  & 103 & $-0.442$ \\
-PFAS & acute median         & 70  & $-0.036$ \\
+PFAS & minimum (all strata) & 87 & $-0.749$ \\
+PFAS & minimum, effort counted as distinct tests & 87 & $-0.703$ \\
+PFAS & median (all strata)  & 87 & $-0.364$ \\
+PFAS & acute median         & 58 & $-0.070$ \\
+PFAS & acute median vs $\log_{10}$ \emph{acute} records & 58 & $-0.132$ \\
 \midrule
 All chemicals & acute minimum & 4{,}757 & $-0.462$ \\
 All chemicals & acute median  & 4{,}757 & $-0.160$ \\
@@ -122,87 +140,167 @@ larger and lower.
 
 \begin{table}[h]
 \centering
-\caption{Protective minimum by testing depth, PFAS set.}
+\caption{Protective minimum by record-count quartile, PFAS parent structures.
+Quartiles are used rather than fixed cut-offs so that every bin is populated.}
 \small
 \begin{tabular}{lrrrr}
 \toprule
 Records per substance & $n$ & Median minimum & Median spread & Median of medians \\
 \midrule
-1--3     & 26 & $+1.40$ & $0.00$ & $+1.46$ \\
-4--10    & 15 & $-0.23$ & $1.90$ & $+0.72$ \\
-11--50   & 26 & $-1.60$ & $2.00$ & $+0.24$ \\
-51--300  & 26 & $-2.73$ & $5.09$ & $-0.82$ \\
-$>$300   & 10 & $-4.96$ & $7.22$ & $-1.16$ \\
+1--2 (Q1)      & 26 & $+1.16$ & $0.00$ & $+1.25$ \\
+3--8 (Q2)      & 19 & $-0.52$ & $1.03$ & $+0.11$ \\
+9--29 (Q3)     & 20 & $-2.00$ & $3.14$ & $-0.15$ \\
+30--1548 (Q4)  & 22 & $-3.76$ & $6.04$ & $-0.42$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Spread is the within-substance range in $\log_{10}$ units and rises with depth
 as expected for a sample range. The final column shows that the median is far
-less sensitive to depth than the minimum, which is the basis for preferring it.
+less sensitive to depth than the minimum (a swing of 1.7 $\log_{10}$ units
+across the quartiles against 4.9 for the minimum), which is the basis for
+preferring it. Note also that the acute median's association is $-0.070$
+against total records but $-0.132$ against the acute records that actually
+form it; on $n=58$ neither differs significantly from zero, and we describe the
+acute median as effort-\emph{stable}, not effort-free.
 
 \section{Equal-depth subsampling}
 
-To separate the extreme-order-statistic artefact from genuine reverse
-causation, every substance with at least $k$ records was subsampled to exactly
-$k$ records without replacement, the minimum recomputed, and the correlation
-with the original record count recalculated. The procedure was repeated 200
-times per $k$.
+Every substance with at least $k$ records was subsampled to exactly $k$ records
+without replacement, the minimum recomputed, and the correlation with the
+original record count recalculated, over 400 draws per $k$.
+
+The baseline matters. A substance is eligible for depth $k$ only if it has at
+least $k$ records, so the eligible set shrinks and shifts toward the
+well-studied substances as $k$ rises. Comparing the depth-equalised correlation
+with the whole-set value therefore mixes a change of sample with the effect of
+depth. We report both: the correlation over the eligible substances using
+\emph{all} of their records (the baseline), and the correlation over the same
+substances at depth $k$. Their difference is the depth effect.
 
 \begin{table}[h]
 \centering
-\caption{Correlation between the protective minimum and testing effort after
-equalising sampling depth. Ranges are 2.5th--97.5th percentiles over 200 draws.}
+\caption{Depth equalisation against the correct baseline. The depth effect is
+stable in $k$; the apparent anomaly at $k=20$ in a whole-set comparison is an
+artefact of the shifting eligible set.}
 \small
-\begin{tabular}{lrrl}
+\begin{tabular}{lrrrr}
 \toprule
-$k$ & Eligible substances & Mean $\rho$ & 95\% range \\
+$k$ & Eligible & Baseline $\rho$ & Depth-equalised $\rho$ & Depth effect \\
 \midrule
-all records & 103 & $-0.734$ & --- \\
-3  & 78 & $-0.311$ & $[-0.412,-0.207]$ \\
-5  & 70 & $-0.279$ & $[-0.387,-0.163]$ \\
-10 & 64 & $-0.293$ & $[-0.373,-0.204]$ \\
-20 & 47 & $-0.524$ & $[-0.600,-0.435]$ \\
+all records & 87 & $-0.749$ & --- & --- \\
+3  & 61 & $-0.700$ & $-0.338\pm0.071$ & $0.362$ \\
+5  & 52 & $-0.642$ & $-0.329\pm0.078$ & $0.313$ \\
+10 & 38 & $-0.666$ & $-0.370\pm0.083$ & $0.296$ \\
+20 & 28 & $-0.645$ & $-0.343\pm0.100$ & $0.301$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-At $k=3$, $5$ and $10$ the correlation stabilises near $-0.29$, slightly under
-half the value obtained using all records. The $k=20$ row is higher, but its 47
-eligible substances are by construction the well-studied ones, so the comparison
-is made over a restricted and shifted range; we report it for completeness and
-do not treat it as evidence against the pattern.
+The depth effect is $0.30$ to $0.36$, i.e.\ 40--48\% of the full-sample
+$\rho=-0.749$, and does not drift with $k$.
+
+\subsection*{Why the residual is not identified as reverse causation}
+
+Subsampling removes the effect of sampling \emph{depth}. It cannot remove the
+effect of sampling \emph{breadth}, because it draws from each substance's own
+record pool and therefore preserves that substance's dispersion and assay mix
+by construction. Breadth is strongly effort-dependent in these data:
+
+\begin{table}[h]
+\centering
+\caption{Within-substance dispersion rises with testing effort ($n=61$
+substances with at least three records). Spearman correlation against
+$\log_{10}$ record count.}
+\small
+\begin{tabular}{lrr}
+\toprule
+Quantity & $\rho$ & $p$ \\
+\midrule
+within-substance standard deviation & $+0.585$ & $7\times10^{-7}$ \\
+within-substance range              & $+0.818$ & $8\times10^{-16}$ \\
+distinct endpoint types reported    & $+0.743$ & $7\times10^{-12}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A draw of $k$ records from a more dispersed distribution still has a lower
+minimum, and subsampling leaves that channel intact. The residual
+$\rho\approx-0.34$ is therefore a residual, not an identified causal quantity:
+it is consistent with reverse causation, with effort-dependent assay breadth,
+and with the compositional shift toward chronic endpoints, and this design
+cannot separate them. Earlier versions of this analysis described the residual
+as reverse causation; that description was not warranted and has been withdrawn.
 
 \section{Fixed-model comparison across endpoint constructions}
 
-In this experiment the broad non-PFAS model of the published analysis was held
-fixed and only the external target was changed, so that differences cannot be
-attributed to training, tuning or representation.
+The broad non-PFAS model of the published analysis was held fixed and only the
+external target was changed, so that differences cannot be attributed to
+training, tuning or representation. All targets are computed on the
+parent-collapsed, de-duplicated record set.
 
 \begin{table}[h]
 \centering
 \caption{External performance of one fixed model against four constructions of
-the same underlying records. Confidence intervals are substance-level bootstrap
-(4{,}000 resamples) on Spearman $\rho$.}
+the same underlying records. $R^2_{\mathrm{bc}}$ removes a single fitted
+intercept; $R^2_{\bar y}$ is the trivial predictor that returns the broad
+training mean; $s$ is the ratio of predicted to observed standard deviation.
+Confidence intervals are substance-level bootstrap (3{,}000 resamples).}
 \small
-\begin{tabular}{lrrrlr}
+\begin{tabular}{lrrrrrlr}
 \toprule
-Endpoint & $n$ & $R^2$ & $\rho$ & 95\% CI on $\rho$ & $\rho$ vs effort \\
+Endpoint & $n$ & $R^2$ & $R^2_{\mathrm{bc}}$ & $R^2_{\bar y}$ & $\rho$ & 95\% CI on $\rho$ & $\rho$ vs effort \\
 \midrule
-minimum (published)      & 103 & $-0.745$ & $-0.015$ & $[-0.21,+0.18]$ & $-0.734$ \\
-median                   & 103 & $-0.147$ & $+0.076$ & $[-0.13,+0.27]$ & $-0.442$ \\
-depth-equalised minimum  & 70  & $-2.053$ & $+0.208$ & $[-0.03,+0.41]$ & $-0.332$ \\
-acute median             & 70  & $+0.216$ & $+0.424$ & $[+0.21,+0.61]$ & $-0.036$ \\
+minimum (published)     & 87 & $-0.714$ & $+0.011$ & $-0.358$ & $-0.020$ & $[-0.24,+0.18]$ & $-0.749$ \\
+median                  & 87 & $-0.161$ & $-0.010$ & $-0.001$ & $+0.048$ & $[-0.18,+0.27]$ & $-0.364$ \\
+depth-equalised minimum & 52 & $-3.348$ & $-0.036$ & $-1.823$ & $+0.171$ & $[-0.14,+0.44]$ & $-0.405$ \\
+acute median            & 58 & $+0.247$ & $+0.325$ & $-0.386$ & $+0.412$ & $[+0.18,+0.60]$ & $-0.070$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The ordering of external performance follows the ordering of freedom from the
-effort confound. The depth-equalised minimum is an informative intermediate: its
-rank correlation improves over the raw minimum, consistent with removing part of
-the confound, but its $R^2$ is very poor because averaging subsampled minima
-produces a target with compressed variance that the model is not calibrated to.
-We report it as a diagnostic rather than as a candidate endpoint.
+Three things follow and all three qualify the headline. First, the $R^2$ column
+is dominated by location: the minimum sits $+2.15$ $\log_{10}$ units from the
+training target's mean, and removing one intercept moves its $R^2$ from $-0.714$
+to $+0.011$. The $R^2$ collapse therefore largely restates the order-statistic
+shift rather than providing independent evidence about predictive structure.
+Second, the model's dynamic range is narrow on every target ($s=0.33$ to
+$0.65$), so $R^2$ is additionally penalised against dispersed targets. Third,
+the rank column survives both objections.
+
+\subsection*{Matched-sample comparison}
+
+The four constructions are not defined on identical substance sets: an acute
+median exists only for substances carrying acute records. The decisive
+comparison is therefore made on the 58 parent structures common to the minimum
+and the acute median.
+
+\begin{table}[h]
+\centering
+\caption{The same 58 parent structures, the same fixed model, two endpoints.
+The difference is a paired bootstrap over 4{,}000 resamples.}
+\small
+\begin{tabular}{lrrl}
+\toprule
+Endpoint & $n$ & $R^2$ & $\rho$ (95\% CI) \\
+\midrule
+minimum      & 58 & $-0.650$ & $+0.086$ $[-0.18,+0.35]$ \\
+acute median & 58 & $+0.247$ & $+0.412$ $[+0.18,+0.60]$ \\
+\midrule
+difference   &    &          & $+0.321$ $[+0.08,+0.57]$, $p=0.005$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The depth-equalised minimum is an informative intermediate: its rank correlation
+improves over the raw minimum, consistent with removing part of the confound,
+while its $R^2$ is very poor. We previously attributed that to compressed
+variance, which is only part of the story: the depth-equalised target's variance
+is 2.03 against the acute median's 2.45, so it is indeed slightly compressed,
+but the dominant term is location --- averaging subsampled minima shifts the
+target $+2.59$ $\log_{10}$ units from the model's training mean, and 76\% of its
+mean squared error is that bias. We report it as a diagnostic, not as a candidate
+endpoint.
 
 \section{Consistent rebuild}
 
@@ -217,41 +315,80 @@ set and PFAS-conditional calibration on disjoint halves of the PFAS set.
 
 \begin{table}[h]
 \centering
-\caption{Published protective endpoint versus the consistent acute-median
-rebuild. Model, representation and conformal procedure are identical.}
+\caption{The published study versus the present rebuild. The learner,
+representation and conformal procedure are identical, but the left column is the
+earlier study in full --- a different source database (a curated EnviroTox
+derivative rather than ECOTOX), a different substance list and a different
+training set. It is \emph{not} an endpoint-only contrast; Tables~S7 and S8 are. Readers
+should not attribute the differences below to the endpoint alone.}
 \small
 \begin{tabular}{lrr}
 \toprule
 Quantity & Protective minimum & Acute median \\
 \midrule
 Broad training structures & 3{,}788 & 3{,}718 \\
-External PFAS structures & 119 & 58 \\
+External PFAS structures & 138\footnotemark[1] & 58 \\
 Broad $5\times5$ CV $R^2$ & $0.387\pm0.024$ & $0.443\pm0.029$ \\
-External $R^2$ & $-0.580$ & $+0.367$ \\
+External $R^2$ & $-0.580$ & $+0.366$ \\
 External Spearman $\rho$ & $-0.071$ & $+0.460$ \\
-\quad 95\% CI & --- & $[+0.22,+0.65]$ \\
-Marginal coverage at nominal 0.90 & 0.659 & 0.858 \\
+\quad 95\% CI & --- & $[+0.23,+0.65]$ \\
+Marginal coverage at nominal 0.90 & 0.659 & 0.851 \\
 Marginal width & 4.84 & 3.70 \\
 PFAS-conditional coverage & 0.922 & 0.897 \\
-PFAS-conditional width & 10.53 & 4.46 \\
+PFAS-conditional width & 10.53 & 4.48 \\
 Inventory structures in domain & 17{,}128 & 16{,}070 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The external set is smaller on the acute median for two reasons: restricting to
-acute endpoints removes substances with only chronic data, and charge-neutralised
-desalting collapses salt forms of the same parent. Both reductions are
-deliberate, and the smaller external set is the principal limitation of the
-rebuilt analysis.
+\footnotetext[1]{From the superseded EnviroTox-derived extraction (138 measured
+substances, of which 119 remain after desalting with neutralisation); the
+external statistics in that column were computed on the 138. It is not a subset
+of the 87 parent structures of the present ECOTOX extraction.}
+
+Within the present extraction the external set falls from 87 parent structures
+on the protective minimum to 58 on the acute median, because 29 substances carry
+only chronic records. That reduction is deliberate, and the smaller external set
+is the principal limitation of the rebuilt analysis.
+
+Per-repeat conformal results are deposited rather than summarised only by their
+means. Over the 40 calibration splits, marginal coverage was $0.851$ (2.5th--97.5th
+percentile $[0.793,0.897]$) with width $3.70$ $[3.40,4.00]$, and
+PFAS-conditional coverage $0.897$ $[0.724,1.000]$ with width $4.48$
+$[3.34,5.35]$. Because each repeat re-uses the same 58 external structures, the
+effective sample for coverage is 58 (29 for the conditional procedure), not
+$40\times58$; the corresponding exact binomial intervals are $[0.726,0.927]$ and
+$[0.726,0.978]$. Neither coverage differs significantly from nominal, and neither
+could the design have distinguished from $0.81$.
+
+Marginal calibration splits the broad non-PFAS set and tests on PFAS. Calibration
+and test are therefore not exchangeable and the split-conformal guarantee does
+not apply to it; we report it for comparability with the published analysis and
+deploy only the PFAS-conditional procedure. The deployment intervals on the
+untested inventory inherit a further caveat: they are calibrated on the 58
+\emph{measured} PFAS, which are by this paper's own argument the well-studied end
+of the distribution, so exchangeability with the untested inventory is not
+established and the nominal 90\% should be read as a construction rather than a
+guarantee.
 
 \section{Clearance across hazard thresholds}
 
 Because the two endpoints differ in protectiveness, a single threshold does not
-provide a comparable decision rule. On the 70 substances with both summaries the
-acute median lies $+2.69$ $\log_{10}$ units above the protective minimum, and
-94.3\% of measured PFAS exceed 0.1 mg/L on the acute median against 42.9\% on
-the minimum. Clearance was therefore evaluated across a continuum.
+provide a comparable decision rule. On the 58 parent structures carrying both
+summaries the acute median lies above the protective minimum by $+2.66$
+$\log_{10}$ units in the mean and $+2.32$ in the median, and 93.1\% of measured
+PFAS exceed 0.1 mg/L on the acute median against 39.7\% on the minimum.
+
+A ``stringency-matched'' threshold is a construction and is not unique. Shifting
+0.1 mg/L by the mean offset gives 46 mg/L, by the median offset 21 mg/L, and
+matching instead on the fraction of measured PFAS above the cut-off (39.7\% lie
+above 0.1 mg/L on the minimum, so the matching value is the 60.3rd percentile of
+the acute median) gives 41 mg/L. Clearance is zero at all three, and at every threshold at or above 10
+mg/L, so no conclusion in this paper depends on the choice. We also emphasise
+that matching the fraction of substances flagged matches the \emph{selectivity}
+of a screen, not the protection it delivers, and that none of these values is a
+threshold any regulatory framework applies. Clearance was evaluated across a
+continuum for that reason.
 
 \begin{table}[h]
 \centering
@@ -268,7 +405,9 @@ Threshold & Cleared & \% & Median required half-width \\
 0.1 mg/L (used with the protective endpoint) & 5{,}441 & 33.9 & $+2.22$ \\
 1 mg/L (GHS acute aquatic Category 1) & 306 & 1.9 & $+1.22$ \\
 10 mg/L & 0 & 0.0 & $+0.22$ \\
-49 mg/L (matched to the protective endpoint) & 0 & 0.0 & $-0.47$ \\
+21 mg/L (median-offset match) & 0 & 0.0 & $-0.11$ \\
+46 mg/L (mean-offset match) & 0 & 0.0 & $-0.45$ \\
+41 mg/L (exceedance-fraction match) & 0 & 0.0 & $-0.39$ \\
 100 mg/L & 0 & 0.0 & $-0.78$ \\
 \bottomrule
 \end{tabular}
@@ -304,12 +443,32 @@ largest fragment otherwise.
 
 \emph{Fragments are charge-neutralised before canonicalisation.} Without this
 step a free acid and its salts produce different canonical SMILES and are
-counted as distinct structures. In the measured PFAS set, desalting alone
-collapses 138 rows to 131 parents, whereas desalting with neutralisation
-collapses them to 119. The difference is not cosmetic: perfluorooctanesulfonate
-appears in seven rows whose assigned protective values span 7.93 $\log_{10}$
-units, and without neutralisation six of those rows survive as separate
-substances and can fall on both sides of a calibration split.
+counted as distinct structures. In the present ECOTOX extraction, 103 CAS
+registrations collapse to 87 parent structures under desalting with
+neutralisation. The difference is not cosmetic: ten registrations resolve to
+per\-fluoro\-octane\-sulfonate or its close derivatives, and their separately assigned
+protective values span 9.1 $\log_{10}$ units, from $-6.00$ for the potassium
+salt to $+3.13$; without collapsing they enter the analysis ten times, at ten
+different effective testing depths, and can fall on both sides of a calibration
+split.
+
+\emph{Standardisation precedes summarisation.} The order matters and an earlier
+version of this work had it wrong: the per-substance table was formed from CAS
+registrations and the structure rule applied only downstream, so the primary
+effort analysis ran on 103 uncollapsed registrations rather than 87 parents. The
+table is now built by pooling the records of every registration mapping to one
+parent and computing the endpoint once on the pooled set. Correcting it
+strengthens the central result --- the effort correlation moves from $-0.734$ on
+the uncollapsed registrations to $-0.749$ on parent structures --- and we record
+the correction rather than only the corrected number.
+
+\emph{Exact duplicate rows are removed before counting effort.} The PFAS
+extraction returns 15{,}991 rows, of which only 4{,}744 are distinct in test
+identifier, endpoint type, reported concentration and unit; these arise from
+multiple result records attached to one test. Because testing effort is measured
+by counting records, duplicated rows inflate it, and unevenly. Deduplication
+leaves the finding intact: $\rho=-0.749$ on distinct records and $-0.703$ when
+effort is counted as distinct tests (2{,}182) instead.
 
 \section{OECD subclass assignment and statistical power}
 
@@ -320,109 +479,290 @@ carrying no hydrogen, chlorine, bromine or iodine. Carbons that are fully
 halogenated but not fully fluorinated (CHF$_2$, CClF$_2$), methine carbons
 ($>$CF--) alone, and unsaturated carbons ($=$CF$_2$) do not satisfy it.
 
-Applying the gate to the measured set excluded seven substances, listed here
-because several would be retained by a looser fluorine-count rule:
-4-bromo-3-chloro-3,4,4-trifluorobut-1-ene and
-1,1,2-trichloro-1,2,2-trifluoroethane (halogens other than fluorine on the
-candidate carbon); perfluorobiphenyl, 2,3,4,5,6-pentafluoroaniline,
-decafluorobenzophenone and pentafluorobenzaldehyde (fluorine attached only to
-aromatic rings); and difluoroacetic acid, whose CHF$_2$ carbon bears a hydrogen.
+Applying the gate to the 87 parent structures of the present extraction excluded
+four: 1,1,2-tri\-chloro-1,2,2-tri\-fluoro\-ethane (non-fluorine halogens on the
+candidate carbon), 2,3,4,5,6-penta\-fluoro\-aniline and penta\-fluoro\-benzaldehyde
+(fluorine attached only to an aromatic ring), and di\-fluoro\-acetic acid, whose
+CHF$_2$ carbon bears a hydrogen. Eighty-three substances pass.
 
 Categories were assigned by parsing the molecule as C$_n$F$_{2n+1}$--X--R with
 head-group identity taking precedence over incidental fluorination. Assignment
 uses connectivity from fluorinated carbons rather than requiring a literal
-CF$_2$ bonded to the head group, so that perfluoroalkyl ether acids
-(for example HFPO-DA, whose $\alpha$-carbon is a methine) and perfluorinated
-cycloalkane sulfonic acids are classified by head group rather than falling
-through to a residual category.
+CF$_2$ bonded to the head group, so that perfluoroalkyl ether acids (for example
+HFPO-DA, whose $\alpha$-carbon is a methine) and perfluorinated cycloalkane
+sulfonic acids are classified by head group rather than falling through to a
+residual category.
+
+\subsection*{Corrections to the classifier}
+
+Four defects in the cascade used in an earlier version of this work have been
+corrected, and we list them because each produced visibly wrong assignments.
+(i) The carbonyl search walked one bond from a fluorinated carbon, so an
+$\alpha,\beta$-unsaturated perfluoroalkenoic acid --- whose acid carbon sits two
+bonds away across a $=$CH-- that bears hydrogen --- was invisible and the
+molecule fell to the residual category; the walk now crosses one sp$^2$ carbon.
+(ii) The carbonyl test did not distinguish an acid from a ketone, ester or acyl
+halide, so perfluoro-2-methyl-3-pentanone and ethyl perfluoropentanoate were
+assigned to the carboxylic-acid category; an acid now requires a second oxygen
+bearing hydrogen or negative charge. (iii) Category 700 was assigned whenever
+any aromatic ring was present and nothing else matched, which placed
+tetraconazole --- fluorinated on an ether side chain, with a dichlorophenyl ring
+bearing no fluorine --- in a ``side-chain fluorinated aromatic'' class; the
+fluorinated carbon must now lie within two bonds of an aromatic atom. (iv) The
+fluorotelomer SMARTS was satisfied by any C$_n$F$_{2n+1}$CH$_2$CH$_2$-- unit
+with $n\ge2$, which classified fulvestrant, a steroidal antioestrogen carrying a
+C$_2$F$_5$ terminus, as a telomerisation product; the floor is now $n\ge4$,
+matching the 4:2, 6:2, 8:2 and 10:2 series of the 2018 OECD/UNEP categories. The
+cost of (iv) is that 3:1 fluorotelomer alcohol is assigned by head group
+instead; we accept that in exchange for excluding pharmaceuticals.
+
+\subsection*{Class-resolved transfer}
+
+Classification is performed on the acute median, the endpoint this paper
+endorses; a class-resolved analysis of the protective minimum would inherit the
+effort confound one class at a time. Fifty-six of the 83 gate-passing substances
+carry acute records. All nine categories are listed; those with fewer than five
+members are not estimated, because a bootstrap interval on three points is
+degenerate.
 
 \begin{table}[h]
 \centering
-\caption{External rank correlation by OECD structure class on the protective
-endpoint, where the measured set is largest. Intervals are substance-level
-bootstrap.}
+\caption{External rank correlation by OECD structure class on the acute median.
+Intervals are substance-level bootstrap (4{,}000 resamples). The detectable
+$|\rho|$ is at 80\% power and $\alpha=0.05$.}
 \small
-\begin{tabular}{lrrl}
+\begin{tabular}{lrrlr}
 \toprule
-Class & $n$ & Spearman $\rho$ & 95\% CI \\
+Class & $n$ & Spearman $\rho$ & 95\% CI & Detectable $|\rho|$ \\
 \midrule
-All OECD-2021 PFAS & 112 & $+0.002$ & $[-0.18,+0.20]$ \\
+All OECD-2021 PFAS & 56 & $+0.412$ & $[+0.18,+0.61]$ & 0.37 \\
 \midrule
-200a perfluoroalkane sulfonic & 11 & $-0.611$ & $[-0.92,+0.03]$ \\
-100 perfluoroalkyl carboxylic & 15 & $-0.206$ & $[-0.74,+0.47]$ \\
-700 side-chain fluorinated aromatic & 12 & $-0.007$ & $[-0.52,+0.61]$ \\
-400 fluorotelomer & 23 & $+0.274$ & $[-0.20,+0.63]$ \\
-200b perfluoroalkane sulfonamide & 11 & $+0.323$ & $[-0.41,+0.87]$ \\
-600 other perfluoroalkyl & 17 & $+0.350$ & $[-0.25,+0.71]$ \\
-500 perfluoroalkyl ether acid & 13 & $+0.695$ & $[+0.14,+0.93]$ \\
+400 fluorotelomer & 9 & $-0.439$ & $[-0.91,+0.53]$ & 0.82 \\
+200a perfluoroalkane sulfonic & 7 & $-0.134$ & $[-0.91,+0.91]$ & 0.89 \\
+200b perfluoroalkane sulfonamide & 6 & $-0.116$ & $[-1.00,+0.80]$ & 0.92 \\
+700 side-chain fluorinated aromatic & 8 & $+0.214$ & $[-0.60,+0.84]$ & 0.85 \\
+100 perfluoroalkyl carboxylic & 13 & $+0.569$ & $[-0.05,+0.90]$ & 0.71 \\
+600 other perfluoroalkyl & 7 & $+0.679$ & $[-0.19,+1.00]$ & 0.89 \\
+\midrule
+\multicolumn{5}{l}{\emph{Listed but not estimated ($n<5$):}} \\
+500 perfluoroalkyl ether acid & 3 & --- & --- & --- \\
+500 perfluoroalkyl ether other & 3 & --- & --- & --- \\
+300 perfluoroalkyl phosphorus & 0 & --- & --- & --- \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Six of seven intervals include zero. The seventh is one of seven comparisons
-and rests on 13 substances; at that sample size 80\% power detects only
-$|\rho|\ge0.71$, so a point estimate of $+0.695$ is approximately the smallest
-value the design could have returned as significant, and is the configuration
-most exposed to selection among the seven.
+The class sizes sum to 56, which is the number of gate-passing substances
+carrying acute records; no category is omitted.
 
-On the acute-median set the position is worse. Of 68 OECD-classified
-substances, three classes reach ten members and the largest reaches fourteen.
+Every estimable class interval covers zero. The pooled estimate does not. At
+these sizes 80\% power detects only $|\rho|\ge0.71$ to $0.92$, so the point
+estimates carry essentially no information about differential transfer.
+
+\subsection*{Correction to a previously reported positive result}
+
+An earlier version of this analysis reported perfluoroalkyl ether acids at
+$\rho=+0.695$ (95\% CI $[+0.14,+0.93]$, $n=13$) as the one class excluding zero.
+That analysis was computed on the superseded EnviroTox-derived external set
+and on the protective endpoint, and does not survive
+recomputation: in the present extraction the category carries three substances
+with acute records and is not estimable. We record the correction here rather
+than silently dropping it.
+
+We also tested whether class-level transfer merely tracks class-level testing
+effort, which would make the class analysis a third measurement of the confound
+rather than a statement about chemistry. It does not: across the six estimable
+classes the correlation between class rank correlation and class mean
+$\log_{10}$ record count is $\rho=-0.49$ ($p=0.33$). The sign is the opposite of
+what the confound hypothesis predicts and the estimate is far from significant
+on six points, so we draw no positive conclusion from it either.
+
+\subsection*{What would be required}
+
+Resolving differential transfer at $\rho=0.3$ requires $n\approx85$ per class at
+80\% power, or 129 with Bonferroni correction for six comparisons. Across six
+categories that is roughly 510 to 780 measured PFAS, against the 87 parent
+structures the public record currently supports.
+
+\subsection*{A note on multiplicity}
+
+No multiplicity correction is applied to the intervals reported anywhere in this
+work; they are nominal 95\% intervals. This is immaterial for the effort
+association ($p=7\times10^{-17}$) and for the pooled transfer estimate, and it
+is stated here because the class table above reports six intervals and the
+reader should not treat any of them as a corrected test. Under Bonferroni
+correction for six comparisons no class interval would exclude zero either, so
+the conclusion is unchanged.
+
+\subsection*{Conformal procedure actually used}
+
+Equation~(1) of the main text defines a normalised nonconformity score, and all
+conformal results reported here and in the deposited code use it. No
+leave-one-subclass-out conformal analysis is reported in this paper. An earlier
+exploratory version computed one using unnormalised absolute residuals, which is
+inconsistent with Equation~(1); that analysis has been withdrawn and no number
+in this manuscript depends on it. We state this because the discrepancy existed
+in a prior draft.
+
+\section{Representation and learner, held against the endpoint}
+
+The endpoint is not the only choice that affects transfer, and we report the
+alternatives we examined rather than asserting that they do not matter. Both
+tables below hold the training data and the external set fixed and vary one
+thing.
 
 \begin{table}[h]
 \centering
-\caption{Detectable effect size by class on the acute-median set, at 80\% power
-and $\alpha=0.05$.}
+\caption{\textbf{Computed on the superseded EnviroTox-derived extraction}
+($n_{\mathrm{train}}=3{,}788$/$3{,}438$/$1{,}714$; external $n=138$/$97$/$108$),
+not on the 87-parent ECOTOX extraction used elsewhere in this work. We have not
+repeated it, and report it because it contradicts a claim we previously made.
+Learner and endpoint are fixed within each block; only the representation varies.}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Endpoint & Representation & $n$ & $R^2$ & Spearman $\rho$ \\
+\midrule
+most sensitive & ECFP4 binary (as published) & 138 & $-0.684$ & $-0.026$ \\
+most sensitive & Morgan count & 138 & $-0.618$ & $-0.020$ \\
+most sensitive & RDKit 165 descriptors & 138 & $-0.064$ & $+0.419$ \\
+\midrule
+acute & ECFP4 binary & 97 & $-0.057$ & $+0.296$ \\
+acute & Morgan count & 97 & $-0.023$ & $+0.317$ \\
+acute & RDKit 165 descriptors & 97 & $+0.233$ & $+0.478$ \\
+\midrule
+chronic & ECFP4 binary & 108 & $-0.677$ & $+0.017$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This table qualifies the paper's argument and we state the qualification
+plainly, with the caveat that it is computed on the earlier extraction. On the
+protective minimum, replacing the binary fingerprint with 165
+physicochemical descriptors moves rank transfer from $\rho=-0.026$ to $+0.419$
+--- a recovery of similar magnitude to the one obtained by changing the
+endpoint. Representation and endpoint are therefore both material, and an
+earlier version of this work asserted that the failure ``is not repaired by a
+better representation''. That assertion was contradicted by our own deposited
+results and has been withdrawn.
+
+Two things keep the endpoint argument standing. The comparison above is made on
+each endpoint's full available set and on the earlier data, whereas the endpoint
+comparison in Table~S8 is matched on 58 common structures from the present
+extraction; and a descriptor representation does not
+make the protective minimum an effort-stable quantity --- it remains correlated
+with record count at $\rho=-0.749$ whatever the model is given as input. The
+claim we retain is that endpoint construction is the lever a screening programme
+controls when it defines its response variable, not that it is the only lever.
+
+\begin{table}[h]
+\centering
+\caption{Learner, with the representation and the protective endpoint fixed, on
+the superseded external set. Reported for completeness; no conclusion in this
+paper rests on it.}
 \small
 \begin{tabular}{lrr}
 \toprule
-Class & $n$ & Detectable $|\rho|$ \\
+Learner & External $R^2$ & Spearman $\rho$ \\
 \midrule
-100 perfluoroalkyl carboxylic & 14 & 0.69 \\
-200a perfluoroalkane sulfonic & 14 & 0.69 \\
-400 fluorotelomer & 11 & 0.76 \\
-700 side-chain fluorinated aromatic & 9 & 0.82 \\
-600 other perfluoroalkyl & 7 & 0.89 \\
-200b perfluoroalkane sulfonamide & 6 & 0.92 \\
+Random forest (as published) & $-0.580$ & $-0.071$ \\
+Gradient boosting & $-0.596$ & $-0.041$ \\
+Ridge regression & $-0.280$ & $+0.086$ \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+A linear model outperforms both ensembles on this target. We do not read that as
+evidence about chemistry: on a target that is partly a function of testing
+depth, a lower-variance predictor is penalised less, which is what the
+bias-corrected columns of Table~S7 also show.
+
+\section{Applicability domain: dependence on the distance metric}
+
+The applicability domain is the mean Euclidean distance to the five nearest
+training structures, with the threshold at the 95th percentile of the training
+distribution. Euclidean distance on a binary fingerprint counts shared
+\emph{absences} among the roughly 2{,}025 unset bits as evidence of similarity;
+Tanimoto similarity does not, and is the conventional choice in this field.
 
 \begin{table}[h]
 \centering
-\caption{Measured substances required per class to resolve differential transfer,
-at 80\% power.}
+\caption{Fraction of the untested PFAS inventory admitted to the applicability
+domain, by distance metric and percentile threshold. Computed on the
+18{,}851-structure inventory of the earlier run; the rebuilt model places
+16{,}070 of 17{,}619 structures (91.2\%) in domain under the same Euclidean rule,
+so the comparison between metrics, not the absolute percentage, is what this
+table establishes.}
 \small
 \begin{tabular}{lrr}
 \toprule
-Target effect size & $\alpha=0.05$ & $\alpha=0.05/7$ (Bonferroni) \\
+Threshold & Euclidean (as used) & Tanimoto \\
 \midrule
-$\rho=0.3$ & 85 & 133 \\
-$\rho=0.4$ & 47 & 73 \\
-$\rho=0.5$ & 29 & 44 \\
-$\rho=0.6$ & 19 & 29 \\
+90th percentile & 79.8\% & 30.9\% \\
+95th percentile & 90.9\% & 51.6\% \\
+99th percentile & 97.1\% & 90.0\% \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-Resolving class-level differences at $\rho=0.3$ across seven classes would
-require roughly 600 measured substances uncorrected, or 930 with correction,
-against the 103 the public freshwater record currently supports. We report this
-as the measurement requirement implied by the question rather than as an
-argument that the question is unanswerable.
+The median maximum Tanimoto similarity of an untested PFAS to any of the broad
+training structures is 0.27, and 86\% fall below 0.40. By any conventional
+criterion the untested inventory lies largely outside the domain of a model
+trained on non-PFAS chemicals, and the 90.9\% figure should be read as a
+property of the Euclidean rule rather than as a statement that these structures
+are well covered.
+
+This does not affect the clearance conclusion. At any threshold at or above 10
+mg/L the point prediction of the median in-domain structure is already on the
+wrong side, so no restriction of the domain changes the zero. It does affect the
+in-domain count, the median interval width and the 33.9\% figure at 0.1 mg/L,
+which are correspondingly optimistic, and which we therefore do not present as
+deployment-ready quantities.
 
 \section{Files supporting the numerical audit}
 
+Release \texttt{v3.1} of \url{https://github.com/bisu9082/pfas-clearance-validation}.
+Scripts are listed in execution order; each entry names the tables and figures it
+produces.
+
 \begin{itemize}\setlength{\itemsep}{0.1em}
-\item \texttt{extract.py} --- PFAS record extraction and per-substance summaries.
-\item \texttt{effort\_test.py} --- effort correlations and equal-depth subsampling (Tables~S3--S5).
-\item \texttt{build\_broad.py} --- acute-median candidate set across all 4{,}757 chemicals.
+\item \texttt{extract.py} --- record extraction from the ECOTOX ASCII release.
 \item \texttt{resolve\_smiles.py} --- CAS to SMILES resolution via PubChem, resume-safe.
-\item \texttt{endpoint\_fix.py} --- fixed-model comparison across endpoint constructions (Table~S6).
-\item \texttt{final\_pipeline.py} --- consistent rebuild: cross-validation, external validation, conformal intervals, clearance (Tables~S7--S8).
-\item \texttt{oecd\_classify.py} --- OECD (2021) definitional gate and category assignment (Tables~S9--S11).
-\item \texttt{make\_fig\_effort.py}, \texttt{make\_fig\_final.py}, \texttt{make\_forest.py} --- Figures 1--3.
-\item \texttt{ecotox\_pfas\_measured.csv}, \texttt{ecotox\_acute\_smiles.csv} --- per-substance summaries with record counts.
-\item \texttt{endpoint\_fix\_results.csv}, \texttt{effort\_subsample.csv}, \texttt{final\_metrics.json} --- values in Tables~S5--S8.
+\item \texttt{recurate.py} --- structure standardisation applied \emph{before}
+      summarisation, duplicate-row removal, and the per-substance table
+      \texttt{ecotox\_pfas\_\allowbreak measured\_\allowbreak recurated.csv} (Tables~S3--S4).
+\item \texttt{subsample.py} --- equal-depth subsampling against the
+      eligible-subset baseline, and the dispersion/effort diagnostic
+      (Tables~S5--S6).
+\item \texttt{endpoint\_fix2.py} --- fixed-model comparison across endpoint
+      constructions, bias-corrected $R^2$, and the matched-58 paired bootstrap
+      (Tables~S7--S8).
+\item \texttt{build\_broad.py} --- acute-median candidate set across all 4{,}757 chemicals.
+\item \texttt{final\_pipeline.py} --- consistent rebuild: cross-validation, external
+      validation, conformal intervals, inventory clearance (Tables~S9--S10).
+\item \texttt{oecd\_classify.py}, \texttt{run\_oecd.py} --- OECD (2021) definitional gate
+      and category assignment, with the four classifier corrections of \S S8.
+\item \texttt{forest2.py} --- class-resolved transfer on the acute median (Table~S11).
+\item \texttt{make\_fig01.py}, \texttt{make\_fig02.py}, \texttt{make\_fig03.py} ---
+      Figures 1--3. Each ends in a measured-extent layout assertion;
+      \texttt{make\_fig03.py} additionally asserts that every tick label sits on the
+      row of the class it names.
 \end{itemize}
+
+Result files, in \texttt{canonical\_results/}:
+
+\begin{itemize}\setlength{\itemsep}{0.1em}\small
+\item \texttt{ecotox\_pfas\_records.csv.gz} --- extracted freshwater records.
+\item \texttt{ecotox\_pfas\_measured\_recurated.csv} --- the 87 parent structures.
+\item \texttt{recuration\_metrics.json}, \texttt{subsample.json} --- Tables S3--S6.
+\item \texttt{endpoint\_fix\_recurated.json} --- Tables S7--S8.
+\item \texttt{oecd\_103set.csv}, \texttt{forest\_final.csv} --- Table S11.
+\item \texttt{rebuild\_v2\_conformal\_repeats.csv} --- per-repeat conformal results.
+\item \texttt{final\_inventory\_predictions.csv}, \texttt{clearance.json} --- Table S10.
+\end{itemize}
+
+Superseded files from the earlier study are retained under \texttt{archive\_v2/}
+with a notice and are the source of Tables~S12--S14; no other table in this
+document draws on them.
 
 \end{document}

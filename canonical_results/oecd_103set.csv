@@ -1,0 +1,88 @@
+canonical_smiles,n_records,n_tests,n_acute,logTox,logTox_median,name,oecd_pfas,oecd_class,n_pfC,pf_chain,ether
+CC(C)(O)C(F)(F)C(F)F,1,1,1,2.7649229846498886,2.7649229846498886,"2-Methyl-3,3,4,4-tetrafluoro-2-butanol",True,600 other perfluoroalkyl,1,1,False
+CCN(CCOP(=O)(O)OCCN(CC)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,4,2,2,-1.6020599913279625,1.9278806861699735,Ammonium bis(N-ethyl-2-perfluorooctylsulfonaminoethyl)phosphate,True,200b perfluoroalkane sulfonamide,16,8,False
+CCNS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,35,17,9,-1.0604807473813815,1.8353734524700087,N-Ethylperfluorooctane sulfonamide,True,200b perfluoroalkane sulfonamide,8,8,False
+CCOC(=O)C(F)(F)F,1,1,1,4.0,4.0,Ethyl trifluoroacetate,True,600 other perfluoroalkyl,1,1,False
+CN(C(=O)c1ccccc1)c1cccc(C(=O)Nc2c(Br)cc(C(F)(C(F)(F)F)C(F)(F)F)cc2C(F)(F)F)c1F,53,19,4,-2.886056647693163,-0.0059882190356701,Broflanilide,True,700 side-chain fluorinated aromatic,3,1,False
+CN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1,1,1,3.130976691605617,3.130976691605617,N-Methyl-N-(2-hydroxyethyl)perfluorooctanesulfonamide,True,200b perfluoroalkane sulfonamide,8,8,False
+C[C@]1(c2ccc(O)cc2)CCc2cc(O)ccc2[C@H]1CCCCCCCCCS(=O)CCCC(F)(F)C(F)(F)F,11,10,0,-4.0,,"(1RS,2RS)-2-(4-Hydroxyphenyl)-2-methyl-1-(9-(4,4,5,5,5-pentafluoropentyl)sulfinylnonyl)-1,2,3,4-tetrahydronaphth-6-ol",True,600 other perfluoroalkyl,2,2,False
+C[C@]12CC[C@@H]3c4ccc(O)cc4C[C@@H](CCCCCCCCCS(=O)CCCC(F)(F)C(F)(F)F)[C@H]3[C@@H]1CC[C@@H]2O,29,22,1,-4.522878745280337,-0.8880992871343859,Fulvestrant,True,600 other perfluoroalkyl,2,2,False
+C[N+](C)(CCCNS(=O)(=O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)CC(=O)[O-],17,2,3,0.6989700043360189,1.808818425092124,6:2 Fluorotelomer sulfonamide betaine,True,400 fluorotelomer,6,6,False
+Cc1cc(C(F)(C(F)(F)F)C(F)(F)F)ccc1NC(=O)c1cccc(I)c1C(=O)NC(C)(C)CS(C)(=O)=O,61,30,17,-3.42021640338319,-1.1972262747080242,Flubendiamide,True,700 side-chain fluorinated aromatic,2,1,False
+FC(F)(Cl)C(F)(Cl)Cl,1,1,0,0.0791812460476248,,"1,1,2-Trichloro-1,2,2-trifluoroethane",False,not PFAS (OECD 2021),0,0,False
+FC(F)(F)C(Cl)Br,4,4,4,1.669316880566112,1.8429245898079705,Halothane,True,600 other perfluoroalkyl,1,1,False
+FC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)I,12,3,0,-1.3010299956639813,,Perfluorooctyl iodide,True,600 other perfluoroalkyl,7,7,False
+FC(F)(F)COCC(F)(F)F,6,3,0,2.7535830588929064,,Flurothyl,True,600 other perfluoroalkyl,2,1,False
+FC(F)(F)c1ccccc1,3,3,1,-0.2291479883578558,0.541579243946581,Benzotrifluoride,True,700 side-chain fluorinated aromatic,1,1,False
+FC(F)C(F)(F)OCC(Cn1cncn1)c1ccc(Cl)cc1Cl,28,15,18,-1.494850021680094,0.7981390647049837,Tetraconazole,True,600 other perfluoroalkyl,1,1,False
+FCC(F)(F)F,1,1,0,2.912753303671323,,"1,1,1,2-Tetrafluoroethane",True,600 other perfluoroalkyl,1,1,False
+Fc1c(F)c(F)c(C(F)(F)F)c(F)c1F,1,1,1,2.247973266361807,2.247973266361807,"1-Trifluoromethyl-2,3,4,5,6-pentafluorobenzene",True,700 side-chain fluorinated aromatic,1,1,False
+N#C/C=C/C(F)(F)F,1,1,0,-1.1739251972991736,,"4,4,4-trifluorocrotononitrile",True,600 other perfluoroalkyl,1,1,False
+NCc1cc(C(F)(F)F)cc(C(F)(F)F)c1,1,1,0,-0.4436974992327127,,"3,5-Bis(trifluoromethyl)benzylamine",True,700 side-chain fluorinated aromatic,2,1,False
+NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,8,6,6,-2.939302159646388,-1.7039116213020664,Perfluorooctanesulfonamide,True,200b perfluoroalkane sulfonamide,8,8,False
+NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,11,6,5,-1.0,-0.1426675035687315,Perfluorohexanesulfonamide,True,200b perfluoroalkane sulfonamide,6,6,False
+NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,9,4,4,-0.91721462968355,0.2774262171860273,Perfluorobutanesulfonamide,True,200b perfluoroalkane sulfonamide,4,4,False
+Nc1c(F)c(F)c(F)c(F)c1F,3,2,3,1.569373909615046,1.569373909615046,"2,3,4,5,6-Pentafluoroaniline",False,not PFAS (OECD 2021),0,0,False
+Nc1ccc(F)c(C(F)(F)F)c1,2,1,2,1.4424797690644486,1.460523132329146,"alpha,alpha,alpha-4-Tetrafluoro-m-toluidine",True,700 side-chain fluorinated aromatic,1,1,False
+Nc1ccc(F)cc1C(F)(F)F,2,1,2,1.4712917110589383,1.4712917110589383,"alpha,alpha,alpha-4-Tetrafluoro-o-toluidine",True,700 side-chain fluorinated aromatic,1,1,False
+O=C(NC(=O)c1c(F)cccc1F)Nc1cc(Cl)c(OC(F)(F)C(F)C(F)(F)F)c(Cl)c1F,4,3,1,-3.7569619513137056,-3.511449283499556,Noviflumuron,True,500 perfluoroalkyl ether other,2,1,True
+O=C(NC(=O)c1c(F)cccc1F)Nc1cc(Cl)c(OC(F)(F)C(F)C(F)(F)F)cc1Cl,228,71,6,-4.920818753952375,0.0185139398778874,Lufenuron,True,500 perfluoroalkyl ether other,2,1,True
+O=C(NC(=O)c1c(F)cccc1F)Nc1cc(Cl)c(OC(F)(F)C(F)F)c(Cl)c1,53,49,14,-6.0,-3.6634949313850687,Hexaflumuron,True,500 perfluoroalkyl ether other,1,1,True
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,12,2,0,-2.0,,Perfluorotridecanoic acid,True,100 perfluoroalkyl carboxylic,12,12,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,25,13,0,-2.0048037084028207,,Perfluorododecanoic acid,True,100 perfluoroalkyl carboxylic,11,11,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,14,11,0,-2.0305840876460186,,Perfluoroundecanoic acid,True,100 perfluoroalkyl carboxylic,10,10,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,30,21,10,-3.0,0.9136846365269128,Perfluorodecanoic acid,True,100 perfluoroalkyl carboxylic,9,9,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,104,36,23,-4.698970004336019,1.9081095403925523,Perfluorononanoic acid,True,100 perfluoroalkyl carboxylic,8,8,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1232,679,241,-6.0,2.162922686055427,Perfluorooctanoic acid,True,100 perfluoroalkyl carboxylic,7,7,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,11,5,0,-2.1426675035687315,,Perfluoroheptanoic acid,True,100 perfluoroalkyl carboxylic,6,6,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,78,37,12,-3.6989700043360174,2.856014900313103,Perfluorohexanoic acid,True,100 perfluoroalkyl carboxylic,5,5,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,9,8,4,-2.1444808443322,1.9543668643432968,Perfluoropentanoic acid,True,100 perfluoroalkyl carboxylic,4,4,False
+O=C(O)C(F)(F)C(F)(F)C(F)(F)F,70,31,8,-4.301029995663981,3.3024368852763177,Perfluorobutanoic acid,True,100 perfluoroalkyl carboxylic,3,3,False
+O=C(O)C(F)(F)C(F)(F)F,4,3,2,0.0,1.6672268755754651,Perfluoropropanoic acid,True,100 perfluoroalkyl carboxylic,2,2,False
+O=C(O)C(F)(F)C(F)F,4,4,4,4.301029995663981,4.31162464519895,"Sodium 2,2,3,3-tetrafluoropropionate",True,100 perfluoroalkyl carboxylic,1,1,False
+O=C(O)C(F)(F)C(F)OC(F)(F)C(F)(F)C(F)(F)OC(F)(F)F,1,1,0,0.9991305412873712,,"Ammonium 4,8-dioxa-3H-perfluorononanoate",True,500 perfluoroalkyl ether acid,5,3,True
+O=C(O)C(F)(F)F,77,24,34,-0.9208187539523752,2.899425070163387,Sodium trifluoroacetate,True,100 perfluoroalkyl carboxylic,1,1,False
+O=C(O)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,2,1,0,1.0,,"Perfluoro-3,6,9-trioxatridecanoic acid",True,500 perfluoroalkyl ether acid,9,4,True
+O=C(O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F,85,32,6,-5.0,3.2475304944541223,Perfluoro-2-methyl-3-oxahexanoic acid,True,500 perfluoroalkyl ether acid,4,3,True
+O=C(O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F,74,19,4,-3.0,-0.0307664068120665,"Perfluoro-2,5-dimethyl-3,6-dioxanonanoic acid",True,500 perfluoroalkyl ether acid,6,3,True
+O=C(O)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F)C(F)(F)F)C(F)(F)F,1,1,0,1.1772478362556236,,"Perfluoro-(2,5,8-trimethyl-3,6,9-trioxadodecanoic) acid",True,500 perfluoroalkyl ether acid,8,3,True
+O=C(O)C(F)F,1,1,0,-1.7212463990471711,,Difluoroacetic acid,False,not PFAS (OECD 2021),0,0,False
+O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,22,9,12,-1.6989700043360187,-0.5421181032660076,2H-Perfluoro-2-dodecenoate,True,100 perfluoroalkyl carboxylic,9,9,False
+O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,12,9,9,-2.0,0.8750612633917001,2H-Perfluoro-2-decenoic acid,True,100 perfluoroalkyl carboxylic,7,7,False
+O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,9,6,5,-2.0,1.4548448600085102,3-(Perfluoropentyl)-3-fluoro-2-propenoic acid,True,100 perfluoroalkyl carboxylic,5,5,False
+O=C(O)C=C(F)C(F)(F)C(F)(F)C(F)(F)F,2,1,2,0.8221680793680175,0.9690556281535364,"3,4,4,5,5,6,6,6‐Octafluorohex‐2‐enoic acid",True,100 perfluoroalkyl carboxylic,3,3,False
+O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,34,12,17,-2.3045183235098023,-0.1982533807805398,2-(Perfluorodecyl)ethanoic acid,True,400 fluorotelomer,10,10,False
+O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,32,10,19,-2.0,0.3617278360175928,2-(Perfluorooctyl)ethanoic acid,True,400 fluorotelomer,8,8,False
+O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,14,7,9,-2.0,1.4183012913197457,2-(Perfluorohexyl)ethanoic acid,True,400 fluorotelomer,6,6,False
+O=C(O)CC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,2,1,2,0.9726655922661108,1.1886641465699166,"3,3,4,4,5,5,6,6,6‐Nonafluorohexanoic acid",True,400 fluorotelomer,4,4,False
+O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,5,4,5,-0.3979400086720376,0.3617278360175928,3-(Perfluoroheptyl)propanoic acid,True,400 fluorotelomer,7,7,False
+O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,2,1,2,1.3521825181113625,1.539454863568967,"2H,2H,3H,3H-Perfluorooctanoic acid",True,400 fluorotelomer,5,5,False
+O=C(O)c1cc(C(F)(F)F)cc(C(F)(F)F)c1,2,2,0,1.977723605288848,,"Benzoic acid, 3,5-bis(trifluoromethyl)-",True,700 side-chain fluorinated aromatic,2,1,False
+O=Cc1c(F)c(F)c(F)c(F)c1F,6,5,6,0.041392685158225,0.1139433523068367,Pentafluorobenzaldehyde,False,not PFAS (OECD 2021),0,0,False
+O=P(O)(C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,7,1,0,-0.9854794612420764,,Sodium bis(perfluorooctyl)phosphinate,True,300 perfluoroalkyl phosphorus,16,8,False
+O=P(O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,8,1,0,-1.505149978319906,,Perfluorodecylphosphonic acid,True,300 perfluoroalkyl phosphorus,10,10,False
+O=P(O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,3,1,0,-0.9030899869919436,,(Perfluorooctyl)phosphonic acid,True,300 perfluoroalkyl phosphorus,8,8,False
+O=P(O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,5,1,0,-6.301029995663981,,Bis(2-(perfluorooctyl)ethyl) hydrogen phosphate,True,400 fluorotelomer,16,8,False
+O=P(O)(OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F)OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1,1,0,-6.301029995663981,,"Bis(3,3,4,4,5,5,6,6,7,7,8,8,8-tridecafluorooctyl) hydrogen phosphate",True,400 fluorotelomer,12,6,False
+O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,2,1,2,-0.958607314841775,-0.9223319812674692,Sodium perfluorodecanesulfonate,True,200a perfluoroalkane sulfonic,10,10,False
+O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,9,5,9,-1.958607314841775,0.785329835010767,Sodium Perfluorononanesulfonate,True,200a perfluoroalkane sulfonic,9,9,False
+O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,1548,690,315,-6.0,1.4917817755841658,Perfluorooctanesulfonic acid,True,200a perfluoroalkane sulfonic,8,8,False
+O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,2,1,2,-0.619788758288394,-0.6109243748081782,Sodium perfluoroheptane sulfonate,True,200a perfluoroalkane sulfonic,7,7,False
+O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,59,30,12,-3.3516399890190685,1.426483845514409,Perfluorohexanesulfonic acid,True,200a perfluoroalkane sulfonic,6,6,False
+O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,183,59,27,-5.301029995663981,3.325925955771466,Potassium perfluorobutanesulfonate,True,200a perfluoroalkane sulfonic,4,4,False
+O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)=C(F)F,2,1,0,1.1495270137543478,,"Perfluoro-3,6-dioxa-4-methyl-7-octene-1-sulfonic acid",True,500 perfluoroalkyl ether acid,4,2,True
+O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(C(F)(F)F)C(F)(F)OC(F)C(F)(F)F,2,1,0,-2.0,,"5-(1,2,2,2-Tetrafluoro)ethoxy-perfluoro-3-oxa-4-methylpentanesulfonic acid",True,500 perfluoroalkyl ether acid,5,2,True
+O=S(=O)(O)C(F)(F)C(F)(F)OC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)Cl,100,30,11,-5.0,1.1903316981702914,Potassium 9-chlorohexadecafluoro-3-oxanonane-1-sulfonate,True,500 perfluoroalkyl ether acid,7,5,True
+O=S(=O)(O)C1(F)C(F)(F)C(F)(F)C(F)(C(F)(F)C(F)(F)F)C(F)(F)C1(F)F,35,10,1,-5.0,2.2709349128748584,Potassium perfluoro-4-ethylcyclohexanesulfonate,True,200a perfluoroalkane sulfonic,6,2,False
+O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,30,13,4,-2.769551078621726,2.07891568154174,6:2 Fluorotelomer sulfonic acid,True,400 fluorotelomer,6,6,False
+O=S(=O)(O)c1ccc(OC(=C(C(F)(C(F)(F)F)C(F)(F)F)C(F)(C(F)(F)F)C(F)(F)F)C(F)(F)F)cc1,20,5,4,-2.5228787452803374,1.3733585013754666,"4-(Perfluoro(2,2-bis(1-methylethyl)(1-methyl)ethen-1-yloxy))benzenesulfonic acid sodium salt",True,700 side-chain fluorinated aromatic,5,1,False
+OC(C(F)(F)F)C(F)(F)F,2,1,2,2.247973266361807,2.317681546350268,2H-Perfluoro-2-propanol,True,600 other perfluoroalkyl,2,1,False
+OC(O)(C(F)C(O)(O)C(F)(F)F)C(F)(F)F,1,1,0,1.4546924492394768,,"3H-Perfluoro-2,2,4,4-tetrahydroxypentane",True,600 other perfluoroalkyl,2,1,False
+OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO,24,6,0,-3.428291168191312,,"1H,1H,10H,10H-Perfluorodecane-1,10-diol",True,400 fluorotelomer,8,8,False
+OCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)CO,8,2,0,-1.744727494896694,,"1H,1H,8H,8H-Perfluorooctane-1,8-diol",True,400 fluorotelomer,6,6,False
+OCC(F)(F)C(F)(F)C(F)(F)F,1,1,1,2.74350976472843,2.74350976472843,3:1 Fluorotelomer alcohol,True,600 other perfluoroalkyl,3,3,False
+OCC(F)(F)OC(F)(F)C(F)(F)OC(F)(F)CO,5,1,0,0.3191060593097763,,"1H,1H,8H,8H-Perfluoro-3,6-dioxaoctane-1,8-diol",True,500 perfluoroalkyl ether other,4,2,True
+OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,8,1,0,-2.0,,Fluorotelomer alcohol 8:2,True,400 fluorotelomer,8,8,False
+OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,13,3,1,-1.5228787452803376,1.7481880270062005,Fluorotelomer alcohol 6:2,True,400 fluorotelomer,6,6,False
+OCCC(F)(F)C(F)(F)C(F)(F)C(F)(F)F,4,1,0,-0.5228787452803376,,Fluorotelomer alcohol 4:2,True,400 fluorotelomer,4,4,False
+Oc1ccc(C(c2ccc(O)cc2)(C(F)(F)F)C(F)(F)F)cc1,95,37,20,-3.823908740944319,0.4064566783214278,Bisphenol AF,True,700 side-chain fluorinated aromatic,2,1,False

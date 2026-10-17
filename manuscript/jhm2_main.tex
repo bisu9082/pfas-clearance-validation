@@ -4,6 +4,7 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{url}
+\usepackage[expansion=false,protrusion=true]{microtype}
 \journal{Journal of Hazardous Materials}
 \setlength{\emergencystretch}{2em}
 
@@ -28,35 +29,21 @@ support clearance}
 Regulatory hazard screening commonly summarises a substance by the most
 sensitive effect concentration reported for it. We show that this convention
 makes the response variable a function of how much the substance has been
-tested, and that the resulting artefact is large enough to invert the apparent
-performance of structure-based models. Using the full U.S. EPA ECOTOX
-Knowledgebase, we assembled 106{,}095 freshwater acute records for 4{,}757
-chemicals and 15{,}991 freshwater records for 103 per- and polyfluoroalkyl
-substances (PFAS). Across PFAS, the most-sensitive minimum correlated with the
-logarithm of the number of available records at Spearman $\rho=-0.73$
-($p=1\times10^{-18}$): substances with more than 300 records had a median
-protective value 6.4 $\log_{10}$ units below those with three or fewer.
-Subsampling every substance to equal depth halved the association
-($\rho\approx-0.29$), identifying roughly half of it as a pure extreme-order-
-statistic artefact and the remainder as genuine reverse causation. The same
-pattern held across all 4{,}757 chemicals, where the acute minimum carried three
-times the confound of the acute median ($\rho=-0.46$ versus $-0.16$). Holding a
-published random-forest model fixed and changing only the external target, rank
-and point prediction tracked the confound: the minimum gave $R^2=-0.75$ and
-$\rho=-0.02$, whereas an acute median, whose effort association is negligible
-($\rho=-0.04$), gave $R^2=+0.22$ and $\rho=+0.42$. Rebuilding training and
-external sets consistently on the acute median raised broad cross-validation to
-$R^2=0.44\pm0.03$, restored external validity on 58 structure-locked PFAS
-($R^2=+0.37$; $\rho=+0.46$, 95\% CI $[+0.22,+0.65]$), and halved the
-PFAS-conditional 90\% interval from 10.53 to 4.46 $\log_{10}$ mg/L. Clearance
-nevertheless failed: because the acute median is 2.69 $\log_{10}$ units less
-protective than the minimum on the same substances, a threshold matched for
-stringency cleared none of 16{,}070 in-domain inventory structures, and the
-Globally Harmonised System acute Category 1 boundary cleared 1.9\%. The
-reported inability of structure-based models to clear untested PFAS is therefore
-correct but was attributed to the wrong cause: the models can predict this
-endpoint once it is constructed without an effort confound, and what still
-prevents clearance is interval width relative to the decision threshold.
+tested. Across 87 structure-resolved per- and polyfluoroalkyl substances (PFAS)
+carrying 4{,}744 freshwater records in the U.S. EPA ECOTOX Knowledgebase, the
+protective minimum correlated with the logarithm of record count at Spearman
+$\rho=-0.75$ ($p=7\times10^{-17}$); the most-tested quartile sat 4.9
+$\log_{10}$ units below the least-tested. Subsampling every substance to equal
+depth removed 40--48\% of the association at every depth examined, identifying
+that share as an extreme-order-statistic artefact; the remainder is not
+attributable to sampling depth alone. The same ordering held across 4{,}757
+chemicals. Holding a published random-forest model fixed and changing only the
+external target, rank transfer on the same 58 structures rose from
+$\rho=+0.09$ to $+0.41$ (difference $+0.32$, 95\% CI $[+0.08,+0.57]$).
+Rebuilding training and external sets on an effort-stable acute median restored
+external validity and narrowed the prediction interval. Clearance nevertheless
+failed: at any threshold matched to the protective endpoint for stringency, no
+in-domain PFAS cleared.
 \end{abstract}
 
 \begin{keyword}
@@ -80,12 +67,30 @@ applications combining curated descriptors, fingerprints and machine learning
 chemically independent validation, transparent applicability domains and an
 explicit endpoint definition \cite{tropsha2010best,cherkasov2014qsar}.
 
-That a model trained on conventional organic pollutants transfers poorly to PFAS
-is established \cite{cheng2019mlpfas}, and the usual explanation is chemical:
+Structure-based models are now routinely proposed to fill the data gaps that
+block criteria derivation for emerging contaminants
+\cite{liang2024datagaps,anand2024grape,khan2019ecotoxqsar}. That a model trained
+on conventional organic pollutants transfers poorly to PFAS is established
+\cite{cheng2019mlpfas}, and the usual explanation is chemical:
 perfluorinated chemistry is absent from the training distribution, so the model
-is extrapolating. We report evidence that a second mechanism, independent of
-chemistry, contributes substantially to the observed failure and has not to our
-knowledge been documented.
+is extrapolating. We report evidence that a second mechanism, independent
+of chemistry, contributes substantially to the observed failure.
+
+That mechanism is not unknown qualitatively. The life-cycle assessment
+literature has long recognised that a lowest-value summary ``will only change
+when a more sensitive species is tested'' whereas an all-data summary such as
+the HC50 is correspondingly less sensitive to new measurements
+\cite{saouter2017usetox}, and the whole geometric-mean design of USEtox follows
+from it; a data-selection sensitivity analysis on 24 PFAS reaches a related
+conclusion \cite{vandijk2023dataselection}, and the machine-learning side has
+noted that ``some chemicals have been tested much more often than others'' and
+that the resulting target ``rather resembles a probability distribution than a
+singular ground truth'' \cite{schur2023adore}. What has not been done, to our
+knowledge, is to measure the effect: to quantify the association between a
+protective endpoint and testing effort, to separate the part of it that is an
+extreme-order-statistic artefact from the part that is not, and to show that the
+residual is large enough to invert the apparent external performance of a
+published structure-based model. That is what we report.
 
 The mechanism concerns how the response variable is built. Regulatory hazard
 assessment is conventionally protective: a substance is summarised by the lowest
@@ -119,13 +124,17 @@ curated derivative. From 725{,}636 test records we retained tests on aquatic
 organisms (\texttt{organism\_habitat} = Water) in freshwater media
 (\texttt{media\_type} beginning FW), joined them to 1{,}250{,}612 result
 records, and kept results reporting an acute LC50, EC50 or IC50 or a chronic
-NOEC, LOEC or MATC in mass-concentration units convertible to mg/L. Records
+NOEC, NOEL, LOEC, LOEL or MATC in mass-concentration units convertible to mg/L. Records
 carrying an inequality qualifier were identified and excluded from the primary
 analysis rather than treated as point observations, because left-censored values
-have maximum leverage on the extreme order statistics examined here. This
-yielded 106{,}095 acute freshwater records for 4{,}757 chemicals, and, for the
-PFAS subset defined below, 15{,}991 acute and chronic records for 103
-substances.
+have maximum leverage on the extreme order statistics examined here. Rows identical in test
+identifier, endpoint type, reported concentration and unit are duplicates of a
+single observation and were collapsed, because testing effort is measured by
+counting records and duplicated rows inflate it non-uniformly. This yielded
+106{,}095 acute freshwater records for 4{,}757 chemicals, and, for the PFAS
+subset defined below, 15{,}991 raw rows reducing to 4{,}744 distinct records
+from 2{,}182 tests, carried by 103 CAS registrations that collapse to 87 parent
+structures under the standardisation of \S\ref{sec:std}.
 
 PFAS were identified by CAS match to the PFASSTRUCTV6 list of the CompTox
 Chemicals Dashboard \cite{epacomptox2026}, the same operational definition used
@@ -150,16 +159,24 @@ a substance, and its association with each endpoint was measured by Spearman
 correlation. We emphasise that this is a property of the response variable
 alone; no model is involved.
 
-\subsection{Structure standardisation}
+\subsection{Structure standardisation}\label{sec:std}
 
 Structures were desalted to the fluorine-bearing fragment where present,
 charge-neutralised with the RDKit standardiser and canonicalised
 \cite{rdkit,mceachran2018msready}. Desalting to the largest fragment, the more
 common convention, misassigns salts whose counterion exceeds the active moiety
-in size, and we therefore prefer the fluorinated fragment explicitly. Substances
-collapsing to the same parent structure were represented once, using the median
-of their values on the chosen endpoint. PFAS structures and inventory structures
-were removed from the broad training set before fitting.
+in size, and we therefore prefer the fluorinated fragment explicitly.
+Substances collapsing to the same parent structure were represented once, and
+the standardisation was applied before, not after, the per-substance summaries
+were formed: the records of every registration mapping to one parent were
+pooled and the endpoint computed once on the pooled set. This matters. Seven of the 103 PFAS CAS
+registrations collapse to perfluorooctanesulfonate --- the free acid and six
+salts --- and their separately assigned protective values span 7.9 $\log_{10}$
+units, from $-6.00$ for the potassium salt to $+1.93$ for the ammonium salt;
+treated as distinct substances they enter the analysis seven times, at seven
+different effective testing depths. Collapsing them leaves 87
+parent structures. PFAS structures and inventory structures were removed from
+the broad training set before fitting.
 
 \subsection{Model, validation and conformal intervals}
 
@@ -169,10 +186,11 @@ $\texttt{max\_features}=\sqrt{p}$ and seed 20260620
 \cite{breiman2001random,sklearn}; these are the settings of the published
 analysis we re-examine, held fixed so that differences are attributable to the
 endpoint and not to tuning. Broad performance used five repeats of shuffled
-five-fold cross-validation over structure-locked rows. External validation
+five-fold cross-validation over structure-locked rows, with 160 trees per fold. External validation
 fitted the full broad model once and evaluated it on the PFAS set, with
-substance-level bootstrap confidence intervals (4{,}000 resamples) on Spearman
-$\rho$.
+substance-level bootstrap confidence intervals on Spearman $\rho$ (4{,}000
+resamples, except the fixed-model comparison of SI Table~S7, which used
+3{,}000).
 
 Normalised split-conformal intervals used the nonconformity score
 \begin{equation}
@@ -214,52 +232,65 @@ ether acid rather than as a chain compound.
 
 \subsection{The protective minimum tracks how much a substance has been tested}
 
-Across the 103 PFAS with freshwater records, the protective minimum correlated
-with the logarithm of the number of available records at $\rho=-0.73$
-($p=1\times10^{-18}$; Figure~\ref{fig:effort}a). The gradient is not subtle.
-Substances with three or fewer records had a median protective value of $+1.40$
-$\log_{10}$ mg/L; those with more than 300 records had a median of $-4.96$. The
-difference of 6.4 $\log_{10}$ units between the least- and most-studied strata
-is larger than the entire range the modelling literature attempts to predict.
+Across the 87 parent structures with freshwater records, the protective minimum
+correlated with the logarithm of the number of available records at
+$\rho=-0.749$ ($p=7\times10^{-17}$; Figure~\ref{fig:effort}a). The same
+correlation computed on the number of distinct tests rather than records is
+$\rho=-0.703$. The gradient is not subtle. Binned by record-count quartile, the
+median protective value falls monotonically from $+1.16$ $\log_{10}$ mg/L in the
+least-tested quartile through $-0.52$ and $-2.00$ to $-3.76$ in the most-tested,
+a difference of 4.9 $\log_{10}$ units (Mann--Whitney $p=1\times10^{-7}$); the
+comparison between substances with three or fewer records and those with at
+least a hundred is 6.3 units. Either span is larger than the entire range the
+modelling literature attempts to predict.
 
-The same substances illustrate the mechanism individually. Perfluorooctanoic
-acid carries 2{,}966 freshwater records spanning 9.03 $\log_{10}$ units, from
-$-6.00$ to $+3.03$; potassium perfluorooctanesulfonate carries 2{,}434 spanning
-8.60. Under the protective convention each is summarised by the lowest value in
-its own large sample. These extreme values are not data-entry errors --- they
-are genuine entries in a public, curated database --- but they are the minima of
-very large draws from very wide distributions, and a substance tested three
-times cannot produce a comparable minimum however toxic it is.
+The same substances illustrate the mechanism individually. Per\-fluoro\-octane\-sulfonic acid carries 1{,}548 distinct freshwater records from 690 tests and
+perfluorooctanoic acid 1{,}232 from 679; the minimum of each is $-6.00$. Under
+the protective convention each is summarised by the lowest value in its own
+large sample. These extreme values are not data-entry errors --- they are
+genuine entries in a public, curated database --- but they are the minima of
+very large draws from very wide distributions, and a substance tested twice
+cannot produce a comparable minimum however toxic it is.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_01_effort.png}
 \caption{The protective endpoint is confounded with testing effort. (a) Protective
-minimum against the number of freshwater records per PFAS substance
-($n=103$). (b) Spearman correlation between the minimum and the record count
-after subsampling every eligible substance to the same depth $k$; the dashed
-line is the value obtained using all records, and bars are 2.5th--97.5th
-percentiles over 200 draws. (c) External performance of a fixed broad
-non-PFAS model evaluated against four constructions of the same underlying
-records, with 95\% bootstrap intervals on Spearman $\rho$ and $R^2$ annotated;
-teal marks an interval excluding zero.}
+minimum against the number of de-duplicated freshwater records per PFAS parent
+structure ($n=87$). (b) Spearman correlation between the minimum and the record
+count after subsampling every eligible substance to depth $k$ (teal), against
+the same substances using all of their records (grey); the gap between the two
+lines is the depth effect, and the dotted line is the value over all 87
+substances. Bars are standard deviations over 400 draws. (c) External rank
+transfer of a fixed broad non-PFAS model on the 58 parent structures common to
+both endpoints, with 95\% bootstrap intervals and the paired difference
+annotated.}
 \label{fig:effort}
 \end{figure*}
 
-\subsection{About half of the association is a sampling-depth artefact}
+\subsection{Sampling depth accounts for 40--48\% of the association}
 
-Correlation between effort and the protective value admits two explanations
-that are not mutually exclusive. Substances of greater concern attract more
-testing, which would make the association causal in the reverse direction; and
-the minimum of a larger sample is lower by construction, which would make part
-of it an artefact. Subsampling separates them. Drawing the same number of
-records from every eligible substance and recomputing the minimum reduced the
-correlation from $-0.73$ to $-0.31$ at $k=3$, $-0.28$ at $k=5$ and $-0.29$ at
-$k=10$ (Figure~\ref{fig:effort}b). Roughly half the association therefore
-disappears when sampling depth is held constant, and roughly half remains as
-genuine reverse causation. The value at $k=20$ ($-0.52$) is higher but rests on
-the 47 substances with at least 20 records, which are themselves the
-well-studied ones, and we do not read it as contradicting the pattern.
+Correlation between effort and the protective value admits explanations that
+are not mutually exclusive. Substances of greater concern attract more testing,
+which would make the association causal in the reverse direction; more-tested
+substances also accumulate a wider range of species, durations and effect types,
+so their records are drawn from a more dispersed distribution; and the minimum
+of a larger sample is lower by construction. Subsampling isolates the last of
+these. Because a substance is eligible for depth $k$ only if it has at least $k$
+records, the comparison must be made against the same substances at full depth
+rather than against the whole set, or the change in sample is read as an effect
+of depth. Against that baseline the depth effect was $0.36$, $0.31$, $0.30$ and
+$0.30$ at $k=3,5,10$ and $20$ (Figure~\ref{fig:effort}b), i.e.\ 40--48\% of the
+full-sample association and stable in $k$; the apparent anomaly at $k=20$ in a
+whole-set comparison is an artefact of the shifting denominator.
+
+We do not attribute the residual to reverse causation. Within-substance
+dispersion itself rises steeply with effort in these data (SI \S S3), and
+subsampling draws from each substance's own pool, so it preserves that
+substance's dispersion and assay mix by construction and cannot remove that
+channel. The residual $\rho\approx-0.34$ is therefore not attributable to
+sampling depth alone, and reverse causation and effort-dependent assay breadth
+are not separable in this design.
 
 The effect is not peculiar to PFAS. Over all 4{,}757 chemicals with freshwater
 acute data, the acute minimum carried $\rho=-0.46$ against record count while
@@ -273,18 +304,27 @@ A structure-based model has no access to a substance's testing history. If the
 protective endpoint is partly a measure of that history, the model should fail
 on it for reasons unrelated to chemistry. Holding the published broad non-PFAS
 model fixed and changing only the external target tests this directly
-(Figure~\ref{fig:effort}c). On the protective minimum the model gave
-$R^2=-0.745$ and $\rho=-0.015$ (95\% CI $[-0.21,+0.18]$). On the median of the
-same records it gave $R^2=-0.147$ and $\rho=+0.076$. On an acute median, whose
-association with record count is $\rho=-0.04$, it gave $R^2=+0.216$ and
-$\rho=+0.424$ (95\% CI $[+0.21,+0.61]$), the only configuration whose interval
-excludes zero.
+(Figure~\ref{fig:effort}c). An acute median is defined only for substances
+carrying acute records, so the four constructions are not available on identical
+substance sets; we therefore report the comparison on the 58 parent structures
+common to the protective minimum and the acute median. On those same 58
+structures the minimum gave $\rho=+0.086$ (95\% CI $[-0.18,+0.35]$) and the
+acute median $\rho=+0.412$ ($[+0.18,+0.60]$); a paired bootstrap on the
+difference gives $+0.321$ ($[+0.08,+0.57]$, $p=0.005$). Only the acute median's
+interval excludes zero. Across all four constructions on their full available
+sets, the ordering of external rank performance is the ordering of freedom from
+the effort confound (SI Table~S7).
 
-Across the four constructions, the ordering of external performance is the
-ordering of freedom from the effort confound. We regard this correspondence as
-the central evidence of the paper: the same model, the same molecules and the
-same underlying measurements yield a failed or a successful external validation
-depending only on how the response variable was summarised.
+We lead with rank rather than $R^2$ deliberately. The protective minimum sits
+$2.2$ $\log_{10}$ units below the training target's mean, and that constant
+accounts for most of its apparent $R^2$ collapse: removing a single intercept
+moves the minimum from $R^2=-0.714$ to $+0.011$ and the acute median from
+$+0.247$ to $+0.325$. The $R^2$ contrast therefore restates the location shift
+that the order-statistic mechanism produces, and is not independent evidence
+about predictive structure. The rank contrast is, and it survives the matched
+comparison above. Variance compression is also visible and should be reported:
+the ratio of predicted to observed standard deviation is $0.34$ on the minimum
+against $0.59$ on the acute median.
 
 This also accounts for an observation reported previously without a mechanism.
 Restricting to acute endpoints has been noted to improve external rank
@@ -297,32 +337,52 @@ narrower range and the median is not an extreme order statistic.
 
 The comparison above changed the external target while leaving the training
 target as published. Rebuilding both consistently on the acute median gave a
-broad training set of 3{,}718 structure-locked non-PFAS chemicals and an
+broad training set of 3{,}718 structure-locked non-PFAS chemicals, of which
+3{,}717 yielded a valid fingerprint and entered the model, and an
 external set of 58 structure-locked PFAS. Broad cross-validation improved from
 $R^2=0.387\pm0.024$ to $0.443\pm0.029$. External validation improved from
-$R^2=-0.580$ to $+0.367$ and from $\rho=-0.071$ to $+0.460$ (95\% CI
-$[+0.22,+0.65]$) (Figure~\ref{fig:rebuild}a).
+$R^2=-0.580$ to $+0.366$ and from $\rho=-0.071$ to $+0.460$ (95\% CI
+$[+0.23,+0.65]$) (Figure~\ref{fig:rebuild}a).
 
-Interval behaviour improved correspondingly. Marginal calibration, which
-under-covered PFAS badly on the protective endpoint (0.659 at nominal 0.90),
-reached 0.858. PFAS-conditional calibration reached 0.897, and its median 90\%
-interval narrowed from 10.53 to 4.46 $\log_{10}$ mg/L
-(Figure~\ref{fig:rebuild}b). An interval spanning more than ten orders of
-magnitude covers the whole range from ambient background to the most heavily
-impacted discharge concentrations on record; one spanning four and a half does
-not, and is for the first time of a width at which an environmental decision
-could in principle be made.
+Interval behaviour improved correspondingly, with two qualifications we state
+rather than leave to the reader. Marginal calibration, which under-covered PFAS
+badly on the protective endpoint (0.659 at nominal 0.90), reached 0.851, and
+PFAS-conditional calibration reached 0.897. Both are estimated on 58 and 29
+external structures respectively, so their intervals are wide: 95\% CI
+$[0.73,0.93]$ for the marginal and $[0.73,0.98]$ for the conditional. Neither
+differs significantly from the nominal 0.90, but the design could not have
+detected coverage as low as 0.81 either, and these figures should be read as
+estimates with a spread of about $\pm0.10$, not as demonstrations of validity
+(SI Table~S9). Marginal calibration
+moreover splits the broad non-PFAS set and tests on PFAS, so exchangeability
+fails by construction and no conformal guarantee applies to it; the conditional
+procedure, calibrated and tested within PFAS, is the one with a theoretical
+basis, and it is also the one we deploy.
+
+The conditional median 90\% interval narrowed from 10.53 to 4.48 $\log_{10}$
+mg/L (2.5th--97.5th percentile over 40 calibration splits $[3.34,5.35]$;
+Figure~\ref{fig:rebuild}b), but the greater part of that narrowing is the
+target being less dispersed rather than the model being better. On the 58
+matched structures the ratio of standard deviations is $1.58/2.67=0.59$, so a
+width of about 6.2 units would follow from the change of target alone; the
+achieved 4.48 improves on that, and the comparison that carries the practical
+meaning is 4.48 against the 2.43 that would be required for the median
+in-domain structure to clear at the 1 mg/L decision point (SI \S S6). We therefore do not claim that the interval was halved by
+better prediction.
 
 \begin{figure*}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_02_rebuild.png}
-\caption{Consistent rebuilding on the acute median. (a) External $R^2$ on
-structure-locked PFAS for the published protective endpoint and the rebuilt
-acute-median endpoint. (b) Median PFAS-conditional 90\% interval width. (c)
-Fraction of in-domain inventory structures cleared as a function of the hazard
-threshold, with three reference thresholds marked: the value used with the
-protective endpoint, the GHS acute Category 1 boundary, and a value matched to
-the protective endpoint for stringency.}
+\caption{The rebuilt model. (a) External validation on 58 structure-locked
+PFAS, with the 95\% bootstrap interval on Spearman $\rho$. (b) PFAS-conditional
+90\% interval width over 40 calibration splits, against the width that would be
+required for the median in-domain structure to clear at 1 mg/L. (c) Fraction of
+in-domain inventory structures cleared as a function of the hazard threshold.
+Three reference thresholds are marked: the value used with the protective
+endpoint, the GHS acute Category 1 boundary, and one construction of a
+stringency-matched value. The shaded band is the concentration range in which
+PFAS are reported in surface water; the modelled effect concentrations lie
+several orders of magnitude above it, as hazard terms necessarily do.}
 \label{fig:rebuild}
 \end{figure*}
 
@@ -333,17 +393,24 @@ unique structures inside the applicability domain with a median interval width
 of 4.87 $\log_{10}$ units, and cleared 5{,}441 of them (33.9\%) at the 0.1 mg/L
 threshold used with the protective endpoint. That number must not be compared
 with the zero reported for the protective endpoint, and the reason is
-quantitative. On the same substances the acute median lies 2.69 $\log_{10}$
-units above the protective minimum, and 94.3\% of measured PFAS exceed 0.1 mg/L
-on the acute median against 42.9\% on the minimum. The threshold means something
+quantitative. On the same 58 structures the acute median lies above the
+protective minimum by 2.66 $\log_{10}$ units in the mean and 2.32 in the median,
+and 93.1\% of measured PFAS exceed 0.1 mg/L on the acute median against 39.7\%
+on the minimum. The threshold means something
 different on each endpoint, and holding it fixed while changing the endpoint
 relaxes the decision rather than improving it.
 
 Evaluating clearance across thresholds removes the ambiguity
 (Figure~\ref{fig:rebuild}c). At the GHS acute aquatic Category 1 boundary of 1
-mg/L, 306 structures clear (1.9\%). At a threshold shifted by the measured
-2.69-unit offset, which matches the protective endpoint for stringency, none
-clear. The published conclusion that no untested PFAS can be cleared therefore
+mg/L, 306 structures clear (1.9\%). At a threshold shifted to match the protective
+endpoint for stringency, none clear. That threshold is a construction, not a
+regulatory object, and it is not unique: the mean paired offset puts it at 46
+mg/L, the median offset at 21 mg/L, and matching instead on the fraction of
+measured PFAS falling above the cut-off (39.7\% on the minimum) puts it at 41
+mg/L. Clearance is zero
+at all three, and at every threshold at or above 10 mg/L, so the conclusion does
+not depend on which construction is chosen (SI Table~S10). The published
+conclusion that no untested PFAS can be cleared therefore
 survives, and survives on a model that now has demonstrated external validity
 rather than on one that had none.
 
@@ -375,38 +442,55 @@ class-specific. We tested this on OECD (2021) categories and report a negative
 result with its power requirement, because the point estimates invite
 over-reading.
 
-On the protective endpoint, where the measured set is largest ($n=112$ after
-applying the OECD definitional gate, which excludes seven substances including
-difluoroacetic acid, whose CHF$_2$ carbon is not fully fluorinated), only one of
-seven categories had a bootstrap interval excluding zero: perfluoroalkyl ether
-acids at $\rho=+0.70$ (95\% CI $[+0.14,+0.93]$, $n=13$;
-Figure~\ref{fig:subclass}). Every other category, including the perfluoroalkyl
-acids on which extrapolation is expected to be worst, spanned zero. The single
-positive result sits close to the detection floor for its sample size and is
-one of seven comparisons, so we do not interpret it as established.
+We classify on the acute median, the endpoint this paper endorses: a
+class-resolved analysis of the protective minimum would inherit the effort
+confound a class at a time. Of the 87 parent structures, the OECD definitional
+gate admits 83; the four it excludes are difluoroacetic acid, whose CHF$_2$
+carbon is not fully fluorinated, pentafluoroaniline, pentafluorobenzaldehyde and
+1,1,2-trichlorotrifluoroethane. Fifty-six of the 83 carry acute records and
+enter the comparison, distributed across nine categories, of which six reach
+five substances; the two smallest, perfluoroalkyl ether acids and ether others
+at three substances each, and perfluoroalkyl phosphorus compounds, which carry
+no acute record at all, are reported in SI Table~S11 but not estimated, since a
+bootstrap interval on three points is degenerate.
 
-The acute-median set is smaller still. Of 68 OECD-classified PFAS, three
-categories reach ten substances and the largest reaches fourteen. At those
-sizes, 80\% power at $\alpha=0.05$ detects only $|\rho|\ge0.69$. Resolving
-differential transfer at a more realistic effect size of $\rho=0.3$ would
-require approximately 85 measured substances per category, or 133 with
-correction for seven comparisons --- roughly 600 to 900 measured PFAS against
-the 103 the public record currently supports. This is the quantity a programme
-that wants class-resolved screening would need to measure, and it is five to
-nine times what exists.
+\emph{No category resolves.} Pooled across all classified PFAS the model
+transfers at $\rho=+0.41$ (95\% CI $[+0.18,+0.61]$, $n=56$), but every one of
+the six estimable categories has an interval covering zero, from
+$\rho=-0.44$ for fluorotelomers ($n=9$) to $+0.68$ for the residual
+perfluoroalkyl category ($n=7$) (Figure~\ref{fig:subclass}). This is a cleaner
+negative result than the one we reported previously on a superseded data
+extraction, where a single category appeared to exclude zero; that estimate does
+not survive recomputation on the present set, and we note the correction
+explicitly. We also tested whether class-level transfer merely tracks class-level
+testing effort, which would make the figure a third measurement of the confound
+rather than a statement about chemistry: it does not
+($\rho=-0.49$, $p=0.33$, between class rank correlation and class mean
+$\log_{10}$ record count across the six estimable classes --- negative, and far
+from significant on six points).
+
+Power is the binding constraint. At these category sizes, 80\% power at
+$\alpha=0.05$ detects only $|\rho|\ge0.71$ to $0.92$. Resolving differential
+transfer at a more realistic effect size of $\rho=0.3$ would require
+approximately 85 measured substances per category, or 129 with correction for
+six comparisons --- roughly 510 to 780 measured PFAS against the 87 parent
+structures the public record currently supports. This is the quantity a
+programme that wants class-resolved screening would need to measure, and it is
+six to nine times what exists.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{fig_03_subclass.png}
-\caption{External rank correlation by OECD (2021) structure class on the
-protective endpoint, with 95\% bootstrap intervals. Only perfluoroalkyl ether
-acids exclude zero, on 13 substances and as one of seven comparisons.}
+\caption{External rank correlation by OECD (2021) structure class on the acute
+median, with 95\% bootstrap intervals. The pooled estimate excludes zero; no
+individual category does. Categories with fewer than five substances are listed
+in SI Table~S11 and not estimated.}
 \label{fig:subclass}
 \end{figure}
 
 \subsection{Implications for screening practice}
 
-Three consequences follow for programmes that build or consume structure-based
+Four consequences follow for programmes that build or consume structure-based
 hazard screens.
 
 First, the response variable deserves the scrutiny usually reserved for the
@@ -420,23 +504,80 @@ are now routinely reported.
 Second, a model that fails external validation on a protective endpoint has not
 thereby been shown to lack chemical validity. The failure is consistent with the
 model being unable to predict testing history, which is not a chemical
-deficiency and is not repaired by a better representation or a larger training
-set. Distinguishing the two requires exactly the endpoint comparison performed
-here, and it is inexpensive.
+deficiency. Endpoint construction is not the only lever: on the earlier
+extraction of this work, holding the endpoint at the protective minimum and
+replacing the binary ECFP4 representation with 165 physicochemical descriptors
+also recovered rank transfer, from $\rho=-0.03$ to $+0.42$ (SI Table~S12), and a
+ridge baseline outperformed the random forest on the same target (SI
+Table~S13). Both tables are from the superseded extraction and we have not
+repeated them on the present one, but the direction is clear enough that the
+claim must be made in the weaker form. Endpoint and representation therefore both matter.
+We report the endpoint comparison because it is the larger of the two on matched
+samples, because it is the one a screening programme controls when it defines its
+response variable, and because it is inexpensive; we do not claim that
+representation is irrelevant.
 
-Third, the protective convention is not thereby wrong. It remains the correct
+Third, the confound propagates to the concentrations at which PFAS are actually
+regulated, which are far below those modelled here. PFAS occur in surface water
+at nanograms to low micrograms per litre; the European environmental quality
+standard for perfluorooctanesulfonate in inland surface water is 0.65 ng/L
+\cite{eu2013directive} and the United States maximum contaminant level for
+perfluorooctanoate and perfluorooctanesulfonate is 4 ng/L \cite{epa2024mcl}, while the effect concentrations modelled
+here, and the 0.1 to 1 mg/L decision boundaries applied to them, sit five to
+seven orders of magnitude higher. That gap is not an artefact of this study: it
+is the standard structure of hazard assessment, in which a predicted no-effect
+concentration is an effect concentration divided by an assessment factor, so the
+hazard term is necessarily derived at effect concentrations and only then
+brought down to the occurrence range. The consequence is that an effort
+confound in the effect term is not diluted by that division --- an assessment
+factor is a multiplicative constant and leaves a 4.9 $\log_{10}$ unit gradient
+intact. A criterion derived at nanograms per litre from a minimum-based hazard
+term inherits the whole of it. This is why we regard the diagnostic as
+environmentally consequential rather than merely methodological, and it is also
+why we do not present the clearance fractions as risk estimates: a clearance
+rule that compares a predicted effect concentration directly with a fixed
+cut-off, as the screening literature we re-examine does, carries no exposure
+term, and the fractions below should be read as a property of that decision
+rule.
+
+Fourth, the protective convention is not thereby wrong. It remains the correct
 posture for a regulatory decision, because the lowest observed effect does bound
 the hazard. What the present results argue is that it is unsuitable as a
 \emph{regression target}, and that screening pipelines should model an
-effort-stable quantity and apply protectiveness at the decision step --- through
-the threshold and the assessment factor --- rather than embedding it in the
-response variable where it cannot be separated from testing history.
+effort-stable quantity and apply protectiveness at the decision step rather than
+embedding it in the response variable where it cannot be separated from testing
+history.
+
+We are deliberate about what that does and does not propose. It is not a
+proposal to substitute a median into an existing assessment-factor schedule.
+Those schedules are calibrated over a \emph{lowest} value from a specified set
+of trophic levels --- ECHA Guidance R.10 assigns a factor of 1000 to the lowest
+short-term L(E)C50 across three trophic levels \cite{echa2008r10} --- and no published calibration
+exists for a median, so swapping the summary underneath an unchanged factor
+would leave the factor undefined. The claim is narrower: when a structure-based
+model is fitted in order to \emph{prioritise} untested substances, its
+regression target should be effort-stable, and protectiveness should re-enter
+when the prioritised substances are carried into an assessment. We also note
+what the record-level acute median is not. It is a median over records, not
+over species: the ECOTOX extraction used here does not carry a species field, so
+a substance tested fifty times in \emph{Daphnia magna} and once in a fish is
+summarised by a value that is effectively the \emph{Daphnia} result. The
+species-aggregated alternatives --- a geometric mean per species feeding a
+species sensitivity distribution, with the HC5 as the summary
+\cite{posthuma2019ssd} --- are both
+effort-stable and protective, have a mature methodological literature, and are
+the natural target for a screening model built on a species-resolved
+extraction. We did not evaluate them here because the extraction we re-used
+from the study under re-examination does not carry species, and we regard that
+comparison as the most useful next step rather than a gap we can close in this
+paper.
 
 \subsection{Limitations}
 
 The external PFAS set contains 58 structure-locked substances on the acute
-median, smaller than the 119 available on the protective endpoint, because
-restricting to acute endpoints and collapsing salts both reduce it. This is the
+median, smaller than the 87 parent structures available on the protective
+endpoint, because restricting to acute endpoints removes the 29 substances whose
+records are entirely chronic. This is the
 principal limitation and it bounds the precision of every external statistic
 reported. Structures resolved for 90.6\% of chemicals; the unresolved remainder
 may be non-random with respect to chemical class, which we could not assess.
@@ -446,26 +587,31 @@ evaluates aquatic effect concentrations only and says nothing about exposure,
 persistence or bioaccumulation, which are the properties that in practice drive
 PFAS regulatory action; a substance with a high acute LC50 and a decades-long
 half-life is not low concern, and no aquatic-toxicity model of any quality would
-establish that it was. Finally, the reverse-causation component of the
-effort--toxicity association --- roughly half of it --- is real and is not
-removed by changing the endpoint summary.
+establish that it was. Finally, the residual association that survives depth
+equalisation is not identified: this design cannot separate reverse causation
+from effort-dependent assay breadth, and the latter is not removed by
+subsampling.
 
 \section{Conclusions}
 
 Summarising a substance by the lowest effect concentration ever reported for it
-makes the resulting value depend on how often it has been tested. Across 103
-PFAS the protective minimum correlated with record count at $\rho=-0.73$, and
-subsampling to equal depth identified about half of that as an
-extreme-order-statistic artefact; across 4{,}757 chemicals the acute minimum
-carried three times the confound of the acute median. Because a structure-based
-model cannot predict testing history, this confound is sufficient on its own to
-produce the external validation failures reported for PFAS screening: holding a
-published model fixed, the same molecules gave $R^2=-0.75$ on the protective
-minimum and $R^2=+0.22$ on an effort-stable acute median.
+makes the resulting value depend on how often it has been tested. Across 87
+PFAS parent structures the protective minimum correlated with record count at
+$\rho=-0.749$, and equalising sampling depth against the eligible-subset
+baseline identified 40--48\% of that as an extreme-order-statistic artefact;
+across 4{,}757 chemicals the acute minimum carried three times the confound of
+the acute median. Because a structure-based model cannot predict testing
+history, this confound contributes to the external validation failures reported
+for PFAS screening: holding a published model fixed and changing only how the
+same records are summarised raised rank transfer on the same 58 parent
+structures from $\rho=+0.09$ to $+0.41$, a paired difference of $+0.32$
+(95\% CI $[+0.08,+0.57]$, $p=0.005$).
 
 Rebuilding training and external sets consistently on the acute median restored
-external validity ($R^2=+0.37$; $\rho=+0.46$, 95\% CI $[+0.22,+0.65]$) and
-halved the PFAS-conditional interval to 4.46 $\log_{10}$ mg/L. Clearance
+external validity ($R^2=+0.37$; $\rho=+0.46$, 95\% CI $[+0.23,+0.65]$) and
+narrowed the PFAS-conditional interval to 4.48 $\log_{10}$ mg/L, most of that
+narrowing being attributable to the less dispersed target rather than to better
+prediction. Clearance
 nevertheless failed at a stringency-matched threshold, where no in-domain
 inventory structure cleared, and at the GHS acute Category 1 boundary, where
 1.9\% did. The conclusion that structure-based screening cannot presently clear
@@ -483,6 +629,10 @@ original draft. \textbf{Jin Yoo:} Data curation, Validation, Formal analysis,
 Writing -- review \& editing. \textbf{Ku Kang:} Conceptualization, Supervision,
 Methodology, Writing -- original draft, Writing -- review \& editing.
 
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the
+public, commercial, or not-for-profit sectors.
+
 \section*{Declaration of competing interest}
 The authors declare that they have no known competing financial interests or
 personal relationships that could have appeared to influence the work reported
@@ -498,11 +648,16 @@ responsibility for the content of the publication.
 All extraction and analysis scripts, the structure-locked tables, and the
 inventory-level predictions are openly available at
 \url{https://github.com/bisu9082/pfas-clearance-validation}, tagged as release
-\texttt{v3.0}. The underlying source data are public: the U.S. EPA ECOTOX
-Knowledgebase ASCII release of 15 September 2026, the CompTox Chemicals
-Dashboard PFASSTRUCTV6 list, and PubChem for structure resolution. Raw
-third-party databases are not redistributed; the repository documents the exact
-release used and the processing pipeline that regenerates every reported number.
+\texttt{v3.1}. Every number reported in this paper and its Supporting
+Information is regenerated by the scripts in \texttt{scripts/} from the inputs
+in \texttt{canonical\_results/}; the correspondence between script, file and
+table is given in SI \S S11. Superseded result files from the earlier version of
+this study are retained under \texttt{archive\_v2/} and are clearly marked as
+such; they are the source of SI Tables~S12--S14 and of no other table. The
+underlying source data are public: the U.S. EPA ECOTOX Knowledgebase ASCII
+release of 15 September 2026, the CompTox Chemicals Dashboard PFASSTRUCTV6 list,
+and PubChem for structure resolution. Raw third-party databases are not
+redistributed; the repository documents the exact release used.
 
 \section*{Acknowledgements}
 The authors thank the teams maintaining the U.S. EPA ECOTOX Knowledgebase, the
