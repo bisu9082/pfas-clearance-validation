@@ -54,8 +54,17 @@ conformal prediction \sep ECOTOX
 
 \section{Introduction}
 
-Screening programmes for per- and polyfluoroalkyl substances (PFAS) face an
-inventory far larger than the measured record. The U.S. EPA CompTox Chemicals
+Per- and polyfluoroalkyl substances (PFAS) are a structurally diverse class
+whose environmental persistence has been argued to be sufficient on its own to
+warrant management at the level of the class
+\cite{kwiatkowski2020class,cousins2020persistence}, and whose global
+distribution and exposure pathways are now extensively documented
+\cite{wang2017never,sunderland2019exposure,cousins2022planetary}. The
+ecological risk literature for the class has been reviewed in detail
+\cite{ankley2021pfasrisk,mccarthy2017pfasecol}, and regulatory programmes have
+set out explicit research and action agendas \cite{epa2021roadmap}. Screening
+programmes for PFAS nonetheless face an inventory far larger than the measured
+record. The U.S. EPA CompTox Chemicals
 Dashboard lists tens of thousands of structures
 \cite{williams2017comptox,epacomptox2026}, while measured freshwater effect
 concentrations exist for a few hundred. Structure-based models are the obvious
@@ -63,13 +72,19 @@ way to triage that gap, and quantitative structure--activity relationship (QSAR)
 models for aquatic toxicity have a long history
 \cite{mazzatorta2005aquatic,nath2023aquatic} with current environmental
 applications combining curated descriptors, fingerprints and machine learning
-\cite{mansouri2018opera,ms2tox2022}. Best-practice guidance emphasises
-chemically independent validation, transparent applicability domains and an
-explicit endpoint definition \cite{tropsha2010best,cherkasov2014qsar}.
+\cite{mansouri2018opera,ms2tox2022,jang2025opqsar}; PFAS-specific models have
+followed \cite{sarkar2026pfasqsar}, and multi-endpoint hazard prioritisation
+has been proposed as the operational use for such predictions
+\cite{kim2026dualthreat}. Best-practice guidance emphasises chemically
+independent validation, transparent applicability domains and an explicit
+endpoint definition
+\cite{tropsha2010best,cherkasov2014qsar,gramatica2007validation}, and the
+hazards of reporting internal fit statistics as evidence of predictivity have
+been set out repeatedly \cite{golbraikh2002q2}.
 
 Structure-based models are now routinely proposed to fill the data gaps that
 block criteria derivation for emerging contaminants
-\cite{liang2024datagaps,anand2024grape,khan2019ecotoxqsar}. That a model trained
+\cite{liang2025datagaps,anand2024grape,khan2019ecotoxqsar}. That a model trained
 on conventional organic pollutants transfers poorly to PFAS is established
 \cite{cheng2019mlpfas}, and the usual explanation is chemical:
 perfluorinated chemistry is absent from the training distribution, so the model
@@ -77,16 +92,25 @@ is extrapolating. We report evidence that a second mechanism, independent
 of chemistry, contributes substantially to the observed failure.
 
 That mechanism is not unknown qualitatively. The life-cycle assessment
-literature has long recognised that a lowest-value summary ``will only change
-when a more sensitive species is tested'' whereas an all-data summary such as
-the HC50 is correspondingly less sensitive to new measurements
-\cite{saouter2017usetox}, and the whole geometric-mean design of USEtox follows
-from it; a data-selection sensitivity analysis on 24 PFAS reaches a related
-conclusion \cite{vandijk2023dataselection}, and the machine-learning side has
+literature has long treated the choice between a lowest-value summary and an
+all-data summary as consequential: USEtox builds its effect factor from an
+HC50 averaged over all species rather than from the most sensitive species,
+and a comparison of the two indicator types showed that the choice of data
+source and endpoint by itself reorders the ecotoxicity ranking of chemicals
+\cite{saouter2017usetox}. A later data-selection sensitivity analysis of 64
+persistent and mobile substances, PFAS among them, reached the same conclusion
+for characterisation factors \cite{aggarwal2024cfpm}, and the machine-learning
+side has
 noted that ``some chemicals have been tested much more often than others'' and
 that the resulting target ``rather resembles a probability distribution than a
-singular ground truth'' \cite{schur2023adore}. What has not been done, to our
-knowledge, is to measure the effect: to quantify the association between a
+singular ground truth'' \cite{schur2023adore}. The species sensitivity
+distribution literature is the closest antecedent: it has long been established
+there that a hazardous concentration estimated from few species is both biased
+and imprecise relative to one estimated from many, that the number of species
+tested is itself a determinant of the summary, and that the choice of data and
+distributional model materially moves the result
+\cite{newman2000ssd,aldenberg2000hcunc,wheeler2002ssd,wang2008hc5}. What has
+not been done, to our knowledge, is to measure the effect: to quantify the association between a
 protective endpoint and testing effort, to separate the part of it that is an
 extreme-order-statistic artefact from the part that is not, and to show that the
 residual is large enough to invert the apparent external performance of a
@@ -120,7 +144,9 @@ PFAS can be set aside as low concern.
 
 All toxicity data came from the U.S. EPA ECOTOX Knowledgebase ASCII release of
 15 September 2026 \cite{olker2022ecotox}, used in full rather than through a
-curated derivative. From 725{,}636 test records we retained tests on aquatic
+curated derivative such as EnviroTox \cite{connors2019envirotox}, whose
+selection rules are appropriate to their own purpose but fix in advance the
+record counts whose influence is the object of this study. From 725{,}636 test records we retained tests on aquatic
 organisms (\texttt{organism\_habitat} = Water) in freshwater media
 (\texttt{media\_type} beginning FW), joined them to 1{,}250{,}612 result
 records, and kept results reporting an acute LC50, EC50 or IC50 or a chronic
@@ -198,16 +224,36 @@ s_i=\frac{|y_i-\hat y_i|}{\sigma_i+\beta},
 \end{equation}
 with $\sigma_i$ the standard deviation across forest trees and $\beta$ the
 median calibration $\sigma$ plus $10^{-6}$, and the finite-sample order
-statistic $\lceil(n+1)(1-\alpha)\rceil$. Marginal calibration used a random
+statistic $\lceil(n+1)(1-\alpha)\rceil$
+\cite{vovk2005algorithmic,shafer2008tutorial,lei2018distfree}. Normalising the
+residual by a model-derived difficulty estimate, rather than using the bare
+absolute residual, is the standard device for obtaining substance-specific
+rather than constant-width intervals
+\cite{papadopoulos2011cpknn,cortesciriano2019deepconf}, and the procedure has
+an established record in {QSAR} applications
+\cite{norinder2014conformal,angelopoulos2023gentle}. Marginal calibration used a random
 80/20 split of the broad set, evaluated on the PFAS set. PFAS-conditional
 calibration held the broad model fixed and split the PFAS set into disjoint
-calibration and test halves. Both were repeated 40 times and means reported.
+calibration and test halves. Both were repeated 40 times and means reported. The distinction matters
+because the split-conformal guarantee is marginal over an exchangeable
+calibration and test pair; conditional validity on a subpopulation is a strictly
+stronger requirement that marginal calibration does not deliver
+\cite{vovk2012conditional}.
 
 \subsection{Applicability domain and clearance}
 
 The applicability domain was the mean Euclidean distance in ECFP4 space to the
 five nearest training structures, thresholded at the 95th percentile of
-training leave-self-out distances. A structure was \emph{cleared} when the lower
+training leave-self-out distances; this is the $k$-nearest-neighbour
+formulation among the standard families of domain definition
+\cite{sahigara2012ad,sahigara2013knnad}. The choice of metric is not neutral
+for binary fingerprints, since Euclidean distance counts shared absences as
+evidence of similarity while Tanimoto does not \cite{bajusz2015tanimoto}; we
+report both and the resulting domain memberships in SI \S S10. Conformal
+intervals have themselves been proposed as a domain criterion
+\cite{norinder2016cpad}, and out-of-distribution alerting serves the same
+function in open-set classification settings
+\cite{kang2026openset,kim2026driftrobust}. A structure was \emph{cleared} when the lower
 bound of its 90\% interval exceeded the hazard threshold. Because the endpoint
 constructions differ in protectiveness, clearance was evaluated across a
 continuum of thresholds rather than at a single value, and reported at three
@@ -219,7 +265,10 @@ between the two endpoints.
 \subsection{Subclass assignment}
 
 PFAS were assigned to structure categories following the OECD (2021) definition
-and the 2018 OECD/UNEP structure series \cite{oecd2021pfas,buck2011terminology}.
+and the 2018 OECD/UNEP structure series
+\cite{oecd2021pfas,buck2011terminology}, the same categorisation logic that
+underpins regulatory category and read-across approaches for the class
+\cite{patlewicz2019category}.
 The definitional gate requires at least one fully fluorinated, saturated methyl
 or methylene carbon with no hydrogen, chlorine, bromine or iodine attached;
 methine ($>$CF--) and unsaturated ($=$CF$_2$) carbons do not satisfy it.
@@ -284,7 +333,10 @@ $0.30$ at $k=3,5,10$ and $20$ (Figure~\ref{fig:effort}b), i.e.\ 40--48\% of the
 full-sample association and stable in $k$; the apparent anomaly at $k=20$ in a
 whole-set comparison is an artefact of the shifting denominator.
 
-We do not attribute the residual to reverse causation. Within-substance
+We do not attribute the residual to reverse causation. That the measured
+toxicity of a PFAS varies substantially across studies, species and designs is
+itself well documented, and has been quantified by meta-regression across the
+class \cite{shabaka2026metareg}. Within-substance
 dispersion itself rises steeply with effort in these data (SI \S S3), and
 subsampling draws from each substance's own pool, so it preserves that
 substance's dispersion and assay mix by construction and cannot remove that
@@ -438,7 +490,9 @@ quantification.
 
 A natural next question is whether transfer differs across PFAS structure
 classes, since the chemical argument for extrapolation failure is
-class-specific. We tested this on OECD (2021) categories and report a negative
+class-specific, and aquatic potency within the class does vary systematically
+with chain length and head group
+\cite{conder2008pfca,brendel2018short,gomis2018potency}. We tested this on OECD (2021) categories and report a negative
 result with its power requirement, because the point estimates invite
 over-reading.
 
@@ -476,7 +530,14 @@ approximately 85 measured substances per category, or 129 with correction for
 six comparisons --- roughly 510 to 780 measured PFAS against the 87 parent
 structures the public record currently supports. This is the quantity a
 programme that wants class-resolved screening would need to measure, and it is
-six to nine times what exists.
+six to nine times what exists. Measuring that many substances at random is not
+the only option: where the cost of an experiment dominates, the selection of
+which substances to test is itself a design variable, and active or
+model-guided selection routinely attains a given accuracy with a fraction of
+the measurements required under random sampling
+\cite{settles2009active,smith2018less,graff2021molpal,lookman2019active}. We
+note it as the obvious route to the sample sizes above rather than as a result
+of this study.
 
 \begin{figure}[t]
 \centering
@@ -499,7 +560,8 @@ of the substance alone, and the degree to which it is not can be measured
 directly with the correlation reported here. We would suggest that any
 screening study report the association between its endpoint and the number of
 underlying records, as a routine diagnostic, in the way applicability domains
-are now routinely reported.
+and condition-dependence are now routinely reported
+\cite{kang2026dbpcarto}.
 
 Second, a model that fails external validation on a protective endpoint has not
 thereby been shown to lack chemical validity. The failure is consistent with the
@@ -511,7 +573,12 @@ also recovered rank transfer, from $\rho=-0.03$ to $+0.42$ (SI Table~S12), and a
 ridge baseline outperformed the random forest on the same target (SI
 Table~S13). Both tables are from the superseded extraction and we have not
 repeated them on the present one, but the direction is clear enough that the
-claim must be made in the weaker form. Endpoint and representation therefore both matter.
+claim must be made in the weaker form. There is a mechanistic reason to expect
+representation to matter for this class: much of PFAS bioactivity is mediated
+by binding to serum proteins and to nuclear receptors, with potency depending
+on chain length and head group in ways a topological fingerprint does not
+encode
+\cite{cheng2018protein,vandenheuvel2006ppar,wolf2008ppar}. Endpoint and representation therefore both matter.
 We report the endpoint comparison because it is the larger of the two on matched
 samples, because it is the one a screening programme controls when it defines its
 response variable, and because it is inexpensive; we do not claim that
