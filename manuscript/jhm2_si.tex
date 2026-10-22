@@ -721,7 +721,7 @@ deployment-ready quantities.
 
 \section{Files supporting the numerical audit}
 
-Release \texttt{v3.1} of \url{https://github.com/bisu9082/pfas-clearance-validation}.
+Release \texttt{v3.2} of \url{https://github.com/bisu9082/pfas-clearance-validation}.
 Scripts are listed in execution order; each entry names the tables and figures it
 produces.
 
@@ -747,6 +747,8 @@ produces.
       Figures 1--3. Each ends in a measured-extent layout assertion;
       \texttt{make\_fig03.py} additionally asserts that every tick label sits on the
       row of the class it names.
+\item \texttt{make\_ga.py} --- the graphical abstract, built from the same
+      per-substance table and subject to the same layout assertion.
 \end{itemize}
 
 Result files, in \texttt{canonical\_results/}:
