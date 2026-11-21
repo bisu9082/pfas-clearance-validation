@@ -1,0 +1,214 @@
+\documentclass[preprint,11pt]{elsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{siunitx}
+\usepackage{url}
+\usepackage{caption}
+\journal{Water Research}
+
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\renewcommand{\thesection}{S\arabic{section}}
+
+\begin{document}
+
+\begin{frontmatter}
+\title{Supporting information for\\
+``Testing effort sets the water-quality criterion: an extreme-order-statistic
+artefact that regulatory screening does not remove''}
+\author[snu]{Jeongyun Kim}
+\author[cbdri]{Jin Yoo}
+\author[cbdri]{Ku Kang\corref{cor}}
+\ead{bisu9082@gmail.com}
+\affiliation[snu]{organization={Department of Chemical and Biological Engineering, Seoul National University},
+  city={Seoul}, country={Republic of Korea}}
+\affiliation[cbdri]{organization={CBRN Defense Research Institute}, country={Republic of Korea}}
+\cortext[cor]{Corresponding author.}
+\end{frontmatter}
+
+\tableofcontents
+\clearpage
+
+\section{Data retrieval}
+
+\subsection{Aquatic toxicity}
+
+ECOTOX ASCII release of 15 September 2026, downloaded from the United States
+Environmental Protection Agency file service. Three files are used:
+\textsf{results.txt} for the endpoint records, \textsf{tests.txt} for the
+test-to-species link, and \textsf{validation/species.txt} for the taxonomy. The
+result-level extract retains the endpoint codes \textsf{EC50}, \textsf{IC50},
+\textsf{LC50}, \textsf{LOEC}, \textsf{LOEL}, \textsf{MATC}, \textsf{NOEC} and
+\textsf{NOEL}; the \textsf{*} qualifier is stripped from endpoint strings before
+matching, and records whose \textsf{conc1\_mean\_op} is one of \textsf{>},
+\textsf{<}, \textsf{>=}, \textsf{<=} or \textsf{\textasciitilde} are discarded
+as censored. Concentration units are converted to \si{\milli\gram\per\litre}
+with the multipliers \textsf{AI mg/L} $=1$, \textsf{g/L} $=10^{3}$,
+\textsf{mg/L} $=1$, \textsf{ng/L} $=10^{-6}$, \textsf{ppb} $=10^{-3}$,
+\textsf{ppm} $=1$, \textsf{ug/L} $=10^{-3}$.
+
+\subsection{Measured concentrations}
+
+The Water Quality Portal was queried on the host
+\textsf{www.waterqualitydata.us}. The characteristic-name vocabulary was
+enumerated by calling the code service
+
+\begin{quote}\small
+\textsf{/Codes/characteristicname?text=<pattern>\&mimeType=json}
+\end{quote}
+
+for the patterns \textsf{perfluoro}, \textsf{fluorotelomer}, \textsf{PFOS},
+\textsf{PFOA}, \textsf{sulfonamido}, \textsf{HFPO}, \textsf{polyfluoro},
+\textsf{fluorobutane}, \textsf{fluorohexane}, \textsf{fluorooctane},
+\textsf{fluoroheptane}, \textsf{fluorodecane} and \textsf{fluorononane}, giving
+139 distinct names. Results were then requested in batches of eight names from
+
+\begin{quote}\small
+\textsf{/data/Result/search} with \textsf{mimeType=csv}, \textsf{zip=no},
+\textsf{dataProfile=narrowResult}, \textsf{sampleMedia=Water},
+\textsf{siteType=Stream}, \textsf{siteType=Lake, Reservoir, Impoundment},
+\textsf{startDateLo=01-01-2015}
+\end{quote}
+
+returning 117\,034 results. Of these, 22\,255 carry a positive numeric value in
+\si{\nano\gram\per\litre} or \si{\micro\gram\per\litre} with no
+detection-condition flag indicating non-detection, which is the detected set
+used throughout. The remainder are non-detections (89\,857 flagged as such),
+quality-control results reported as percent recovery, isotopically labelled
+surrogate standards, and a small number of records reporting a value of zero
+together with a non-detect flag.
+
+\section{Reproduction gates}
+
+Two assertions run before any result is computed and both must pass.
+
+\textbf{Gate 1.} The parent-level table rebuilt from the deposited record set
+must reproduce a previously deposited 87-substance table exactly: equal number
+of substances, equal record counts, identical minimum $\log_{10}$ toxicity, and
+median acute $\log_{10}$ toxicity equal within floating-point tolerance.
+
+\textbf{Gate 2.} The per-substance minimum $\log_{10}$ toxicity must be
+recoverable from the result-level table for all 87 substances. This gate failed
+at first pass with 72 of 87 reproduced. Two causes were identified and are
+recorded here because they are easy to repeat: non-concentration endpoint codes
+(\textsf{BCF}, \textsf{BAF}, \textsf{BMD} variants) are present in
+\textsf{results.txt} and must be excluded, and the endpoint-qualifier and
+censoring rules above must be applied. With both corrections the gate passes for
+all 87 substances.
+
+\section{Characteristic-name to structure mapping}
+
+Characteristic names were assigned a CAS registry number by hand. The structure
+was then taken from the ECOTOX substance file keyed on that CAS, not from the
+mapping table, so that the name-to-structure correspondence is checkable: if a
+CAS were assigned in error, the molecular formula retrieved would not match the
+name. Table~\ref{tab:s1} lists every characteristic name with quantified data
+together with the formula retrieved. Acid, anionic and salt forms collapse to
+one parent under the fragment-and-neutralise rule described in the main text,
+so for example \textsf{Perfluorooctanoate}, \textsf{PFOA ion} and
+\textsf{Perfluorooctanoic acid} all map to $\mathrm{C_8HF_{15}O_2}$.
+
+Eighteen of the CAS numbers assigned do not appear in the ECOTOX substance file
+at all. These substances are measured in United States surface water and have no
+aquatic toxicity record, so no criterion can be derived for them under any
+convention.
+
+\input{si_tab1}
+
+\clearpage
+\section{Species sensitivity distribution diagnostics}
+
+Table~\ref{tab:s2} and Fig.~\ref{fig:s1} give the fit for every substance with
+at least five species after the regulatory-style screen. Normality is rejected
+at the 5\,\% level by the Anderson--Darling statistic for 6 of 16 substances.
+The worst case is $\mathrm{C_{17}H_8Cl_2F_8N_2O_3}$, where 23 species mean
+chronic values include a long run of identical reported concentrations, giving a
+flat central section in the quantile plot and $R^2 = 0.39$. Its fifth percentile
+should not be relied on, and it does not enter the water-side analysis because
+the substance is not measured in the Water Quality Portal record.
+
+Refitting with a log-logistic distribution changes the fifth percentile by a
+median of 0.12 $\log_{10}$ units and at most 0.74. Against a spread of roughly
+eight orders of magnitude between conventions, the distributional form is not a
+material source of the effect reported in the main text.
+
+\input{si_tab2}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_si_qq.png}
+\caption{Normal quantile plots of species mean chronic values for every
+substance with at least five species after the screen, ordered by species count.
+Red titles mark substances for which normality is rejected at the 5\,\% level.
+Substances without a common abbreviation are labelled by the molecular formula
+of the parent structure.}
+\label{fig:s1}
+\end{figure}
+
+\clearpage
+\section{Sensitivity of the effort correlation}
+
+The central result of the main text is that the Spearman correlation between
+$\log_{10}$ of the number of curated records and the derived criterion remains
+negative after the regulatory screen. Table~\ref{tab:s3} varies the two choices
+that define the distribution step.
+
+\begin{table}[htbp]
+\centering
+\caption{Spearman correlation between testing effort and the SSD fifth
+percentile, under varying minimum species requirements and distributional form.
+Bootstrap 95\,\% confidence intervals from 4000 resamples.}
+\label{tab:s3}
+\begin{tabular}{@{}l l r r l@{}}
+\toprule
+Minimum species & Distribution & substances & $\rho$ & 95\,\% CI \\
+\midrule
+3  & log-normal    & 24 & $-0.666$ & $[-0.898, -0.337]$ \\
+5  & log-normal    & 16 & $-0.691$ & $[-0.944, -0.312]$ \\
+5  & log-logistic  & 16 & $-0.700$ & $[-0.952, -0.324]$ \\
+8  & log-normal    &  8 & $-0.286$ & $[-0.905, +0.615]$ \\
+10 & log-normal    &  5 & $-0.100$ & $[-1.000, +1.000]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The correlation is stable in sign and magnitude for minimum species
+requirements of three and five and for either distributional form. At eight and
+ten species the estimate is uninformative: raising the requirement removes the
+data-poor substances, which is to say it removes the variation in effort that
+the correlation is measuring, and leaves eight and five substances
+respectively. We report these rows rather than omitting them, because the
+collapse is itself the point --- a stricter data requirement does not correct the
+artefact, it removes the ability to observe it while leaving the data-poor
+substances to be assessed by some other route.
+
+\section{Exceedance over all results}
+
+Exceedance fractions in the main text are computed over detections. The Water
+Quality Portal returns 117\,034 results for the characteristic names queried, of
+which 19.9\,\% are quantified detections. Table~\ref{tab:s4} gives both views.
+The ordering of conventions is identical; the absolute fractions fall by a
+factor of about three.
+
+We do not impute substituted values for non-detections. The narrow result
+profile does not carry the reporting limit, so a non-detection cannot be placed
+relative to a criterion. This matters most for the conventions whose criteria
+are lowest: a criterion of \SI{0.05}{\nano\gram\per\litre} lies below the
+reporting limit of every method in routine use for PFAS, so under convention C1
+the compliance status of a non-detecting sample is not determined by the
+measurement. That is a property of the criterion, not of the monitoring.
+
+\input{si_tab4}
+
+\section{Software}
+
+Analysis in Python 3.13 with pandas, NumPy, SciPy and RDKit. Parent structures
+are produced with \textsf{rdMolStandardize.Uncharger} applied to the largest
+fluorine-containing fragment, canonicalised with \textsf{MolToSmiles}. Figures
+with Matplotlib. Bibliographic metadata for every added reference was retrieved
+from the Crossref REST API rather than transcribed, so that author lists,
+volumes and page ranges are taken from the publisher record.
+
+\end{document}

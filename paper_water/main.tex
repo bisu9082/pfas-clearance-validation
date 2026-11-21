@@ -34,9 +34,9 @@ extreme is an order statistic, and its expectation falls as the sample grows.
 We quantify what this does to per- and polyfluoroalkyl substance (PFAS) criteria
 and to the water bodies they are applied to. From 4744 curated ECOTOX records
 covering 87 PFAS we derive criteria under seven conventions and join them to
-21\,346 measured surface-water concentrations from 1180 United States stream and
+20\,682 measured surface-water concentrations from 1180 United States stream and
 lake stations (2016--2026). The fraction of samples exceeding the derived
-criterion ranges from 74.3\,\% to 0.11\,\% across conventions applied to the same
+criterion ranges from 76.5\,\% to 0.11\,\% across conventions applied to the same
 data and the same water. Reproducing the screen that regulators apply --- apical
 endpoints only, chronic endpoints only, active ingredient only, species mean
 chronic values, log-normal species sensitivity distribution --- brings the derived
@@ -46,9 +46,9 @@ dependence intact (Spearman $\rho = -0.69$, 95\,\% CI $[-0.94, -0.31]$), because
 the number of species surviving the screen itself rises with study effort
 ($\rho = +0.76$). Only a central-tendency statistic is effort-stable
 ($\rho = +0.12$, CI $[-0.24, +0.42]$), and a central tendency is not protective.
-Perfluorooctanoic acid and perfluoroheptanoic acid, measured at the same 819
-stations at median \SI{3.4}{} and \SI{1.6}{\nano\gram\per\litre}, are assessed as
-98.2\,\% and 0.5\,\% exceeding, a difference traceable to 1232 versus 11 toxicity
+Perfluorooctanoic acid and perfluoroheptanoic acid, measured at the same 810
+stations at median \SI{3.5}{} and \SI{1.7}{\nano\gram\per\litre}, are assessed as
+100\,\% and 0.6\,\% exceeding, a difference traceable to 1232 versus 11 toxicity
 records. We argue that this is a structural property of extreme-anchored
 derivation rather than a curation defect, and that criteria should be published
 with the evidential support that produced them.
@@ -167,7 +167,7 @@ that database-driven analyses usually skip, removes the problem.
 This paper answers the second question. We derive PFAS criteria from a single
 curated ECOTOX extract under seven conventions, from the mechanical minimum used
 in recent data-driven work to a faithful reproduction of the regulatory screen
-and SSD. We then join each set of criteria to 21\,346 measured PFAS
+and SSD. We then join each set of criteria to 20\,682 measured PFAS
 concentrations from 1180 United States surface-water stations and compute, for
 each convention, how many samples and how many stations exceed. We show that the
 answer ranges over nearly three orders of magnitude in exceedance fraction; that
@@ -275,19 +275,28 @@ requested for all of them with sample medium water, site types stream and lake,
 reservoir or impoundment, and sample dates from 1 January 2015.
 
 Returned records were restricted to those carrying a concentration unit of
-\si{\nano\gram\per\litre} or \si{\micro\gram\per\litre} and a numeric value;
-quality-control results reported as percent recovery, and isotopically labelled
-surrogate standards, were removed. This leaves 23\,237 quantified concentrations.
+\si{\nano\gram\per\litre} or \si{\micro\gram\per\litre}, a positive numeric
+value, and no detection-condition flag indicating non-detection; quality-control
+results reported as percent recovery, and isotopically labelled surrogate
+standards, were removed. A small number of records carry a reported value of
+zero together with a non-detect flag and are excluded on that basis. This leaves
+22\,255 detected concentrations, 19.9\,\% of all returned results. All
+exceedance fractions reported below are therefore conditional on detection; the
+corresponding fractions of all returned results, detections and non-detections
+together, are given in the supporting information and move the C1 figure from
+76.5\,\% to 24.8\,\% and the C7b figure from 0.78\,\% to 0.34\,\%. The
+ordering of conventions is unchanged.
 Each characteristic name was mapped to a CAS registry number, and the structure
 was then taken from the ECOTOX substance file rather than from the mapping table,
 so that the name-to-structure correspondence could be verified independently; the
 resulting molecular formula for every mapped name is reported in the supporting
 data. Names were collapsed to parent structures by the same rule used for the
 toxicity data, so that \textsf{Perfluorooctanoate}, \textsf{PFOA ion} and
-\textsf{Perfluorooctanoic acid} are one substance. Of 68 characteristic names
-with quantified data, 18 CAS numbers have no aquatic toxicity record in ECOTOX at
-all and therefore admit no criterion under any convention. The remainder join to
-21\,346 measurements of 22 parent substances at 1180 stations, collected between
+\textsf{Perfluorooctanoic acid} are one substance. The 66 characteristic names
+with detected data resolve to 40 distinct CAS numbers, of which 18 have no
+aquatic toxicity record in ECOTOX at all and therefore admit no criterion under
+any convention. The remainder join to
+20\,682 measurements of 22 parent substances at 1180 stations, collected between
 20 September 2016 and 25 June 2026.
 
 \subsection{Risk quotients and statistics}
@@ -311,7 +320,12 @@ toxicity \cite{eu2013directive}, and is therefore not the appropriate comparator
 for a PNEC derived from aquatic endpoints; the direct-toxicity component of
 \SI{230}{\nano\gram\per\litre} is \cite{ruffle2024criteria}.
 
-All analysis code and derived tables are available (Section~\ref{sec:data}).
+Fit diagnostics for every species sensitivity distribution, sensitivity of the
+effort correlation to the distributional form and to the minimum species
+requirement, the characteristic-name to structure mapping with verification
+formulae, and the all-results exceedance fractions are given in the supporting
+information. All analysis code and derived tables are available
+(Section~\ref{sec:data}).
 
 \section{Results}
 
@@ -352,19 +366,19 @@ most-studied PFAS hold 59\,\% of all records and the median substance has eight.
 
 Table~\ref{tab:ladder} and Fig.~\ref{fig:exceed} give the result. Applied to the
 same records and the same 1180 stations, the fraction of samples exceeding the
-derived criterion falls from 74.3\,\% under C1 to 0.11\,\% under C5. At station
-level the range is 99.4\,\% to 1.2\,\%. The median derived criterion moves from
+derived criterion falls from 76.5\,\% under C1 to 0.11\,\% under C5. At station
+level the range is 99.3\,\% to 1.2\,\%. The median derived criterion moves from
 \SI{0.05}{\nano\gram\per\litre} to \SI{2.97e5}{\nano\gram\per\litre}.
 
 Removing \textsf{LOEC} records, which is methodologically required, changes
-almost nothing: exceedance falls from 74.3\,\% to 73.9\,\%. The error is real but
+almost nothing: exceedance falls from 76.5\,\% to 76.0\,\%. The error is real but
 it is not the driver. Restricting to a single endpoint type matters far more:
 C3 lifts the median criterion by nearly five orders of magnitude relative to C1.
 
 \begin{table}[t]
 \centering
 \caption{Derived criteria and exceedance in United States surface water
-(21\,346 measurements, 1180 stations, 2016--2026) under seven conventions.
+(20\,682 measurements, 1180 stations, 2016--2026) under seven conventions.
 PNEC is the median across substances.}
 \label{tab:ladder}
 \footnotesize
@@ -374,12 +388,12 @@ PNEC is the median across substances.}
  & Convention & PNEC & Samples & Stations \\
  &            & (\si{\nano\gram\per\litre}) & $>1$ (\%) & $>1$ (\%) \\
 \midrule
-C1  & lowest, all endpoints          & 0.05 & 74.3 & 99.4 \\
-C2  & lowest, \textsf{LOEC} removed  & 0.05 & 73.9 & 99.4 \\
-C3  & lowest acute                   & 2740 & 22.1 & 87.4 \\
-C6  & lowest chronic \textsf{NOEC} $+$ AF & 1 & 53.9 & 97.8 \\
-C7a & lowest apical chronic SMCV $+$ AF & 430 & 8.2 & 55.4 \\
-C7b & SSD HC5, apical chronic SMCVs  & 4738 & 0.76 & 3.6 \\
+C1  & lowest, all endpoints          & 0.05 & 76.5 & 99.3 \\
+C2  & lowest, \textsf{LOEC} removed  & 0.05 & 76.0 & 99.3 \\
+C3  & lowest acute                   & 2740 & 22.7 & 87.3 \\
+C6  & lowest chronic \textsf{NOEC} $+$ AF & 1 & 55.5 & 97.7 \\
+C7a & lowest apical chronic SMCV $+$ AF & 430 & 8.5 & 55.4 \\
+C7b & SSD HC5, apical chronic SMCVs  & 4738 & 0.78 & 3.6 \\
 C4  & median acute, record-resolved  & \num{1.46e5} & 0.11 & 1.2 \\
 C5  & median acute, species-resolved & \num{2.97e5} & 0.11 & 1.2 \\
 \bottomrule
@@ -389,7 +403,7 @@ C5  & median acute, species-resolved & \num{2.97e5} & 0.11 & 1.2 \\
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.86\textwidth]{fig_02_exceedance.png}
-\caption{Fraction of 21\,346 measurements and of 1180 monitoring stations
+\caption{Fraction of 20\,682 measurements and of 1180 monitoring stations
 exceeding the derived criterion, under six conventions applied to the same
 toxicity database and the same monitoring record.}
 \label{fig:exceed}
@@ -488,7 +502,7 @@ essentially all United States surface water compliant.
 
 Across the conventions that a practitioner might defend --- C1 as used in
 published screening work, C6 as the European guidance route, C7b as the
-regulatory SSD --- the same monitoring record yields 99.4\,\%, 97.8\,\% and
+regulatory SSD --- the same monitoring record yields 99.3\,\%, 97.8\,\% and
 3.6\,\% of stations in exceedance. The decision of which PFAS-impacted rivers
 require action is thus determined more by the derivation convention than by the
 measurements.
@@ -497,20 +511,30 @@ measurements.
 
 Fig.~\ref{fig:pair} isolates the effect from every covariate that might
 otherwise explain it. PFOA and perfluoroheptanoic acid (PFHpA) are adjacent
-homologues, measured at the same 819 stations in the same campaigns, at median
-concentrations of \SI{3.4}{} and \SI{1.6}{\nano\gram\per\litre}. Under the
+homologues, measured at the same 810 stations in the same campaigns, at median
+concentrations of \SI{3.5}{} and \SI{1.7}{\nano\gram\per\litre}. Under the
 European guidance route they receive criteria of \SI{0.1}{} and
-\SI{144}{\nano\gram\per\litre}, and 98.2\,\% versus 0.5\,\% of their measurements
+\SI{144}{\nano\gram\per\litre}, and 100\,\% versus 0.6\,\% of their measurements
 are judged to exceed. The two substances differ in the number of curated
 toxicity records --- 1232 against 11 --- and in essentially nothing else that the
-derivation sees. Table~\ref{tab:persub} gives the same comparison for all 22
-substances; the pattern is general, and the eight substances for which an SSD
-can be fitted at all are among the ten most studied.
+derivation sees. Table~\ref{tab:persub} gives the same comparison for all 22 substances.
+
+One feature of that table deserves separate statement, because it is the
+artefact in its strongest form. A species sensitivity distribution could be
+fitted for only eight of the 22 substances, and those eight are among the ten
+most studied. Whether a substance is eligible for the method that reaches the
+regulatory range is itself a function of how much it has been tested. For the
+remaining fourteen the analyst must fall back on an assessment-factor route
+whose output, as Fig.~\ref{fig:effort}A shows, is at least as effort-dependent.
+The choice of method is therefore not free: it is made for the analyst by the
+size of the literature, and the methods available to data-poor substances are
+the ones that deviate most from the values regulators publish for data-rich
+ones.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=0.66\textwidth]{fig_05_pair.png}
-\caption{PFOA and PFHpA measured at the same 819 United States stations, with
+\caption{PFOA and PFHpA measured at the same 810 United States stations, with
 the criterion derived for each under the European guidance route. The two are
 adjacent homologues present at comparable concentrations; they differ in how
 often they have been tested.}
@@ -683,7 +707,7 @@ composition.
 
 Water-quality criteria for PFAS fall as substances are studied more. The effect
 is large --- the same toxicity database and the same 1180 monitoring stations
-yield between 0.11\,\% and 74.3\,\% of samples in exceedance depending on the
+yield between 0.11\,\% and 76.5\,\% of samples in exceedance depending on the
 derivation convention --- and it survives a faithful reproduction of the screening
 that regulatory agencies perform, because the number of species entering the
 derivation grows with study effort and the criterion is read from the bottom of

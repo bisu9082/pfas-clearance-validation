@@ -1,14 +1,13 @@
 char,cas,in_ecotox,parent,formula,n
-"1-Octanesulfonic acid, 3,3,4,4,5,5,6,6,7,7,8,8,8-tridecafluoro-***retired***use 6:2 Fluorotelomer sulfonate acid",27619-97-2,True,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8H5F13O3S,47
 2-(N-methylperfluoro-1-octanesulfonamido)-ethanol,24448-09-7,True,CN(CCO)S(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C11H8F17NO3S,20
 3-Perfluoroheptylpropanoic acid (7:3 FTCA),812-70-4,True,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C10H5F15O2,59
 3-Perfluoropentylpropanoic acid (5:3 FTCA),914637-49-3,True,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8H5F11O2,59
 3-perfluoropentyl propanoate,914637-49-3,True,O=C(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8H5F11O2,5
 3:3 Fluorotelomer carboxylic acid,356-02-5,False,,,118
-"4,8-Dioxa-3H-perfluorononanoic acid",919005-14-4,False,,,108
+"4,8-Dioxa-3H-perfluorononanoic acid",919005-14-4,False,,,61
 6:2 Fluorotelomer sulfonate acid,27619-97-2,True,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8H5F13O3S,153
 6:2 Fluorotelomer sulfonate***retired***use 6:2 Fluorotelomer sulfonate acid,27619-97-2,True,O=S(=O)(O)CCC(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8H5F13O3S,2
-Fluorotelomer sulfonate 4:2,757124-72-4,False,,,109
+Fluorotelomer sulfonate 4:2,757124-72-4,False,,,62
 Fluorotelomer sulfonate 8:2,39108-34-4,False,,,75
 Heptafluorobutyric acid***retired***use Perfluorobutanoic acid,375-22-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)F,C4HF7O2,19
 N-Ethyl perfluorooctane sulfonamido ethanol,1691-99-2,False,,,5
@@ -20,50 +19,49 @@ N-ethyl perfluoro-1-octanesulfonamide,4151-50-2,True,CCNS(=O)(=O)C(F)(F)C(F)(F)C
 N-ethyl perfluorooctanesulfonamidoacetic acid,2991-50-6,False,,,80
 N-methyl perfluorooctanesulfonamidoacetic acid,2355-31-9,False,,,63
 N-methylperfluoro-1-octanesulfonamide,31506-32-8,False,,,19
-"Nonafluoro-3,6-dioxaheptanoic acid***retired***use Perfluoro-3,6-dioxaheptanoic acid",151772-58-6,False,,,5
-PFOA ion,335-67-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF15O2,1502
+PFOA ion,335-67-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF15O2,1501
 Perfluoro(2-ethoxyethane)sulfonic acid,113507-82-7,False,,,60
 Perfluoro(2-propoxypropanoate),13252-13-6,True,O=C(O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F,C6HF11O3,11
-Perfluoro(4-methoxybutanoic) acid,863090-89-5,False,,,115
+Perfluoro(4-methoxybutanoic) acid,863090-89-5,False,,,68
 Perfluoro-1-nonanesulfonic acid,68259-12-1,False,,,60
-"Perfluoro-3,6-dioxaheptanoic acid",151772-58-6,False,,,101
-Perfluoro-3-methoxypropanoic acid,377-73-1,False,,,127
-Perfluorobutanesulfonate,375-73-5,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C4HF9O3S,1362
-Perfluorobutanesulfonic acid,375-73-5,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C4HF9O3S,1003
+"Perfluoro-3,6-dioxaheptanoic acid",151772-58-6,False,,,59
+Perfluoro-3-methoxypropanoic acid,377-73-1,False,,,80
+Perfluorobutanesulfonate,375-73-5,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C4HF9O3S,1361
+Perfluorobutanesulfonic acid,375-73-5,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C4HF9O3S,956
 Perfluorobutanoate,375-22-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)F,C4HF7O2,1557
-Perfluorobutanoic acid,375-22-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)F,C4HF7O2,636
+Perfluorobutanoic acid,375-22-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)F,C4HF7O2,595
 Perfluorobutylsulfonamide,30334-69-1,True,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C4H2F9NO2S,59
 Perfluorodecanesulfonate,335-77-3,False,,,2
-Perfluorodecanoate,335-76-2,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C10HF19O2,285
-Perfluorodecanoic acid,335-76-2,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C10HF19O2,307
-Perfluorododecanoate,307-55-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C12HF23O2,59
+Perfluorodecanoate,335-76-2,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C10HF19O2,283
+Perfluorodecanoic acid,335-76-2,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C10HF19O2,256
+Perfluorododecanoate,307-55-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C12HF23O2,12
 Perfluorododecanoic acid,307-55-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C12HF23O2,134
 Perfluoroheptanesulfonate,375-92-8,False,,,61
 Perfluoroheptanoate,375-85-9,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C7HF13O2,1152
-Perfluoroheptanoic acid,375-85-9,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C7HF13O2,1077
+Perfluoroheptanoic acid,375-85-9,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C7HF13O2,1028
 Perfluorohexane sulfonate,355-46-4,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF13O3S,34
 Perfluorohexanesulfonamide,41997-13-1,True,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6H2F13NO2S,59
-Perfluorohexanesulfonate,355-46-4,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF13O3S,1002
-Perfluorohexanesulfonic acid,355-46-4,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF13O3S,743
-Perfluorohexanoate,307-24-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF11O2,1382
-Perfluorohexanoic acid,307-24-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF11O2,915
+Perfluorohexanesulfonate,355-46-4,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF13O3S,998
+Perfluorohexanesulfonic acid,355-46-4,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF13O3S,696
+Perfluorohexanoate,307-24-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF11O2,1351
+Perfluorohexanoic acid,307-24-4,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C6HF11O2,866
 Perfluorononanesulfonate,68259-12-1,False,,,5
-Perfluorononanoate,375-95-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C9HF17O2,807
-Perfluorononanoic acid,375-95-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C9HF17O2,645
-Perfluorooctane sulfonic acid,1763-23-1,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF17O3S,869
+Perfluorononanoate,375-95-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C9HF17O2,800
+Perfluorononanoic acid,375-95-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C9HF17O2,597
+Perfluorooctane sulfonic acid,1763-23-1,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF17O3S,822
 Perfluorooctanesulfonamide,754-91-6,True,NS(=O)(=O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8H2F17NO2S,372
-Perfluorooctanesulfonate,1763-23-1,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF17O3S,1419
-Perfluorooctanoate (anionic form),335-67-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF15O2,2
-Perfluorooctanoic acid,335-67-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF15O2,1215
+Perfluorooctanesulfonate,1763-23-1,True,O=S(=O)(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF17O3S,1417
+Perfluorooctanoate (anionic form),335-67-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF15O2,1
+Perfluorooctanoic acid,335-67-1,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C8HF15O2,1168
 Perfluoropalmitic acid,67905-19-5,False,,,3
-Perfluoropentane sulfonic acid,2706-91-4,False,,,291
+Perfluoropentane sulfonic acid,2706-91-4,False,,,247
 Perfluoropentanesulfonate,2706-91-4,False,,,286
 Perfluoropentanoate,2706-90-3,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C5HF9O2,1169
 Perfluoropentanoic acid,2706-90-3,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C5HF9O2,2
-Perfluorotetradecanoate,376-06-7,False,,,17
+Perfluorotetradecanoate,376-06-7,False,,,16
 Perfluorotetradecanoic acid,376-06-7,False,,,68
 Perfluorotridecanoate,72629-94-8,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C13HF25O2,6
 Perfluorotridecanoic acid,72629-94-8,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C13HF25O2,71
-Perfluoroundecanoate,2058-94-8,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C11HF21O2,121
+Perfluoroundecanoate,2058-94-8,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C11HF21O2,73
 Perfluoroundecanoic acid,2058-94-8,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C11HF21O2,102
-Perfluorovaleric acid,2706-90-3,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C5HF9O2,895
+Perfluorovaleric acid,2706-90-3,True,O=C(O)C(F)(F)C(F)(F)C(F)(F)C(F)(F)F,C5HF9O2,848
