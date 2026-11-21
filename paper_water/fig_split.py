@@ -68,7 +68,7 @@ for i,(s,col) in enumerate([("PFOA","#b4442e"),("PFHpA","#2c5f8a")]):
     d.hlines(p6,i-.32,i+.32,color=col,lw=2.8,zorder=4)
     d.text(i+.36,p6,f"criterion {p6:,.3g} ng L$^{{-1}}$",fontsize=9.4,color=col,va="center")
     d.text(i,1.2e5,f"{s}\n{int(g.n_records.iloc[0]):,} toxicity records\nmedian {g.ngL.median():.1f} ng L$^{{-1}}$\n"
-           f"{100*(g.ngL>p6).mean():.1f}% exceed",ha="center",fontsize=9.6,color=col,weight="bold")
+           f"{100*(g.ngL>p6).mean():.2f}% exceed",ha="center",fontsize=9.6,color=col,weight="bold")
 d.set_yscale("log"); d.set_xticks([0,1]); d.set_xticklabels(["PFOA","PFHpA"])
 d.set_xlim(-.55,2.1); d.set_ylim(1e-2,4e6); d.set_ylabel("measured concentration (ng L$^{-1}$)")
 plt.tight_layout(); plt.savefig("fig_05_pair.png",dpi=300,bbox_inches="tight"); plt.close()

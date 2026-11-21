@@ -31,9 +31,9 @@ L=[]
 for _,r in t.iterrows():
     L.append(f"{r.s} & {int(r.n):,} & {int(r.sites)} & {r.med:.2f} & {int(r.recs):,} & "
              f"{f(r.C1)} & {f(r.C6)} & {f(r.C7)} & "
-             f"{'---' if pd.isna(r.e1) else f'{r.e1:.1f}'} & "
-             f"{'---' if pd.isna(r.e6) else f'{r.e6:.1f}'} & "
-             f"{'---' if pd.isna(r.e7) else f'{r.e7:.1f}'} \\\\")
+             f"{'---' if pd.isna(r.e1) else f'{r.e1:.2f}'} & "
+             f"{'---' if pd.isna(r.e6) else f'{r.e6:.2f}'} & "
+             f"{'---' if pd.isna(r.e7) else f'{r.e7:.2f}'} \\\\")
 tex=r"""\begin{table}[p]
 \centering
 \caption{Measured concentrations, derived criteria and exceedance by substance.

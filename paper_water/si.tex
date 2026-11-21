@@ -72,7 +72,7 @@ for the patterns \textsf{perfluoro}, \textsf{fluorotelomer}, \textsf{PFOS},
 \textsf{startDateLo=01-01-2015}
 \end{quote}
 
-returning 117\,034 results. Of these, 22\,255 carry a positive numeric value in
+returning 117\,034 results. Of these, 22\,255, or 19.0\,\%, carry a positive numeric value in
 \si{\nano\gram\per\litre} or \si{\micro\gram\per\litre} with no
 detection-condition flag indicating non-detection, which is the detected set
 used throughout. The remainder are non-detections (89\,857 flagged as such),
@@ -188,17 +188,21 @@ substances to be assessed by some other route.
 
 Exceedance fractions in the main text are computed over detections. The Water
 Quality Portal returns 117\,034 results for the characteristic names queried, of
-which 19.9\,\% are quantified detections. Table~\ref{tab:s4} gives both views.
+which 19.0\,\% are detections. Table~\ref{tab:s4} gives both views.
 The ordering of conventions is identical; the absolute fractions fall by a
 factor of about three.
 
 We do not impute substituted values for non-detections. The narrow result
 profile does not carry the reporting limit, so a non-detection cannot be placed
 relative to a criterion. This matters most for the conventions whose criteria
-are lowest: a criterion of \SI{0.05}{\nano\gram\per\litre} lies below the
-reporting limit of every method in routine use for PFAS, so under convention C1
-the compliance status of a non-detecting sample is not determined by the
-measurement. That is a property of the criterion, not of the monitoring.
+are lowest. The median C1 criterion of \SI{0.05}{\nano\gram\per\litre} lies
+below the first percentile of all detected concentrations in this dataset
+(\SI{0.21}{\nano\gram\per\litre}); only 4 of 20\,682 detections fall below
+it. For PFOA and PFOS the C1 criterion is \SI{0.001}{\nano\gram\per\litre}
+and no detection anywhere in the record falls below it. Under that convention
+the compliance status of a non-detecting sample is therefore not determined by
+the measurement, which is a property of the criterion rather than of the
+monitoring.
 
 \input{si_tab4}
 
