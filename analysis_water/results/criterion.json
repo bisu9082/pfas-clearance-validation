@@ -1,0 +1,49 @@
+{
+ "n": 58,
+ "AF": 1000.0,
+ "ratio_median": 206.67687355477455,
+ "ratio_geomean": 455.8533255050489,
+ "ratio_max": 423600000.00000006,
+ "spearman_effort_vs_logratio": [
+  0.8839017314923837,
+  3.928100391508267e-20
+ ],
+ "spearman_effort_vs_pnec_min": [
+  -0.8654500909115568,
+  1.89176502337889e-18
+ ],
+ "spearman_effort_vs_pnec_median": [
+  -0.07043897391668162,
+  0.5992892732633004
+ ],
+ "benchmarks": [
+  {
+   "label": "EU EQS, PFOS (Dir. 2013/39/EU)",
+   "thr_ugL": 0.00065,
+   "clear_min": 42,
+   "clear_median": 56,
+   "reversed": 14
+  },
+  {
+   "label": "US EPA MCL, PFOA/PFOS (2024)",
+   "thr_ugL": 0.004,
+   "clear_min": 36,
+   "clear_median": 56,
+   "reversed": 20
+  },
+  {
+   "label": "1 ug/L screening level",
+   "thr_ugL": 1.0,
+   "clear_min": 16,
+   "clear_median": 46,
+   "reversed": 30
+  },
+  {
+   "label": "10 ug/L screening level",
+   "thr_ugL": 10.0,
+   "clear_min": 12,
+   "clear_median": 34,
+   "reversed": 22
+  }
+ ]
+}
