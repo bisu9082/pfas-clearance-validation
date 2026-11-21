@@ -103,14 +103,13 @@ received less attention is whether that spread is random across substances or
 has a direction set by how much each substance has been studied.
 
 The statistical behaviour of the fifth percentile with respect to sample size is
-itself well studied. Sample-size guidance for species sensitivity distributions
-has been formalised \cite{belanger2019ssdsize}, minimum data requirements have
-been evaluated empirically \cite{hiki2018mindata}, the choice of distributional
-model has been shown to matter \cite{zhao2016ssdmodel}, and assessment factors
-applied on top of a distribution have been revisited as a function of the number
-of species available \cite{iwasaki2022afssd}. This literature asks how precise
-the fifth percentile is. We ask a different question: whether its expected value
-moves, and whether the movement propagates into decisions about real water.
+itself well studied: sample-size guidance has been formalised
+\cite{belanger2019ssdsize}, minimum data requirements evaluated empirically
+\cite{hiki2018mindata}, the distributional model shown to matter
+\cite{zhao2016ssdmodel}, and assessment factors revisited as a function of
+species count \cite{iwasaki2022afssd}. That literature asks how precise the
+fifth percentile is. We ask whether its expected value moves, and whether the
+movement reaches decisions about real water.
 
 Order statistics have a property that matters here. For a fixed underlying
 distribution of species sensitivities, the expectation of the sample minimum --- and,
@@ -325,6 +324,17 @@ any convention. The remainder join to
 20\,682 measurements of 22 parent substances at 1180 stations, collected between
 20 September 2016 and 25 June 2026.
 
+\subsection{Model experiment}
+
+Morgan fingerprints (radius 2, 1024 bits) were computed for the broad-set
+chemicals with a parsable SMILES, giving 4311 structures. Random forest
+regressors (150 trees, minimum leaf size 3) were cross-validated over five
+folds with the minimum and the median acute value as alternative targets, and
+separately with the record count itself as the target. Out-of-fold predictions
+were then evaluated within strata of record count. A further pair of fits used
+targets from which the linear trend on $\log_{10}$(records) had been removed, to
+separate learning the effort trend from being biased by it.
+
 \subsection{Risk quotients and statistics}
 
 For each convention and substance a risk quotient was computed as the measured
@@ -371,15 +381,14 @@ What makes them unsuitable as a criterion basis is not their magnitude but the
 fact that they enter a pool from which a minimum is then taken and divided by an
 assessment factor calibrated for acute data.
 
-The effect types are more consequential. Across result rows, gene expression
-(3501) is the single most frequent reported effect, followed by biochemistry
-(1613) and enzyme activity (867); mortality (1011), growth (1002), population
-(564), reproduction (520) and development (311) together account for 29.8\,\% of
-rows. Regulatory derivation uses the latter group and discards the former. The
-imbalance is not uniform: substances with fewer than 50 records are 60.7\,\%
-apical by median, those with 200 or more records 21.6\,\%. Heavily studied PFAS
-are not studied with more apical tests, they are studied with more mechanistic
-ones.
+The effect types are more consequential. Gene expression (3501 result rows) is
+the single most frequent reported effect, ahead of biochemistry (1613) and
+enzyme activity (867); the apical effects regulatory derivation retains ---
+mortality, growth, population, reproduction, development --- account for
+29.8\,\% of rows. The imbalance runs with effort: substances with fewer than 50
+records are 60.7\,\% apical by median, those with 200 or more are 21.6\,\%.
+Heavily studied PFAS are not studied with more apical tests but with more
+mechanistic ones.
 
 \begin{figure}[t]
 \centering
@@ -409,8 +418,8 @@ use --- the European guidance route C6 and the regulatory species sensitivity
 distribution C7b --- gives \SI{1}{\nano\gram\per\litre} against
 \SI{4738}{\nano\gram\per\litre}, 55.5\,\% of samples against 0.78\,\%, and
 97.7\,\% of stations against 3.6\,\%. Both are effort-dependent
-($\rho = -0.706$ and $-0.691$). C1 is included because it is the target variable
-of published screening work, not because the argument needs it.
+($\rho = -0.706$ and $-0.691$). C1 is retained because it is the target
+variable of published screening work, not because the argument needs it.
 
 Removing \textsf{LOEC} records, which is methodologically required, changes
 almost nothing: exceedance falls from 76.5\,\% to 76.0\,\%. The error is real but
@@ -547,6 +556,28 @@ offers no protection to the sensitive tail of the community, and the resulting
 PNECs, two to three orders of magnitude above the official values, would declare
 essentially all United States surface water compliant.
 
+\subsection{The assessment factor cannot compensate}
+
+The assessment-factor system is designed to protect against exactly the
+situation we describe: a substance with little evidence receives a larger
+factor, so scarcity is paid for by a more conservative criterion. We quantified
+how much of the required compensation it delivers. Over the 62 substances with
+a chronic \textsf{NOEC} and an EU Technical Guidance factor, the lowest chronic
+\textsf{NOEC} falls by 2.12 $\log_{10}$ units per decade of records
+($p = 2\times10^{-10}$) while the assessment factor shrinks it back by only
+0.30 ($p = 1\times10^{-9}$). The criterion itself therefore falls by 1.82 per
+decade: \textbf{the factor supplies 14\,\% of the compensation required and
+86\,\% of the effort dependence passes through}.
+
+The shortfall is structural rather than a matter of calibration. The factor is
+set by trophic coverage and can take only the values 10, 50 and 100 in this
+dataset, a total range of one $\log_{10}$ unit. The quantity it must compensate,
+the lowest chronic \textsf{NOEC}, spans 9.2 $\log_{10}$ units across the same
+substances. A one-decade lever cannot hold a nine-decade quantity in place, and
+no recalibration of the tiers within the present scheme changes that: the
+factor would have to vary over seven decades to do the job, which is not a
+scheme anyone would adopt.
+
 \subsection{The artefact is not about PFAS}
 
 Fig.~\ref{fig:broad} puts the same question to 4757 ECOTOX chemicals of all
@@ -563,10 +594,16 @@ depth tested: the depth effect on the minimum ranges from $-0.16$ to $-0.24$,
 and on the median from $0.00$ to $+0.01$.
 
 Two conclusions follow. First, the residual correlation that survives depth
-equalisation is not an artefact. A chemical that is more toxic is more likely to
-be studied, and the median records that association without inflating it; we
-read the median's $-0.14$ to $-0.16$ as a real feature of which chemicals
-attract testing. Second, the minimum carries that same real association and adds
+equalisation is not a sampling artefact: it is present at every depth and does
+not shrink when depth is held fixed. What produces it is not established here.
+The reading we find most plausible, and offer as interpretation rather than
+result, is that chemicals suspected of being hazardous attract more testing, so
+that a real association between hazard and attention is recorded by the median
+without being inflated by it. Testing that reading would require an exogenous
+measure of regulatory attention --- listing dates, production volumes --- which
+we do not have; a reader who prefers a different explanation for the residual
+can accept everything that follows, because what matters below is the
+\emph{difference} between the statistics, not the level of either. Second, the minimum carries that same real association and adds
 an approximately equal amount again of pure sampling depth. Roughly half of what
 the minimum appears to say about a chemical's hazard is a statement about how
 many times it has been tested.
@@ -660,7 +697,8 @@ stricter standard for it than a programme that studies it lightly.
 The assessment-factor system is designed to protect against exactly this: a
 data-poor substance receives a larger factor, so that the scarcity of evidence
 is paid for by a more conservative criterion. Our results indicate the
-compensation is insufficient. Under the European guidance route PFHpA receives an
+compensation is insufficient by roughly a factor of seven, and insufficient for
+a structural reason rather than a calibration one. Under the European guidance route PFHpA receives an
 assessment factor five times larger than PFOA, and still ends with a criterion
 three orders of magnitude higher, because the factor is set by the number of
 trophic levels covered while the quantity it divides is set by how deeply the
@@ -729,28 +767,57 @@ criterion ten times higher despite being measured in the same rivers.
 A growing literature trains QSAR and machine-learning models to predict aquatic
 criteria or lowest-observed toxicity values for untested PFAS
 \cite{cheng2019mlpfas, khan2019ecotoxqsar, sarkar2026pfasqsar, liang2025datagaps}.
-Our results identify a specific failure mode for that programme. If the target
-variable carries a component that scales with the number of records available for
-the training substance, a model fitted to it will learn that component. Because
-testing effort correlates with structural features that distinguish legacy
-perfluoroalkyl acids from replacements --- chain length, head group, year of
-introduction --- the learned relationship will appear structurally meaningful while
-partly encoding attention. Validation on a held-out set drawn from the same
-compilation cannot detect this, because the held-out set carries the same bias.
-We suggest that models of this kind be evaluated against a target with known
-effort behaviour, and that reported performance be stratified by the training
-support of the substances involved. This is a specific instance of a general
-requirement that predictive toxicology has been working towards from other
-directions: applicability-domain analysis that states where a model may be
-trusted \cite{sahigara2012ad, tropsha2010best, gramatica2007validation},
-out-of-distribution alerting that flags inputs the training set does not cover
-\cite{kang2026openset}, and benchmark design that separates architectural
-performance from dataset artefacts \cite{kim2026driftrobust}. A target variable
-whose magnitude depends on training-set size is a failure mode none of these
-alone will catch, because the model is being asked to predict a quantity that is
-partly a property of the database rather than of the chemical. Mechanistic
-anchoring of the endpoint, where it is feasible, offers one route out
-\cite{jang2025opqsar}.
+We tested what the artefact does to such a model. Random forests were fitted to
+Morgan fingerprints of the 4311 broad-set chemicals with a parsable structure,
+under five-fold cross-validation, with the minimum and the median acute value as
+alternative targets.
+
+Our initial expectation was that a model fitted to the minimum would learn the
+effort component, and that is not what happens. Structure predicts the record
+count only weakly ($R^2 = 0.085$), and removing the effort trend from the target
+before fitting changes aggregate performance by two to three percent in either
+direction. The model does not learn the effort component; it cannot, because
+record count is not a structural property and is not among its inputs. The
+consequence is worse than learning it.
+
+Fig.~\ref{fig:model} shows what happens instead. The minimum-target model
+predicts a typical minimum from structure, and the true minimum has been pushed
+downward by sampling depth to an extent the model cannot see. Its bias therefore
+runs with effort: it under-predicts the minimum by 0.66 $\log_{10}$ units for
+chemicals with a single record and \emph{over}-predicts it by 2.33 for chemicals
+with a hundred or more, a swing of 3.0 orders of magnitude across strata. The
+median-target model swings by 0.47. Aggregate $R^2$ for the minimum target is
+0.371, which conceals $R^2 = -0.951$ in the most-studied stratum: there the
+model is worse than predicting that stratum's mean.
+
+The direction matters for safety. For the best-studied chemicals the model says
+the most sensitive endpoint lies two orders of magnitude higher --- less
+hazardous --- than the database records. And the failure is invisible to the
+metric such studies most often report: Spearman $\rho$ within each stratum stays
+between 0.57 and 0.63 for the minimum target, essentially flat, because the
+ranking survives while the calibration does not.
+
+This is a specific and checkable instance of a requirement predictive toxicology
+has been approaching from other directions: applicability-domain analysis that
+states where a model may be trusted \cite{sahigara2012ad, tropsha2010best,
+gramatica2007validation}, out-of-distribution alerting for inputs the training
+set does not cover \cite{kang2026openset}, and benchmark design that separates
+architectural performance from dataset artefacts \cite{kim2026driftrobust}. None
+of them catches this one, because the training and test sets carry the bias
+equally. What catches it is stratifying reported performance by the training
+support of each substance, and reporting an error metric sensitive to level
+rather than rank alone. Mechanistic anchoring of the endpoint, where feasible,
+avoids the problem rather than detecting it \cite{jang2025opqsar}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_07_model.png}
+\caption{Random forests on Morgan fingerprints of 4311 ECOTOX chemicals,
+five-fold cross-validated, with the minimum and the median acute value as
+alternative targets, evaluated within strata of record count. (A) Prediction
+bias. (B) Coefficient of determination. (C) Spearman correlation.}
+\label{fig:model}
+\end{figure}
 
 \subsection{What can be done}
 
@@ -780,15 +847,12 @@ points. Work recalibrating assessment factors against the number of species
 available \cite{iwasaki2022afssd} is the right shape for this, provided the
 calibration is allowed to depend on support rather than being applied uniformly.
 
-A fourth measure is outside the scope of derivation but bears on it. The
-substances missing from our analysis are missing because nobody tested them: 18
-of the PFAS measured in United States surface water have no aquatic toxicity
-record at all. Targeted generation of apical chronic data for the data-poorest
-substances measured most often would do more for the reliability of comparative
-assessment than further refinement of the statistics applied to the data-richest
-ones. Spatially resolved monitoring that identifies which substances actually
-co-occur, and where, is the natural way to set that priority
-\cite{lee2027uavforensics, bae2025depdrivers}.
+Fourth, and outside derivation itself: 18 of the PFAS measured in United States
+surface water have no aquatic toxicity record at all. Generating apical chronic
+data for the data-poorest substances that are measured most often would do more
+for comparative assessment than further refining the statistics applied to the
+data-richest ones, and spatially resolved monitoring is the natural way to set
+that priority \cite{lee2027uavforensics, bae2025depdrivers}.
 
 \subsection{Limitations}
 
@@ -814,13 +878,11 @@ measurement set is restricted to United States stream and lake stations and to
 substances with reported concentration units, and dissolved and total fractions
 were not separated. Finally, the effort variable is the number of curated records, which conflates
 study count, species count and endpoint count; we report the species-count
-relationship separately in Fig.~\ref{fig:conv}C for that reason. We also treat
-the ECOTOX record as given. Reliability scoring of the individual studies, which
-agencies perform and which we could not reproduce from the deposited fields
-\cite{hull2000dataquality}, would remove some records from every substance; our
-result would be affected only if it removed proportionally more from data-poor
-substances, which is the opposite of the pattern we observe in endpoint
-composition.
+relationship separately in Fig.~\ref{fig:conv}C for that reason. We also treat the ECOTOX record as given: study-level reliability scoring, which
+agencies perform and which the deposited fields do not support
+\cite{hull2000dataquality}, would affect our result only if it removed
+proportionally more from data-poor substances, the opposite of the pattern we
+observe in endpoint composition.
 
 \section{Conclusions}
 
