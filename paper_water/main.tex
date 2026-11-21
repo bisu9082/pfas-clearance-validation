@@ -44,8 +44,10 @@ value into the regulatory range (PFOS fifth percentile \SI{4738}{\nano\gram\per\
 against Canada's \SI{6800}{\nano\gram\per\litre}) but leaves the effort
 dependence intact (Spearman $\rho = -0.69$, 95\,\% CI $[-0.94, -0.31]$), because
 the number of species surviving the screen itself rises with study effort
-($\rho = +0.76$). Only a central-tendency statistic is effort-stable
-($\rho = +0.12$, CI $[-0.24, +0.42]$), and a central tendency is not protective.
+($\rho = +0.76$). Only a central-tendency statistic shows no detectable
+dependence ($\rho = +0.12$, CI $[-0.24, +0.42]$, which excludes the
+$-0.69$ to $-0.79$ of the extremes but not a weak effect), and a central
+tendency is not protective.
 Perfluorooctanoic acid and perfluoroheptanoic acid, measured at the same 810
 stations at median \SI{3.5}{} and \SI{1.7}{\nano\gram\per\litre}, are assessed as
 99.96\,\% and 0.55\,\% exceeding, a difference traceable to 1232 versus 11
@@ -466,8 +468,14 @@ percentile. The EU Technical Guidance route, C6, gives $\rho = -0.706$
 (CI $[-0.856, -0.479]$). Screening the data to the standard that regulatory
 agencies apply leaves the correlation where it was.
 
-One convention is effort-independent: the species-resolved acute median, C5, at
-$\rho = +0.115$ (CI $[-0.240, +0.424]$). The lowest acute value, C3, is
+One convention shows no detectable effort dependence: the species-resolved
+acute median, C5, at $\rho = +0.115$ (CI $[-0.240, +0.424]$). We state this as
+a failure to detect rather than as evidence of independence. With 41 substances
+the interval still admits a weak association in either direction; what it
+excludes is a negative correlation stronger than $-0.24$, which is to say
+anything approaching the $-0.69$ to $-0.79$ seen in every extreme-anchored
+convention. A central statistic is therefore not demonstrably effort-free, but
+it is demonstrably not effort-dependent in the way the extremes are. The lowest acute value, C3, is
 intermediate and unstable with respect to the substance subset
 ($\rho = -0.196$, CI $[-0.509, +0.159]$ on the 41 substances common to all
 conventions; $\rho = -0.385$, $p = 0.003$, on the full set of 58), and we do not
@@ -496,8 +504,8 @@ minimum it was designed to replace. The screen changes which records contribute;
 it does not change the fact that the criterion is read off the bottom of
 whatever is there.
 
-This also explains why only C5 escapes. A median is a central statistic, and its
-expectation does not move with sample size. The property that makes it stable is
+This also explains why only C5 escapes detection. A median is a central
+statistic, and its expectation does not move with sample size. The property that makes it stable is
 the same property that makes it unusable as a criterion: the median acute value
 offers no protection to the sensitive tail of the community, and the resulting
 PNECs, two to three orders of magnitude above the official values, would declare
@@ -582,6 +590,29 @@ sensitive tail has been sampled. The two move on different scales, and the
 sampling term dominates. A data gap therefore leaves a substance
 \emph{less} protected under an extreme-anchored criterion, not more, despite the
 machinery intended to ensure the opposite.
+
+\subsection{A criterion below the analytical floor}
+
+One consequence of extreme anchoring is operational rather than statistical. The
+median criterion under the published convention is
+\SI{0.05}{\nano\gram\per\litre}, which lies below the first percentile of all
+PFAS concentrations detected in this monitoring record
+(\SI{0.21}{\nano\gram\per\litre}); only 4 of 20\,682 detections fall below it.
+For PFOA and PFOS the figure is \SI{0.001}{\nano\gram\per\litre} and no
+detection anywhere in the record falls below it, while the smallest value either
+substance is ever reported at is \SI{0.1}{\nano\gram\per\litre}.
+
+A criterion positioned there cannot be used. Compliance at a station returning a
+non-detection is undetermined, because the reporting limit of the method sits
+above the criterion; and compliance at a station returning any detection is
+automatically failed, because every detectable concentration exceeds it. The
+measurement carries no information about the decision. This is a property of the
+criterion rather than of the monitoring network, and it is produced by the same
+mechanism as the effort dependence: for the two most-studied PFAS, the minimum of
+a large pool of mixed endpoints has descended past the range in which the
+substance can be observed at all. An effort-dependent criterion does not merely
+shift the threshold; past a certain amount of study it moves the threshold out
+of the measurable range.
 
 \subsection{Implications for criteria setting}
 

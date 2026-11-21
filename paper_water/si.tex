@@ -206,6 +206,29 @@ monitoring.
 
 \input{si_tab4}
 
+\section{Reporting discretisation in the monitoring record}
+
+Measured PFAS concentrations are reported on a coarse numerical grid. Among the
+20\,682 detections joined to a criterion, 2295 distinct values occur; 66.2\,\%
+fall exactly on a \SI{0.1}{\nano\gram\per\litre} grid, 48.4\,\% are reported to
+two significant figures and 14.4\,\% to one. The ten commonest values account
+for 14.1\,\% of all detections. The record is drawn from many organisations, the
+largest contributing 24.6\,\% of detections, so the discretisation reflects
+general laboratory reporting practice rather than one source.
+
+This is visible in the main text: PFOS and PFOA have the same median detected
+concentration to two decimal places, \SI{3.50}{\nano\gram\per\litre}. With 2239
+and 2670 detections on a common grid, and only 17 and 18 observations sitting
+exactly at their respective medians, the coincidence follows from two similar
+distributions being rounded the same way rather than from a shared artefact.
+
+The discretisation does not affect the exceedance results, because every
+criterion compared against these values sits either far below or far above the
+grid spacing. Re-evaluating exceedance with the measured values perturbed by
+independent multiplicative noise of $\pm 10\,\%$, over 200 replicates, moves the
+C1 figure from 76.50\,\% to a mean of 76.52\,\% with a 95\,\% range of
+$[76.45, 76.59]$.
+
 \section{Software}
 
 Analysis in Python 3.13 with pandas, NumPy, SciPy and RDKit. Parent structures
