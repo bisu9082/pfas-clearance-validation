@@ -5,6 +5,7 @@
 \usepackage[version=4]{mhchem}
 \usepackage{siunitx}
 \usepackage{xcolor}
+\usepackage{url}
 \usepackage{lineno}
 \journal{Water Research}
 
@@ -61,8 +62,18 @@ species sensitivity distribution \sep data availability bias \sep ECOTOX
 \end{frontmatter}
 
 \linenumbers
+\sloppy
 
 \section{Introduction}
+
+Per- and polyfluoroalkyl substances are now a routine feature of surface water.
+National surveys of United States rivers and streams find detectable
+concentrations at the majority of sampled stations, with concentrations that
+track urbanisation, wastewater discharge and fire-training activity rather than
+any single industrial source \cite{salvatore2023pfasoccur, zhao2013shortchain}.
+Managing that exposure requires a number: a concentration above which the
+aquatic community is considered at risk. How that number is produced is the
+subject of this paper.
 
 A water-quality criterion is a single number standing in for the sensitivity of
 an entire aquatic community. Every major framework arrives at that number by
@@ -74,7 +85,25 @@ Agency computes a final chronic value from the four lowest genus mean chronic
 values. Canada and Australia fit a species sensitivity distribution (SSD) and
 take its fifth percentile \cite{posthuma2019ssd}. The methods differ in detail
 and agree in structure: the criterion is a low order statistic of a sample whose
-size nobody controls.
+size nobody controls. The variability this introduces is recognised. A
+multi-laboratory comparison in which thirteen groups derived a predicted no-effect
+concentration for the same substance from the same dossier found the derivation
+step itself to be a leading source of spread \cite{hoondert2014pnecvar}, and the
+choice between a no-observed-effect concentration and a regression-based
+ten-percent effect concentration shifts the fifth percentile of a species
+sensitivity distribution systematically \cite{iwasaki2015noecec10}. What has
+received less attention is whether that spread is random across substances or
+has a direction set by how much each substance has been studied.
+
+The statistical behaviour of the fifth percentile with respect to sample size is
+itself well studied. Sample-size guidance for species sensitivity distributions
+has been formalised \cite{belanger2019ssdsize}, minimum data requirements have
+been evaluated empirically \cite{hiki2018mindata}, the choice of distributional
+model has been shown to matter \cite{zhao2016ssdmodel}, and assessment factors
+applied on top of a distribution have been revisited as a function of the number
+of species available \cite{iwasaki2022afssd}. This literature asks how precise
+the fifth percentile is. We ask a different question: whether its expected value
+moves, and whether the movement propagates into decisions about real water.
 
 Order statistics have a property that matters here. For a fixed underlying
 distribution of species sensitivities, the expectation of the sample minimum --- and,
@@ -90,15 +119,29 @@ The PFAS case is unusually sharp. Attention is concentrated on a handful of
 legacy perfluoroalkyl acids: perfluorooctanoic acid (PFOA) and perfluorooctane
 sulfonate (PFOS) have been the subject of restriction, litigation and
 drinking-water standards for two decades \cite{cousins2022planetary,
-sunderland2019exposure, kwiatkowski2020class}. Their shorter- and longer-chain
+sunderland2019exposure, kwiatkowski2020class}. Both have dedicated aquatic criteria derivations going back more than a decade
+\cite{giesy2011pfospnec, qi2014pfoscriteria}. Their shorter- and longer-chain
 homologues, and the fluorinated ethers and telomer products that replaced them,
 occur in the same rivers at comparable concentrations and have been tested a
-fraction as often \cite{ankley2021pfasrisk, mccarthy2017pfasecol}. Public
-aquatic toxicity compilations such as ECOTOX \cite{olker2022ecotox} and EnviroTox
-\cite{connors2019envirotox} reproduce that imbalance faithfully, and the growing
-literature that trains quantitative structure--activity relationship (QSAR) and
-machine-learning models on these compilations to fill the gaps inherits it
-\cite{khan2019ecotoxqsar, liang2025datagaps, sarkar2026pfasqsar}.
+fraction as often \cite{ankley2021pfasrisk, mccarthy2017pfasecol,
+brendel2018short, conder2008pfca}. Whether the replacements are in fact less
+hazardous than the compounds they displaced remains contested
+\cite{brandsma2022genxsub, gaballah2020genxtox, wang2017never}, and that
+question is asked of criteria that were derived from very different amounts of
+evidence. Public
+aquatic toxicity compilations such as ECOTOX \cite{olker2022ecotox,
+laan2024ecotoxr} and EnviroTox \cite{connors2019envirotox} reproduce that
+imbalance faithfully, and the growing literature that trains quantitative
+structure--activity relationship (QSAR) and machine-learning models on these
+compilations to fill the gaps inherits it \cite{khan2019ecotoxqsar,
+liang2025datagaps, sarkar2026pfasqsar, kim2026multitaskecotox,
+mazzatorta2005aquatic, nath2023aquatic}. Uneven sampling effort is a recognised
+hazard when a database assembled by many hands is used as if it were a designed
+survey; the problem is familiar from biodiversity records, where the apparent
+distribution of a taxon partly maps where people looked
+\cite{yang2015samplingbias}. Toxicity compilations have the same structure, and
+the quality of the underlying studies varies in ways that criteria derivation is
+expected to screen for \cite{hull2000dataquality}.
 
 That the extreme-anchored route is conservative is well understood, and the
 conservatism is itself under active revision. Ding et al.\ \cite{ding2026af}
@@ -178,7 +221,7 @@ A predicted no-effect concentration (PNEC) was computed as
 where $\ell$ is a log-toxicity in \si{\milli\gram\per\litre} chosen by the
 convention and AF is an assessment factor. The conventions are:
 
-\begin{description}
+\begin{description}\setlength{\itemsep}{2pt}\setlength{\leftmargin}{3em}
 \item[C1] the lowest value over all endpoints and all records, with
   $\mathrm{AF}=1000$. This is the target variable used in recent structure-based
   PFAS screening work and is the reference case here.
@@ -208,8 +251,11 @@ exposure was to the active ingredient rather than a formulation. Gene-expression
 biochemical, enzymatic, hormonal, behavioural, histological, cellular and
 accumulation endpoints were excluded, as they are in criteria derivation.
 Including \textsf{EC10} extends the endpoint set of the source curation and is a
-deliberate departure, since regulatory chronic derivations prefer a regression-based
-effect concentration to a hypothesis-test no-effect concentration.
+deliberate departure, since regulatory chronic derivations prefer a
+regression-based effect concentration to a hypothesis-test no-effect
+concentration, and the substitution is known to shift the resulting fifth
+percentile in a direction that depends on the dataset
+\cite{iwasaki2015noecec10}.
 
 Surviving records were reduced to species mean chronic values by taking the
 geometric mean within each species and substance. Where five or more species
@@ -290,9 +336,21 @@ apical by median, those with 200 or more records 21.6\,\%. Heavily studied PFAS
 are not studied with more apical tests, they are studied with more mechanistic
 ones.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_01_data.png}
+\caption{Composition of the curated ECOTOX extract. (A) Endpoint types; the
+1811 \textsf{LOEC} records shown in red report concentrations at which an effect
+was observed and enter the minimum used by convention C1. (B) Reported effect
+types across result rows; blue marks the apical effects that regulatory
+derivation retains. (C) Curated records per substance, rank-ordered: the two
+most-studied PFAS hold 59\,\% of all records and the median substance has eight.}
+\label{fig:data}
+\end{figure}
+
 \subsection{The same data give criteria spanning eight orders of magnitude}
 
-Table~\ref{tab:ladder} and Fig.~\ref{fig:conv}A give the result. Applied to the
+Table~\ref{tab:ladder} and Fig.~\ref{fig:exceed} give the result. Applied to the
 same records and the same 1180 stations, the fraction of samples exceeding the
 derived criterion falls from 74.3\,\% under C1 to 0.11\,\% under C5. At station
 level the range is 99.4\,\% to 1.2\,\%. The median derived criterion moves from
@@ -306,25 +364,36 @@ C3 lifts the median criterion by nearly five orders of magnitude relative to C1.
 \begin{table}[t]
 \centering
 \caption{Derived criteria and exceedance in United States surface water
-(21\,346 measurements, 1180 stations, 2016--2026) under seven conventions.}
+(21\,346 measurements, 1180 stations, 2016--2026) under seven conventions.
+PNEC is the median across substances.}
 \label{tab:ladder}
-\small
-\begin{tabular}{llrrr}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l l r r r@{}}
 \toprule
- & Convention & Median criterion & Samples & Stations \\
- &            & (\si{\nano\gram\per\litre}) & exceeding (\%) & exceeding (\%) \\
+ & Convention & PNEC & Samples & Stations \\
+ &            & (\si{\nano\gram\per\litre}) & $>1$ (\%) & $>1$ (\%) \\
 \midrule
-C1 & lowest, all endpoints      & 0.05      & 74.3 & 99.4 \\
-C2 & lowest, \textsf{LOEC} removed & 0.05   & 73.9 & 99.4 \\
-C3 & lowest acute               & 2740      & 22.1 & 87.4 \\
-C6 & lowest chronic \textsf{NOEC}, EU-TGD AF & 1 & 53.9 & 97.8 \\
-C7a& lowest apical chronic SMCV, AF 10 & 430 & 8.2 & 55.4 \\
-C7b& SSD HC5 of apical chronic SMCVs & 4738 & 0.76 & 3.6 \\
-C4 & median acute, record-resolved & \num{1.46e5} & 0.11 & 1.2 \\
-C5 & median acute, species-resolved & \num{2.97e5} & 0.11 & 1.2 \\
+C1  & lowest, all endpoints          & 0.05 & 74.3 & 99.4 \\
+C2  & lowest, \textsf{LOEC} removed  & 0.05 & 73.9 & 99.4 \\
+C3  & lowest acute                   & 2740 & 22.1 & 87.4 \\
+C6  & lowest chronic \textsf{NOEC} $+$ AF & 1 & 53.9 & 97.8 \\
+C7a & lowest apical chronic SMCV $+$ AF & 430 & 8.2 & 55.4 \\
+C7b & SSD HC5, apical chronic SMCVs  & 4738 & 0.76 & 3.6 \\
+C4  & median acute, record-resolved  & \num{1.46e5} & 0.11 & 1.2 \\
+C5  & median acute, species-resolved & \num{2.97e5} & 0.11 & 1.2 \\
 \bottomrule
 \end{tabular}
 \end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.86\textwidth]{fig_02_exceedance.png}
+\caption{Fraction of 21\,346 measurements and of 1180 monitoring stations
+exceeding the derived criterion, under six conventions applied to the same
+toxicity database and the same monitoring record.}
+\label{fig:exceed}
+\end{figure}
 
 \subsection{The regulatory screen reaches the right range}
 
@@ -338,11 +407,38 @@ criterion of \SI{1e5}{\nano\gram\per\litre} \cite{epa2024pfoaalc}, a factor of t
 C1 is low by 5.5 orders of magnitude for PFOS and 8.0 for PFOA. Official values
 for PFOS themselves span \SIrange{9.1}{6800}{\nano\gram\per\litre} across four
 authorities, so agreement to within an order of magnitude is agreement to within
-the regulators' own spread.
+the regulators' own spread. Fig.~\ref{fig:official} places every convention
+against those values for both substances.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_04_official.png}
+\caption{Derived criteria for (A) PFOS and (B) PFOA under each convention,
+against official freshwater aquatic-life values. The shaded band in (A) spans
+the four authorities. Only the screened conventions reach the regulatory range;
+the convention used in published screening work sits five to eight orders of
+magnitude below every official value.}
+\label{fig:official}
+\end{figure}
+
+\subsection{Comparison with published derivations for the same substances}
+
+Independent derivations for PFOS and PFOA predate the official criteria and
+provide a second external check. A freshwater PNEC for PFOS derived from a
+species sensitivity distribution with an assessment factor was reported at
+\SI{25}{\micro\gram\per\litre} \cite{giesy2011pfospnec}, and criteria for the
+protection of freshwater aquatic life were later developed for both compounds
+from a curated literature set \cite{qi2014pfoscriteria}. Our C7 fifth
+percentiles of \SI{4.7}{} and \SI{9.5}{\micro\gram\per\litre} for PFOS and
+PFOA sit inside the range those studies span, while C1 sits six to eight orders
+of magnitude below all of them. The point of the comparison is not that our
+numbers are better; it is that mechanical and screened derivations from the same
+public database land in different universes, and only the screened one reaches
+the literature.
 
 \subsection{It does not remove the effort dependence}
 
-Fig.~\ref{fig:conv}B is the central result. The rank correlation between
+Fig.~\ref{fig:effort}A is the central result. The rank correlation between
 $\log_{10}$ of the number of records and the derived criterion is
 $\rho = -0.783$ (CI $[-0.903, -0.586]$) for C1. After the full regulatory screen
 it is $\rho = -0.787$ (CI $[-0.887, -0.624]$) for the lowest apical chronic
@@ -358,9 +454,20 @@ intermediate and unstable with respect to the substance subset
 conventions; $\rho = -0.385$, $p = 0.003$, on the full set of 58), and we do not
 draw a conclusion from it.
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_03_effort.png}
+\caption{(A) Spearman correlation between testing effort and the derived
+criterion for each convention, with bootstrap 95\,\% confidence intervals; red
+marks an interval excluding zero. (B) Species surviving the regulatory screen
+against records available, the mechanism by which the fifth percentile inherits
+the artefact.}
+\label{fig:effort}
+\end{figure}
+
 \subsection{Why}
 
-Fig.~\ref{fig:conv}C gives the mechanism. The number of species surviving the
+Fig.~\ref{fig:effort}B gives the mechanism. The number of species surviving the
 regulatory screen rises with the number of records available for the substance,
 $\rho = +0.756$ (CI $[+0.613, +0.857]$). A better-studied PFAS therefore enters
 the SSD with more species, which lengthens the left tail of the fitted
@@ -388,7 +495,7 @@ measurements.
 
 \subsection{A matched pair}
 
-Fig.~\ref{fig:conv}D isolates the effect from every covariate that might
+Fig.~\ref{fig:pair} isolates the effect from every covariate that might
 otherwise explain it. PFOA and perfluoroheptanoic acid (PFHpA) are adjacent
 homologues, measured at the same 819 stations in the same campaigns, at median
 concentrations of \SI{3.4}{} and \SI{1.6}{\nano\gram\per\litre}. Under the
@@ -396,20 +503,23 @@ European guidance route they receive criteria of \SI{0.1}{} and
 \SI{144}{\nano\gram\per\litre}, and 98.2\,\% versus 0.5\,\% of their measurements
 are judged to exceed. The two substances differ in the number of curated
 toxicity records --- 1232 against 11 --- and in essentially nothing else that the
-derivation sees.
+derivation sees. Table~\ref{tab:persub} gives the same comparison for all 22
+substances; the pattern is general, and the eight substances for which an SSD
+can be fitted at all are among the ten most studied.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{fig_01_conventions.png}
-\caption{(A) Fraction of 21\,346 measurements and 1180 stations exceeding the
-derived criterion under each convention. (B) Spearman correlation between
-testing effort and the derived criterion, with bootstrap 95\,\% confidence
-intervals; red indicates an interval excluding zero. (C) Species surviving the
-regulatory screen against records available, the mechanism by which the SSD
-fifth percentile inherits the artefact. (D) PFOA and PFHpA measured at the same
-819 stations, with the criteria derived for each.}
-\label{fig:conv}
+\includegraphics[width=0.66\textwidth]{fig_05_pair.png}
+\caption{PFOA and PFHpA measured at the same 819 United States stations, with
+the criterion derived for each under the European guidance route. The two are
+adjacent homologues present at comparable concentrations; they differ in how
+often they have been tested.}
+\label{fig:pair}
 \end{figure}
+
+\input{tab_persub}
+
+
 
 \section{Discussion}
 
@@ -467,10 +577,14 @@ explicit argument, not as an afterthought.
 The problem is most acute exactly where PFAS policy is heading. Grouping and
 read-across approaches propose to extend assessment from the legacy compounds to
 thousands of substances \cite{oecd2021pfas, kwiatkowski2020class,
-patlewicz2019category}. If criteria derived for data-rich legacy compounds are
-systematically lower than those derived for data-poor replacements, a
-substitution assessed on this basis will tend to favour the less studied
-chemical.
+patlewicz2019category}. If criteria derived for data-rich legacy compounds are systematically lower than
+those derived for data-poor replacements, a substitution assessed on this basis
+will tend to favour the less studied chemical. The replacement question is
+already contested on toxicological grounds \cite{brandsma2022genxsub,
+gaballah2020genxtox}; our results add a procedural reason why a replacement can
+look preferable without being so. In our own data HFPO-DA, the most prominent
+PFOA replacement, has 85 curated records against PFOA's 1232 and receives a C6
+criterion ten times higher despite being measured in the same rivers.
 
 \subsection{Implications for models trained on derived criteria}
 
@@ -487,7 +601,18 @@ partly encoding attention. Validation on a held-out set drawn from the same
 compilation cannot detect this, because the held-out set carries the same bias.
 We suggest that models of this kind be evaluated against a target with known
 effort behaviour, and that reported performance be stratified by the training
-support of the substances involved.
+support of the substances involved. This is a specific instance of a general
+requirement that predictive toxicology has been working towards from other
+directions: applicability-domain analysis that states where a model may be
+trusted \cite{sahigara2012ad, tropsha2010best, gramatica2007validation},
+out-of-distribution alerting that flags inputs the training set does not cover
+\cite{kang2026openset}, and benchmark design that separates architectural
+performance from dataset artefacts \cite{kim2026driftrobust}. A target variable
+whose magnitude depends on training-set size is a failure mode none of these
+alone will catch, because the model is being asked to predict a quantity that is
+partly a property of the database rather than of the chemical. Mechanistic
+anchoring of the endpoint, where it is feasible, offers one route out
+\cite{jang2025opqsar}.
 
 \subsection{What can be done}
 
@@ -497,7 +622,9 @@ follow from our results.
 
 First, criteria should be published together with the evidential support that
 produced them: the number of records, species and trophic levels, and the
-endpoint composition. This information exists in every derivation dossier and is
+endpoint composition. Minimum data requirements already exist in most protocols
+\cite{hiki2018mindata, belanger2019ssdsize}, but they operate as a threshold to
+be passed rather than as a quantity to be reported with the result. This information exists in every derivation dossier and is
 routinely dropped when the criterion is tabulated or used downstream. A criterion
 derived from four species and one derived from fifty-seven are not interchangeable
 quantities, and nothing in the number itself says which is which.
@@ -511,13 +638,28 @@ Third, where a substance is data-poor, the explicit assessment-factor route is
 preferable to an SSD fitted to a short species list, not because it is more
 accurate but because the assessment factor records the uncertainty in a visible
 place rather than burying it in the tail of a distribution estimated from five
-points.
+points. Work recalibrating assessment factors against the number of species
+available \cite{iwasaki2022afssd} is the right shape for this, provided the
+calibration is allowed to depend on support rather than being applied uniformly.
+
+A fourth measure is outside the scope of derivation but bears on it. The
+substances missing from our analysis are missing because nobody tested them: 18
+of the PFAS measured in United States surface water have no aquatic toxicity
+record at all. Targeted generation of apical chronic data for the data-poorest
+substances measured most often would do more for the reliability of comparative
+assessment than further refinement of the statistics applied to the data-richest
+ones. Spatially resolved monitoring that identifies which substances actually
+co-occur, and where, is the natural way to set that priority
+\cite{lee2027uavforensics, bae2025depdrivers}.
 
 \subsection{Limitations}
 
 Our comparison with official criteria rests on two substances, because final
 freshwater aquatic-life criteria from major regulators exist only for PFOA and
-PFOS. Twenty of the twenty-two PFAS we found in United States surface water have
+PFOS. The European framework is under revision and the list of regulated PFAS is
+expected to widen \cite{brack2023wfdcomment, maltby2007eqswfd}, which will
+eventually provide more comparators but will also extend extreme-anchored
+derivation to substances with very thin evidence. Twenty of the twenty-two PFAS we found in United States surface water have
 no official aquatic-life criterion, and eighteen measured substances have no
 aquatic toxicity record in ECOTOX at all. This is itself part of the picture, but
 it limits external validation.
@@ -527,9 +669,15 @@ conventional and both are generous; several national protocols require more
 species and would reduce our SSD-able set below sixteen substances. Our
 measurement set is restricted to United States stream and lake stations and to
 substances with reported concentration units, and dissolved and total fractions
-were not separated. Finally, the effort variable is the number of curated records,
-which conflates study count, species count and endpoint count; we report the
-species-count relationship separately in Fig.~\ref{fig:conv}C for that reason.
+were not separated. Finally, the effort variable is the number of curated records, which conflates
+study count, species count and endpoint count; we report the species-count
+relationship separately in Fig.~\ref{fig:conv}C for that reason. We also treat
+the ECOTOX record as given. Reliability scoring of the individual studies, which
+agencies perform and which we could not reproduce from the deposited fields
+\cite{hull2000dataquality}, would remove some records from every substance; our
+result would be affected only if it removed proportionally more from data-poor
+substances, which is the opposite of the pattern we observe in endpoint
+composition.
 
 \section{Conclusions}
 
