@@ -82,7 +82,7 @@ together with a non-detect flag.
 
 \section{Reproduction gates}
 
-Two assertions run before any result is computed and both must pass.
+Three assertions run before any result is computed and all must pass.
 
 \textbf{Gate 1.} The parent-level table rebuilt from the deposited record set
 must reproduce a previously deposited 87-substance table exactly: equal number
@@ -97,6 +97,10 @@ recorded here because they are easy to repeat: non-concentration endpoint codes
 \textsf{results.txt} and must be excluded, and the endpoint-qualifier and
 censoring rules above must be applied. With both corrections the gate passes for
 all 87 substances.
+
+\textbf{Gate 3.} The generalisation set must reproduce a previously deposited
+4757-chemical acute table exactly in record count, minimum and median. It passes
+for all 4757 chemicals, from 106\,095 acute freshwater records.
 
 \section{Characteristic-name to structure mapping}
 

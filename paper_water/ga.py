@@ -69,8 +69,8 @@ ax.text(80,7.6,"Reproducing the full regulatory screen reaches the official crit
         "(PFOS 4,738 vs Canada 6,800 ng L$^{-1}$) and leaves the bias intact: "
         r"$\rho$ = $-$0.69",
         ha="center",fontsize=11.6,color=INK)
-ax.text(80,4.1,"more study → more species → longer SSD tail → lower 5th percentile.   "
-        "PFOA and PFHpA in the same 810 rivers: 99.96% vs 0.55% in exceedance.",
+ax.text(80,4.1,"Across 4,757 ECOTOX chemicals of all classes, equalising sampling depth removes half of the "
+        "minimum's bias and none of the median's.",
         ha="center",fontsize=11.0,color=RED)
 plt.savefig("graphical_abstract.png",dpi=100)
 plt.savefig("graphical_abstract.tif",dpi=300,pil_kwargs={"compression":"tiff_lzw"})

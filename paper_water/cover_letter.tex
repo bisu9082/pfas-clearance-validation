@@ -1,0 +1,88 @@
+\documentclass[11pt]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{parskip}
+\pagestyle{empty}
+\begin{document}
+
+\noindent Ku Kang, PhD\\
+CBRN Defense Research Institute\\
+Republic of Korea\\
+bisu9082@gmail.com\\
+ORCID 0000-0001-8739-218X
+
+\vspace{6mm}
+\noindent The Editors\\
+\textit{Water Research}
+
+\vspace{6mm}
+\noindent Dear Editors,
+
+We submit \textbf{``Testing effort sets the water-quality criterion: an
+extreme-order-statistic artefact that regulatory screening does not remove''}
+for consideration as a Research Paper.
+
+Every major framework for deriving an aquatic water-quality criterion takes an
+extreme of the available toxicity data: the lowest no-effect concentration under
+the European guidance, the four lowest genus means under the United States
+approach, the fifth percentile of a species sensitivity distribution under the
+Canadian and Australian protocols. An extreme is an order statistic. Its
+expected value moves with how many observations exist, and testing effort across
+chemicals is anything but uniform. This paper asks what that does to the
+criteria themselves and to the water bodies they are applied to.
+
+The core of the work is a water-side result. We derive criteria for PFAS from a
+single curated ECOTOX extract under seven conventions and join them to 20,682
+measured concentrations from 1180 United States stream and lake stations. The
+fraction of samples exceeding the derived criterion ranges from 76.5\,\% to
+0.11\,\% across conventions applied to the same data and the same water, and the
+fraction of stations from 99.3\,\% to 1.2\,\%. Perfluorooctanoic acid and
+perfluoroheptanoic acid, measured at the same 810 stations at comparable
+concentrations, are assessed as 99.96\,\% and 0.55\,\% in exceedance; they
+differ in having 1232 and 11 curated toxicity records.
+
+We then tested whether careful practice removes the problem, because that is the
+obvious objection. We reproduced the screen that regulatory agencies apply ---
+apical endpoints only, chronic endpoints only, active ingredient only, species
+mean chronic values, a log-normal species sensitivity distribution. The screen
+works in the sense that matters for credibility: our fifth percentile for PFOS
+is 4738\,ng\,L$^{-1}$ against Canada's independently derived guideline of
+6800\,ng\,L$^{-1}$, a ratio of 0.70 between two applications of the same method
+to the same literature. It does not remove the effort dependence, which stays at
+$\rho = -0.69$, because the number of species surviving the screen itself rises
+with study effort and the fifth percentile is read from the bottom of that
+distribution.
+
+To establish that this is not a property of PFAS or of our substance selection,
+we put the same question to all 4757 chemicals in ECOTOX with freshwater acute
+data. Equalising sampling depth removes slightly more than half of the minimum's
+correlation with record count and essentially none of the median's. Roughly half
+of what an extreme-anchored criterion says about a chemical is a statement about
+how often it has been tested.
+
+We believe this belongs in \textit{Water Research} rather than in a toxicology
+journal because the question it answers is which water bodies require action.
+The analysis is built on public monitoring data and public toxicity data, and
+the consequence is expressed in stations rather than in model statistics. It
+also bears directly on recent work in this journal on the conservatism of the
+assessment-factor method (Ding et al., \textit{Water Research} 290, 125054): our
+results indicate that the conservatism is not a fixed bias that a recalibrated
+factor can correct, because it varies with the evidential support of each
+substance.
+
+All analysis code, derived tables and the characteristic-name to structure
+mapping with verification formulae are available in a public repository, and the
+pipeline carries three assertion gates that reproduce previously deposited
+tables before any new result is computed.
+
+This manuscript is original, has not been published elsewhere, and is not under
+consideration by another journal. All authors have approved the submission and
+declare no competing financial or personal interests.
+
+\vspace{4mm}
+\noindent Yours sincerely,
+
+\vspace{6mm}
+\noindent Ku Kang\\
+on behalf of Jeongyun Kim and Jin Yoo
+
+\end{document}

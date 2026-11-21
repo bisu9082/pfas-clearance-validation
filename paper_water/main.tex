@@ -44,10 +44,15 @@ value into the regulatory range (PFOS fifth percentile \SI{4738}{\nano\gram\per\
 against Canada's \SI{6800}{\nano\gram\per\litre}) but leaves the effort
 dependence intact (Spearman $\rho = -0.69$, 95\,\% CI $[-0.94, -0.31]$), because
 the number of species surviving the screen itself rises with study effort
-($\rho = +0.76$). Only a central-tendency statistic shows no detectable
-dependence ($\rho = +0.12$, CI $[-0.24, +0.42]$, which excludes the
-$-0.69$ to $-0.79$ of the extremes but not a weak effect), and a central
-tendency is not protective.
+($\rho = +0.76$). Extending the question to all 4757 chemicals in ECOTOX with
+freshwater acute data separates the components: equalising sampling depth
+removes slightly more than half of the minimum's correlation with record count
+($-0.409 \rightarrow -0.192$ at five records per chemical) and essentially none
+of the median's ($-0.140 \rightarrow -0.134$). Roughly half of what an
+extreme-anchored criterion says about a chemical is a statement about how often
+it has been tested; the remainder is a real association between hazard and
+attention, which a central statistic records without inflating. A central
+statistic is not protective.
 Perfluorooctanoic acid and perfluoroheptanoic acid, measured at the same 810
 stations at median \SI{3.5}{} and \SI{1.7}{\nano\gram\per\litre}, are assessed as
 99.96\,\% and 0.55\,\% exceeding, a difference traceable to 1232 versus 11
@@ -265,6 +270,25 @@ remained, a log-normal SSD was fitted and the fifth percentile (HC5) taken as th
 criterion with no further assessment factor, following the Canadian and
 Australian protocols. Where fewer species remained, the lowest species mean
 chronic value divided by an assessment factor of 10 is reported instead.
+
+\subsection{Generalisation set}
+
+To test whether the behaviour is specific to PFAS or to our substance selection,
+the same question was put to the whole of ECOTOX. All acute freshwater records
+(\textsf{LC50}, \textsf{EC50}, \textsf{IC50}; \textsf{organism\_habitat} equal to
+Water and \textsf{media\_type} beginning FW) were extracted under the unit,
+censoring and qualifier rules above, giving 106\,095 records on 4757 chemicals
+of all structural classes. A third assertion gate requires this rebuild to
+reproduce a previously deposited 4757-chemical table exactly in record count,
+minimum and median; it passes for all 4757.
+
+Sampling depth was then equalised. For each depth $k \in \{3,5,10,20,50\}$,
+every chemical with at least $k$ records contributes $k$ records drawn without
+replacement, the statistic is recomputed, and its correlation with the full
+record count is measured. Two hundred draws were taken at each depth. The
+difference between the correlation at full depth and at equal depth is the part
+attributable to how much the chemical has been tested rather than to how toxic
+it is.
 
 \subsection{Measured surface-water concentrations}
 
@@ -504,12 +528,55 @@ minimum it was designed to replace. The screen changes which records contribute;
 it does not change the fact that the criterion is read off the bottom of
 whatever is there.
 
-This also explains why only C5 escapes detection. A median is a central
-statistic, and its expectation does not move with sample size. The property that makes it stable is
+This also explains why only C5 escapes detection, and the generalisation set
+below confirms the mechanism directly. A median is a central statistic, and its
+expectation does not move with sample size. The property that makes it stable is
 the same property that makes it unusable as a criterion: the median acute value
 offers no protection to the sensitive tail of the community, and the resulting
 PNECs, two to three orders of magnitude above the official values, would declare
 essentially all United States surface water compliant.
+
+\subsection{The artefact is not about PFAS}
+
+Fig.~\ref{fig:broad} puts the same question to 4757 ECOTOX chemicals of all
+classes. The minimum acute value falls with the number of records at
+$\rho = -0.462$ (CI $[-0.485, -0.438]$); the median acute value falls far more
+slowly, at $\rho = -0.160$ (CI $[-0.188, -0.132]$).
+
+Equalising sampling depth separates the two components. At $k = 5$, over the
+1977 chemicals with at least five records, the minimum's correlation moves from
+$-0.409$ at full depth to $-0.192$ when every chemical contributes exactly five
+records: a depth effect of $-0.217$, slightly more than half the total. The
+median's correlation moves from $-0.140$ to $-0.134$. The pattern holds at every
+depth tested: the depth effect on the minimum ranges from $-0.16$ to $-0.24$,
+and on the median from $0.00$ to $+0.01$.
+
+Two conclusions follow. First, the residual correlation that survives depth
+equalisation is not an artefact. A chemical that is more toxic is more likely to
+be studied, and the median records that association without inflating it; we
+read the median's $-0.14$ to $-0.16$ as a real feature of which chemicals
+attract testing. Second, the minimum carries that same real association and adds
+an approximately equal amount again of pure sampling depth. Roughly half of what
+the minimum appears to say about a chemical's hazard is a statement about how
+many times it has been tested.
+
+This also settles a question our PFAS analysis could not. The species-resolved
+acute median gave $\rho = +0.115$ on 41 PFAS, which we reported as a failure to
+detect rather than as independence. The broad set shows why: the true value for
+a central statistic is around $-0.15$, which 41 substances cannot resolve. The
+median is not effort-free. It is free of the \emph{depth} component, which is
+the component that derivation convention controls.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\textwidth]{fig_06_broad.png}
+\caption{(A) Minimum and median acute value against the number of acute records,
+for all 4757 chemicals in ECOTOX with freshwater acute data. (B) Spearman
+correlation with record count at full depth and with sampling depth equalised to
+$k$ records per chemical, 200 draws per depth. The figures above each group are
+the change when depth is equalised.}
+\label{fig:broad}
+\end{figure}
 
 \subsection{Consequence in 1180 water bodies}
 
@@ -724,6 +791,11 @@ no official aquatic-life criterion, and eighteen measured substances have no
 aquatic toxicity record in ECOTOX at all. This is itself part of the picture, but
 it limits external validation.
 
+The generalisation set is acute-only and is not resolved to species or
+collapsed to parent structures, so it supports the statement about extremes
+against central statistics but not the full convention ladder. We use it for
+that one comparison and do not derive criteria from it.
+
 The SSD analysis uses a log-normal fit and a five-species minimum. Both are
 conventional and both are generous; several national protocols require more
 species and would reduce our SSD-able set below sixteen substances. Our
@@ -747,8 +819,12 @@ yield between 0.11\,\% and 76.5\,\% of samples in exceedance depending on the
 derivation convention --- and it survives a faithful reproduction of the screening
 that regulatory agencies perform, because the number of species entering the
 derivation grows with study effort and the criterion is read from the bottom of
-that distribution. Only a central-tendency statistic is effort-stable, and it is
-not protective. We therefore treat this as a structural property of
+that distribution. Across 4757 ECOTOX chemicals of all classes, equalising sampling
+depth removes slightly more than half of the minimum's dependence on record
+count and essentially none of the median's, which places the mechanism beyond
+PFAS and beyond our substance selection. A central statistic is free of the
+depth component but not of the real association between hazard and attention,
+and it is not protective. We therefore treat this as a structural property of
 extreme-anchored derivation rather than a defect of practice, and recommend that
 criteria be reported with their evidential support and compared only across
 substances of comparable support.
