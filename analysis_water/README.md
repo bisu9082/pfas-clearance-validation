@@ -58,3 +58,48 @@ Structures are not taken from that table: the CAS is used only as a key into
 ECOTOX's own substance file, and `results/char_map.csv` records the resulting
 molecular formula for every mapped name so that name-structure agreement can be
 checked directly.
+
+## C7 — reproducing the regulatory screen
+
+Regulators do not use ECOTOX as deposited. They screen it. `scripts/c7c.py`
+implements the screen explicitly:
+
+* chronic endpoints only: NOEC, NOEL, MATC, **EC10** (EC10 is not in the deposited
+  endpoint set; including it is a deliberate departure, since regulatory chronic
+  derivations prefer it)
+* **apical effects only**: mortality, growth, reproduction, development, population.
+  Gene expression (GEN), biochemistry (BCM), enzyme activity (ENZ), hormones (HRM),
+  behaviour (BEH), histology and accumulation are excluded.
+* active ingredient only (`conc1_type == "A"`)
+* species mean chronic value = geometric mean within species
+* HC5 = 5th percentile of a log-normal SSD fitted to the species mean chronic values
+  (>= 5 species)
+
+`scripts/c7b.py` carries a second assertion gate: the deposited per-parent minimum
+`logTox` must be reproducible from the result-level table for all 87 parents. This
+requires the same two rules the deposited pipeline used — strip the `*` qualifier
+from endpoint codes, and drop censored values (`conc1_mean_op` in `> < >= <= ~`).
+
+### Result
+
+The screen brings the derived value into the regulatory range: the PFOS HC5 is
+4,738 ng/L against Canada's SSD-derived FEQG of 6,800 ng/L, and the PFOA HC5 is
+9,516 ng/L against the US EPA 2024 final chronic criterion of 100,000 ng/L.
+
+It does not remove the effort dependence. Spearman rho between log(records) and the
+derived criterion:
+
+| convention | rho | 95% CI | n |
+|---|---|---|---|
+| lowest, all endpoints (as published) | -0.783 | -0.903, -0.586 | 52 |
+| lowest acute | -0.196 | -0.509, +0.159 | 41 |
+| lowest chronic NOEC, EU-TGD AF | -0.706 | -0.856, -0.479 | 46 |
+| lowest apical chronic SMCV (screened) | -0.787 | -0.887, -0.624 | 52 |
+| SSD HC5 of apical chronic SMCVs | -0.691 | -0.940, -0.306 | 16 |
+| median acute, species-resolved | +0.115 | -0.240, +0.424 | 41 |
+
+The mechanism is in `figures/fig_c7.png` panel C: the number of species surviving
+the screen rises with the number of records (rho = +0.76), so a better-studied
+substance gets a longer left tail on its SSD and a lower 5th percentile. Every
+criterion anchored on an extreme of the available data inherits this. Only the
+central-tendency statistic is effort-stable, and it is not protective.
