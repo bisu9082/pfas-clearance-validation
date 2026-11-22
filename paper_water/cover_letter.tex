@@ -17,9 +17,9 @@ ORCID 0000-0001-8739-218X
 \vspace{6mm}
 \noindent Dear Editors,
 
-We submit \textbf{``Testing effort sets the water-quality criterion: an
-extreme-order-statistic artefact that regulatory screening does not remove''}
-for consideration as a Research Paper.
+We submit \textbf{``Testing effort sets the water-quality criterion: a
+support-dependent artefact that regulatory screening narrows but does not
+remove''} for consideration as a Research Paper.
 
 Every major framework for deriving an aquatic water-quality criterion takes an
 extreme of the available toxicity data: the lowest no-effect concentration under
@@ -32,42 +32,53 @@ criteria themselves and to the water bodies they are applied to.
 
 The core of the work is a water-side result. We derive criteria for PFAS from a
 single curated ECOTOX extract under seven conventions and join them to 20,682
-measured concentrations from 1180 United States stream and lake stations. The
-fraction of samples exceeding the derived criterion ranges from 76.5\,\% to
-0.11\,\% across conventions applied to the same data and the same water, and the
-fraction of stations from 99.3\,\% to 1.2\,\%. Perfluorooctanoic acid and
-perfluoroheptanoic acid, measured at the same 810 stations at comparable
-concentrations, are assessed as 99.96\,\% and 0.55\,\% in exceedance; they
-differ in having 1232 and 11 curated toxicity records.
+measured concentrations from 1180 United States stations. Because the
+conventions do not all reach the same substances, we report the comparison on
+the six substances and 10,362 measurements every convention can assess: there
+the fraction of samples exceeding the criterion runs from 98.8\,\% to zero on
+the derivation choice alone. Perfluorooctanoic acid and perfluoroheptanoic
+acid, adjacent homologues measured at the same 810 stations at comparable
+concentrations, receive fully screened criteria 523-fold apart, behind which
+stand 313 and 6 apical chronic records.
 
-We then tested whether careful practice removes the problem, because that is the
-obvious objection. We reproduced the screen that regulatory agencies apply ---
-apical endpoints only, chronic endpoints only, active ingredient only, species
-mean chronic values, a log-normal species sensitivity distribution. The screen
-works in the sense that matters for credibility: our fifth percentile for PFOS
-is 4738\,ng\,L$^{-1}$ against Canada's independently derived guideline of
-6800\,ng\,L$^{-1}$, a ratio of 0.70 between two applications of the same method
-to the same literature. It does not remove the effort dependence, which stays at
-$\rho = -0.69$, because the number of species surviving the screen itself rises
-with study effort and the fifth percentile is read from the bottom of that
-distribution.
+We then tested whether careful practice removes the problem, because that is
+the obvious objection. We reproduced the screen regulatory agencies apply ---
+apical endpoints, chronic exposure durations, active ingredient, species mean
+chronic values, a log-normal species sensitivity distribution. It works in the
+sense that matters for credibility: our fifth percentile for PFOS is
+4738\,ng\,L$^{-1}$ against Canada's independently derived guideline of
+6800\,ng\,L$^{-1}$, the closest of five available comparisons. And it does
+real work on the disagreement between derivation routes, bringing the two
+agencies actually use from 78.6\,\% against 4.6\,\% of samples to 14.8\,\%
+against 4.6\,\%. What it does not touch is the dependence they share
+($\rho = -0.590$ and $-0.681$). Screening reconciles the routes without
+removing the bias in either.
+
+A second finding came out of asking why. For the minimum-anchored conventions
+the mechanism is ordinary order statistics. For the species sensitivity
+distribution it is not: an HC5 is a parametric functional and should carry no
+asymptotic dependence on sample size, and the dependence we observe enters
+because the fitted spread widens as a substance is tested across more taxa and
+conditions. That channel supplies 63\,\% of the movement. The distinction
+matters because it sends any correction to a different place.
 
 To establish that this is not a property of PFAS or of our substance selection,
 we put the same question to all 4757 chemicals in ECOTOX with freshwater acute
-data. Equalising sampling depth removes slightly more than half of the minimum's
-correlation with record count and essentially none of the median's. Roughly half
-of what an extreme-anchored criterion says about a chemical is a statement about
-how often it has been tested.
+data. Equalising sampling depth on species removes 50 to 61\,\% of the
+minimum's correlation with record count, and controlling in addition for
+within-chemical spread leaves a partial correlation of $-0.004$. We had
+expected a residual association between hazard and attention to survive this
+and it does not: the two channels account for essentially all of it.
 
-We believe this belongs in \textit{Water Research} rather than in a toxicology
-journal because the question it answers is which water bodies require action.
-The analysis is built on public monitoring data and public toxicity data, and
-the consequence is expressed in stations rather than in model statistics. It
-also bears directly on recent work in this journal on the conservatism of the
-assessment-factor method (Ding et al., \textit{Water Research} 290, 125054): our
-results indicate that the conservatism is not a fixed bias that a recalibrated
-factor can correct, because it varies with the evidential support of each
-substance.
+The work bears directly on recent work in this journal on the conservatism of
+the assessment-factor method (Ding et al., \textit{Water Research} 290,
+125054). That programme treats the conservatism as a bias of roughly fixed size
+to be corrected by better-calibrated factors. Our results indicate it is not
+fixed: it varies with the evidential support behind each substance, so a
+uniform correction will over-correct the data-poor compounds and under-correct
+the data-rich ones. The analysis is built on public monitoring and public
+toxicity data, and its consequence is expressed in stations rather than in
+model statistics.
 
 All analysis code, derived tables and the characteristic-name to structure
 mapping with verification formulae are available in a public repository, and the

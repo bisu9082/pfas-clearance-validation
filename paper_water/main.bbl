@@ -1,0 +1,274 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{salvatore2023pfasoccur}
+H.~Li, X.~Zhu, J.~Zhang et~al., Characterizing the long-term
+  occurrence and anthropogenic drivers of per- and polyfluoroalkyl substances
+  in surface water of the rhine river, Water Research 245 (2023) 120528.
+\newblock \href {https://doi.org/10.1016/j.watres.2023.120528}
+  {\path{doi:10.1016/j.watres.2023.120528}}.
+
+\bibitem{echa2008r10}
+{European Chemicals Agency}, Guidance on information requirements and chemical
+  safety assessment, chapter {R.10}: Characterisation of
+  dose/concentration-response for environment, Tech. rep., ECHA, Helsinki
+  (2008).
+
+\bibitem{posthuma2019ssd}
+L.~Posthuma, J.~van Gils, M.~C. Zijp et~al., Species
+  sensitivity distributions for use in environmental protection, assessment, and management of aquatic ecosystems for 12386 chemicals, Environmental
+  Toxicology and Chemistry 38~(4) (2019) 905--917.
+\newblock \href {https://doi.org/10.1002/etc.4373}
+  {\path{doi:10.1002/etc.4373}}.
+
+\bibitem{hoondert2014pnecvar}
+T.~Hahn, J.~Diamond, S.~Dobson et~al., Predicted no effect concentration derivation as a significant
+  source of variability in environmental hazard assessments of chemicals in
+  aquatic systems: An international analysis, Integrated Environmental
+  Assessment and Management 10 (2014) 30--36.
+\newblock \href {https://doi.org/10.1002/ieam.1473}
+  {\path{doi:10.1002/ieam.1473}}.
+
+\bibitem{belanger2019ssdsize}
+G.~Carr, S.~Belanger, Ssds revisited: Part i---a framework for sample size
+  guidance on species sensitivity distribution analysis, Environmental
+  Toxicology and Chemistry 38 (2019) 1514--1525.
+\newblock \href {https://doi.org/10.1002/etc.4445}
+  {\path{doi:10.1002/etc.4445}}.
+
+\bibitem{hiki2018mindata}
+M.~Lewis, G.~Thursby, Aquatic plants: Test species sensitivity and minimum data
+  requirement evaluations for chemical risk assessments and aquatic life
+  criteria development for the {USA}, Environmental Pollution 238 (2018)
+  270--280.
+\newblock \href {https://doi.org/10.1016/j.envpol.2018.03.003}
+  {\path{doi:10.1016/j.envpol.2018.03.003}}.
+
+\bibitem{iwasaki2022afssd}
+M.~Kamo, T.~I. Hayashi, Y.~Iwasaki, Revisiting assessment factors for species
+  sensitivity distributions as a function of sample size and variation in
+  species sensitivity, Ecotoxicology and Environmental Safety 246 (2022)
+  114170.
+\newblock \href {https://doi.org/10.1016/j.ecoenv.2022.114170}
+  {\path{doi:10.1016/j.ecoenv.2022.114170}}.
+
+\bibitem{kwiatkowski2020class}
+C.~F. Kwiatkowski, D.~Q. Andrews, L.~S. Birnbaum et~al., Scientific
+  basis for managing {PFAS} as a chemical class, Environmental Science \&
+  Technology Letters 7~(8) (2020) 532--543.
+\newblock \href {https://doi.org/10.1021/acs.estlett.0c00255}
+  {\path{doi:10.1021/acs.estlett.0c00255}}.
+
+\bibitem{giesy2011pfospnec}
+P.~Qi, Y.~Wang, J.~Mu et~al., Aquatic predicted no-effect-concentration
+  derivation for perfluorooctane sulfonic acid, Environmental Toxicology and
+  Chemistry 30 (2011) 836--842.
+\newblock \href {https://doi.org/10.1002/etc.460} {\path{doi:10.1002/etc.460}}.
+
+\bibitem{ankley2021pfasrisk}
+G.~T. Ankley, P.~Cureton, R.~A. Hoke et~al., Assessing the ecological risks of per- and
+  polyfluoroalkyl substances: Current state-of-the science and a proposed path
+  forward, Environmental Toxicology and Chemistry 40~(3) (2020) 564--605.
+\newblock \href {https://doi.org/10.1002/etc.4869}
+  {\path{doi:10.1002/etc.4869}}.
+
+\bibitem{brandsma2022genxsub}
+L.-H. Yang, W.-J. Yang, S.-H. Lv et~al., Is {HFPO-DA} (genx) a suitable substitute for {PFOA}? a
+  comprehensive degradation comparison of {PFOA} and genx via electrooxidation, Environmental Research 204 (2022) 111995.
+\newblock \href {https://doi.org/10.1016/j.envres.2021.111995}
+  {\path{doi:10.1016/j.envres.2021.111995}}.
+
+\bibitem{olker2022ecotox}
+J.~H. Olker, C.~M. Elonen, A.~Pilli et~al., The
+  {ECOTOXicology} knowledgebase: A curated database of ecologically relevant
+  toxicity tests to support environmental research and risk assessment, Environmental Toxicology and Chemistry 41~(6) (2022) 1520--1539.
+\newblock \href {https://doi.org/10.1002/etc.5324}
+  {\path{doi:10.1002/etc.5324}}.
+
+\bibitem{khan2019ecotoxqsar}
+K.~Khan, K.~Roy, E.~Benfenati, Ecotoxicological {QSAR} modeling of endocrine
+  disruptor chemicals, Journal of Hazardous Materials 369 (2019) 707--718.
+\newblock \href {https://doi.org/10.1016/j.jhazmat.2019.02.019}
+  {\path{doi:10.1016/j.jhazmat.2019.02.019}}.
+
+\bibitem{liang2025datagaps}
+W.~Liang, X.~Zhao, X.~Wang et~al., Addressing data gaps in deriving
+  aquatic life ambient water quality criteria for contaminants of emerging
+  concern: Challenges and the potential of in silico methods, Journal of
+  Hazardous Materials 485 (2025) 136770.
+\newblock \href {https://doi.org/10.1016/j.jhazmat.2024.136770}
+  {\path{doi:10.1016/j.jhazmat.2024.136770}}.
+
+\bibitem{sarkar2026pfasqsar}
+S.~Sarkar, S.~Pore, K.~Roy, Mapping toxicity pathways of per- and
+  polyfluoroalkyl substances using interpretable classification-based machine
+  learning models, {SAR} and {QSAR} in Environmental Research 37~(7) (2026)
+  559--592.
+\newblock \href {https://doi.org/10.1080/1062936x.2026.2693300}
+  {\path{doi:10.1080/1062936x.2026.2693300}}.
+
+\bibitem{yang2015samplingbias}
+A.~Ruete, Displaying bias in sampling effort of data accessed from biodiversity
+  databases using ignorance maps, Biodiversity Data Journal 3 (2015) e5361.
+\newblock \href {https://doi.org/10.3897/bdj.3.e5361}
+  {\path{doi:10.3897/bdj.3.e5361}}.
+
+\bibitem{ding2026af}
+T.~Ding, Y.~Wei, H.~Zhao et~al., Making waves: Addressing the over-conservatism of the assessment
+  factor method in aquatic ecological risk assessment, Water Research 290
+  (2026) 125054.
+\newblock \href {https://doi.org/10.1016/j.watres.2025.125054}
+  {\path{doi:10.1016/j.watres.2025.125054}}.
+
+\bibitem{newman2000ssd}
+M.~C. Newman, D.~R. Ownby, L.~C.~A. M{\'e}zin et~al., Applying species-sensitivity
+  distributions in ecological risk assessment: Assumptions of distribution type
+  and sufficient numbers of species, Environmental Toxicology and Chemistry
+  19~(2) (2000) 508--515.
+\newblock \href {https://doi.org/10.1002/etc.5620190233}
+  {\path{doi:10.1002/etc.5620190233}}.
+
+\bibitem{aldenberg2000hcunc}
+T.~Aldenberg, J.~S. Jaworska, Uncertainty of the hazardous concentration and
+  fraction affected for normal species sensitivity distributions, Ecotoxicology
+  and Environmental Safety 46~(1) (2000) 1--18.
+\newblock \href {https://doi.org/10.1006/eesa.1999.1869}
+  {\path{doi:10.1006/eesa.1999.1869}}.
+
+\bibitem{zhao2016ssdmodel}
+J.~Zhao, B.~Chen, Species sensitivity distribution for chlorpyrifos to aquatic
+  organisms: Model choice and sample size, Ecotoxicology and Environmental
+  Safety 125 (2016) 161--169.
+\newblock \href {https://doi.org/10.1016/j.ecoenv.2015.11.039}
+  {\path{doi:10.1016/j.ecoenv.2015.11.039}}.
+
+\bibitem{rdkit}
+{RDKit contributors}, {RDKit}: Open-source cheminformatics,
+  \url{https://www.rdkit.org} (2024).
+
+\bibitem{iwasaki2015noecec10}
+Y.~Iwasaki, K.~Kotani, S.~Kashiwada et~al., Does the choice of {NOEC} or
+  {EC10} affect the hazardous concentration for 5\% of the species?, Environmental Science \& Technology 49 (2015) 9326--9330.
+\newblock \href {https://doi.org/10.1021/acs.est.5b02069}
+  {\path{doi:10.1021/acs.est.5b02069}}.
+
+\bibitem{wqp2026}
+{National Water Quality Monitoring Council}, Water quality portal, Aggregated
+  data service of the US Geological Survey National Water Information System
+  and the US Environmental Protection Agency Water Quality Exchange, accessed
+  21 November 2026 (2026).
+
+\bibitem{epa2024pfosalc}
+{US Environmental Protection Agency}, Final aquatic life ambient water quality
+  criteria for perfluorooctane sulfonate ({PFOS}), Tech. Rep. EPA-842-R-24-003,
+  Office of Water, US Environmental Protection Agency, freshwater chronic
+  criterion 0.00025 mg/L (2024).
+
+\bibitem{epa2024pfoaalc}
+{US Environmental Protection Agency}, Final aquatic life ambient water quality
+  criteria for perfluorooctanoic acid ({PFOA}), Tech. Rep. EPA-842-R-24-002,
+  Office of Water, US Environmental Protection Agency, freshwater chronic
+  criterion 0.10 mg/L (2024).
+
+\bibitem{eu2013directive}
+{European Union}, Directive 2013/39/{EU} amending {Directives} 2000/60/{EC} and
+  2008/105/{EC} as regards priority substances in the field of water policy,
+  Official Journal of the European Union L 226/1 (2013).
+
+\bibitem{ruffle2024criteria}
+B.~Ruffle, C.~Archer, K.~Vosnakis et~al., {US} and international per- and polyfluoroalkyl
+  substances surface water quality criteria: A review of the status, challenges, and implications for use in chemical management and risk
+  assessment, Integrated Environmental Assessment and Management 20 (2024)
+  36--58.
+\newblock \href {https://doi.org/10.1002/ieam.4776}
+  {\path{doi:10.1002/ieam.4776}}.
+
+\bibitem{anzg2018pfos}
+{Australian and New Zealand Governments}, Toxicant default guideline values for
+  aquatic ecosystem protection: Perfluorooctane sulfonate ({PFOS}) in
+  freshwater, Tech. rep., Australian and New Zealand Guidelines for Fresh and
+  Marine Water Quality, default guideline values 0.0091, 0.48, 2.7 and 17 ug/L
+  for 99, 95, 90 and 80 percent species protection (2018).
+
+\bibitem{eccc2018feqgpfos}
+{Environment and Climate Change Canada}, Federal environmental quality
+  guidelines: Perfluorooctane sulfonate ({PFOS}), Tech. rep., Environment and
+  Climate Change Canada, freshwater guideline 6.8 ug/L, fifth percentile of a
+  log-normal species sensitivity distribution (2018).
+
+\bibitem{hagenaars2017pfoalow}
+C.~E. Jantzen, F.~Toor, K.~A. Annunziato et~al., Effects of chronic
+  perfluorooctanoic acid ({PFOA}) at low concentration on morphometrics, gene
+  expression, and fecundity in zebrafish (danio rerio), Reproductive Toxicology
+  69 (2017) 34--42.
+\newblock \href {https://doi.org/10.1016/j.reprotox.2017.01.009}
+  {\path{doi:10.1016/j.reprotox.2017.01.009}}.
+
+\bibitem{qi2014pfoscriteria}
+S.~Yang, F.~Xu, F.~Wu et~al., Development of {PFOS} and {PFOA}
+  criteria for the protection of freshwater aquatic life in china, Science of
+  The Total Environment 470-471 (2014) 677--683.
+\newblock \href {https://doi.org/10.1016/j.scitotenv.2013.09.094}
+  {\path{doi:10.1016/j.scitotenv.2013.09.094}}.
+
+\bibitem{kim2026dualthreat}
+J.~Kim, S.~Bae, Y.~J. Jang et~al., Integrated multi-endpoint hazard prioritization of unregulated industrial
+  contaminants: a safety-first screening framework for emerging environmental
+  threats, Ecotoxicology and Environmental Safety 319 (2026) 120283.
+\newblock \href {https://doi.org/10.1016/j.ecoenv.2026.120283}
+  {\path{doi:10.1016/j.ecoenv.2026.120283}}.
+
+\bibitem{kang2026dbpcarto}
+K.~Kang, D.-H. Lee, J.~Kim et~al., Condition-dependent risk cartography of
+  brominated disinfection by-products in seawater desalination, Journal of
+  Environmental Chemical Engineering 14~(5) (2026) 125179.
+\newblock \href {https://doi.org/10.1016/j.jece.2026.125179}
+  {\path{doi:10.1016/j.jece.2026.125179}}.
+
+\bibitem{oecd2021pfas}
+{Organisation for Economic Co-operation and Development}, Reconciling
+  terminology of the universe of per- and polyfluoroalkyl substances:
+  recommendations and practical guidance,
+  \url{https://www.oecd.org/chemicalsafety/portal-perfluorinated-chemicals/}
+  (2021).
+
+\bibitem{patlewicz2019category}
+G.~Patlewicz, A.~M. Richard, A.~J. Williams et~al., A chemical category-based prioritization approach for selecting 75
+  per- and polyfluoroalkyl substances ({PFAS}) for tiered toxicity and
+  toxicokinetic testing, Environmental Health Perspectives 127~(1) (2019)
+  014501.
+\newblock \href {https://doi.org/10.1289/EHP4555} {\path{doi:10.1289/EHP4555}}.
+
+\bibitem{sahigara2012ad}
+F.~Sahigara, K.~Mansouri, D.~Ballabio et~al., Comparison of different approaches to define the applicability domain of
+  {QSAR} models, Molecules 17~(5) (2012) 4791--4810.
+\newblock \href {https://doi.org/10.3390/molecules17054791}
+  {\path{doi:10.3390/molecules17054791}}.
+
+\bibitem{kang2026openset}
+K.~Kang, J.~Kim, Y.~J. Jang et~al., Open-set
+  combustion-fingerprint classification with out-of-distribution alerting for
+  environmental fire-hazard screening, Journal of Hazardous Materials 516
+  (2026) 143199.
+\newblock \href {https://doi.org/10.1016/j.jhazmat.2026.143199}
+  {\path{doi:10.1016/j.jhazmat.2026.143199}}.
+
+\bibitem{brack2023wfdcomment}
+T.~Backhaus, Commentary on the {EU} commission's proposal for amending the
+  water framework directive, the groundwater directive, and the directive on
+  environmental quality standards, Environmental Sciences Europe 35 (2023) 22.
+\newblock \href {https://doi.org/10.1186/s12302-023-00726-3}
+  {\path{doi:10.1186/s12302-023-00726-3}}.
+
+\bibitem{hull2000dataquality}
+J.~L. Durda, D.~V. Preziosi, Data quality evaluation of toxicological studies
+  used to derive ecotoxicological benchmarks, Human and Ecological Risk
+  Assessment: An International Journal 6 (2000) 747--765.
+\newblock \href {https://doi.org/10.1080/10807030091124176}
+  {\path{doi:10.1080/10807030091124176}}.
+
+\end{thebibliography}

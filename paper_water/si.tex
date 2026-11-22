@@ -21,7 +21,7 @@ artefact that regulatory screening does not remove''}
 \author[snu]{Jeongyun Kim}
 \author[cbdri]{Jin Yoo}
 \author[cbdri]{Ku Kang\corref{cor}}
-\ead{bisu9082@gmail.com}
+\ead{bisu9082@mnd.go.kr}
 \affiliation[snu]{organization={Department of Chemical and Biological Engineering, Seoul National University},
   city={Seoul}, country={Republic of Korea}}
 \affiliation[cbdri]{organization={CBRN Defense Research Institute}, country={Republic of Korea}}
@@ -175,7 +175,26 @@ the substance is not measured in the Water Quality Portal record.
 Refitting with a log-logistic distribution changes the fifth percentile by a
 median of 0.12 $\log_{10}$ units and at most 0.74. Against a spread of roughly
 eight orders of magnitude between conventions, the distributional form is not a
-material source of the effect reported in the main text.
+material source of the effect reported in the main text. We note that both
+families are symmetric with comparable tails, so this comparison bounds the
+sensitivity to distributional choice less tightly than a skewed alternative
+would.
+
+\subsection*{Uncertainty of the fifth percentile}
+
+Table~\ref{tab:hc5ci} gives exact normal-theory 95\,\% confidence intervals
+for each fifth percentile, computed as noncentral-$t$ tolerance limits. The
+intervals are wide at small species counts --- up to 7.2 $\log_{10}$ units at
+five species, against 0.9 at forty-seven --- and most of the point estimates
+are not statistically separable from one another. This is a limitation of the
+estimator rather than of our implementation, and it is the quantitative basis
+for the recommendation in the main text that an HC5 fitted to a short species
+list should be reported with its interval or not fitted at all. It does not
+affect the correlation result: a hierarchical bootstrap that resamples species
+within substances as well as substances returns
+$\rho = -0.61$, 95\,\% CI $[-0.87, -0.27]$.
+
+\input{si_tab_hc5ci}
 
 \input{si_tab2}
 
@@ -235,9 +254,17 @@ which 19.0\,\% are detections. Table~\ref{tab:s4} gives both views.
 The ordering of conventions is identical; the absolute fractions fall by a
 factor of about three.
 
-We do not impute substituted values for non-detections. The narrow result
-profile does not carry the reporting limit, so a non-detection cannot be placed
-relative to a criterion. This matters most for the conventions whose criteria
+We do not impute substituted values for non-detections. The
+\textsf{narrowResult} profile we queried does not carry the reporting-limit
+value, so a non-detection in this extract cannot be placed relative to a
+criterion. This is a limitation of our query rather than of the archive: the
+\textsf{resultPhysChem} profile carries
+\textsf{DetectionQuantitationLimitMeasure}, and a detection-limit URL is
+populated for 53\,399 of the 117\,034 results we retrieved. A reanalysis that
+recovers those limits would allow each non-detection to be classified as
+certainly compliant, certainly exceeding, or undetermined, and would replace
+the two bounding columns reported here with a proper interval. We flag this as
+the single most useful extension of the monitoring side of this work. This matters most for the conventions whose criteria
 are lowest. The median C1 criterion of \SI{0.05}{\nano\gram\per\litre} lies
 below the first percentile of all detected concentrations in this dataset
 (\SI{0.21}{\nano\gram\per\litre}); only 4 of 20\,682 detections fall below
@@ -303,6 +330,115 @@ independent multiplicative noise of $\pm 10\,\%$, over 200 replicates, moves the
 C1 figure from 76.50\,\% to a mean of 76.52\,\% with a 95\,\% range of
 $[76.45, 76.59]$.
 
+\clearpage
+\section{Robustness of the effort correlation}
+
+Table~\ref{tab:rob} collects the checks bearing on alternative explanations for
+the correlation. None removes it.
+
+\begin{table}[htbp]
+\centering\footnotesize
+\caption{Robustness checks on the correlation between testing effort and the
+derived criterion. Partial correlations control the stated variable.}
+\label{tab:rob}
+\begin{tabular}{@{}l rrr@{}}
+\toprule
+check & C6$'$ & C7a & C7b\\
+\midrule
+as reported & $-0.590$ & $-0.609$ & $-0.681$\\
+partial, controlling carbon number & $-0.597$ & $-0.627$ & $-0.674$\\
+effort as distinct tests, not result rows & $-0.599$ & $-0.626$ & $-0.710$\\
+excluding three non-OECD-PFAS parents & $-0.590$ & $-0.609$ & $-0.681$\\
+bootstrap 95\,\% CI (5000 draws) & $[-0.82,-0.25]$ & $[-0.82,-0.29]$ & $[-0.91,-0.28]$\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Chain length is the obvious confounder in a PFAS dataset, since longer chains
+are both more toxic and more studied. It is not operating here: $\rho$ between
+carbon number and $\log_{10}$ records is $-0.12$ to $-0.25$ depending on the
+convention, and controlling for it leaves every correlation within 0.02 of its
+raw value.
+
+For the thirteen-substance SSD set a permutation null was computed by shuffling
+the fifth percentiles against record count 20\,000 times. The null has mean
+$+0.00$ and standard deviation $0.29$, with a 95\,\% band of $[-0.56, +0.55]$;
+the observed $-0.681$ gives $P = 0.0068$.
+
+On the monitoring side, exceedance is insensitive to which organisations
+contributed the data. The largest single contributor supplies 24.6\,\% of joined
+detections; removing each of the eight largest in turn moves the C1 sample
+exceedance between 22.1\,\% and 26.1\,\% against 24.2\,\% for the full set, and
+weighting one median value per station and substance gives 22.9\,\%.
+
+\clearpage
+\section{Model experiment}
+
+
+A growing literature trains QSAR and machine-learning models to predict aquatic
+criteria or lowest-observed toxicity values for untested PFAS
+\cite{khan2019ecotoxqsar, sarkar2026pfasqsar, liang2025datagaps}. We tested what
+the artefact does to such a model: random forests on Morgan fingerprints of the
+4311 broad-set chemicals with a parsable structure, five-fold cross-validated,
+with the minimum and the median acute value as alternative targets.
+
+We expected a model fitted to the minimum to learn the effort component, and it
+does not. Structure predicts record count weakly by $R^2$ ($0.085$) though not
+negligibly by rank (Spearman $\rho = +0.316$), and
+removing the effort trend from the target before fitting changes aggregate
+performance by two to three percent either way. The model cannot learn the
+component, because record count is not a structural property and is not among
+its inputs. The consequence is worse. The minimum-target model predicts a
+typical minimum from structure while the true minimum has been pushed downward
+by sampling depth to an extent the model cannot see, so its bias runs with
+effort: it under-predicts by 0.66 $\log_{10}$ units for chemicals with a single
+record and \emph{over}-predicts by 2.33 for chemicals with a hundred or more, a
+swing of 3.0 orders of magnitude (Fig.~\ref{fig:simodel}). The median-target model
+swings by 0.47. Aggregate $R^2$ for the minimum target is 0.371, concealing $R^2 = -0.951$ in
+the most-studied stratum ($n = 169$), where the model is worse than predicting
+that stratum's mean. Stratum $R^2$ is normalised by the variance within the
+stratum and is not comparable across strata; the bias figures, in $\log_{10}$
+units, carry the argument. The bias pattern is in part arithmetically
+guaranteed: with record count absent from the inputs, a structure-only model
+predicts an average over the record-count distribution and must under-predict
+where the target is low and over-predict where it is high. That it is
+guaranteed is the point --- it applies to every structure-only model of an
+extreme-anchored target, not only to this one.
+
+The direction matters for safety: for the best-studied chemicals the model says
+the most sensitive endpoint lies two orders of magnitude higher, that is less
+hazardous, than the database records. The failure is also invisible to the
+metric such studies most often report, since Spearman $\rho$ within each stratum
+stays between 0.57 and 0.63 for the minimum target --- the ranking survives
+while the calibration does not. Predictive toxicology has approached this
+requirement from other directions, through applicability-domain analysis
+\cite{sahigara2012ad}, out-of-distribution alerting \cite{kang2026openset} and
+benchmark design that separates architecture from dataset artefacts
+\cite{kim2026driftrobust}, but none catches this failure, because training and
+test sets carry the bias equally. What catches it is stratifying performance by
+each substance's training support and reporting an error metric sensitive to
+level rather than rank. Mechanistic anchoring of the endpoint avoids the problem
+rather than detecting it \cite{jang2025opqsar}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_07_model.png}
+\caption{Random forests on Morgan fingerprints of 4311 ECOTOX chemicals,
+five-fold cross-validated, with the minimum and the median acute value as
+alternative targets, evaluated within strata of record count. (A) Prediction
+bias. (B) Coefficient of determination. (C) Spearman correlation.}
+\label{fig:simodel}
+\end{figure}
+
+
+\clearpage
+\section{Per-substance results}
+
+Table~\ref{tab:persub} gives the derived criterion and the exceedance fraction
+for every substance measured in the monitoring record.
+
+\input{tab_persub}
+
 \section{Software}
 
 Analysis in Python 3.13 with pandas, NumPy, SciPy and RDKit. Parent structures
@@ -311,5 +447,9 @@ fluorine-containing fragment, canonicalised with \textsf{MolToSmiles}. Figures
 with Matplotlib. Bibliographic metadata for every added reference was retrieved
 from the Crossref REST API rather than transcribed, so that author lists,
 volumes and page ranges are taken from the publisher record.
+
+\clearpage
+\bibliographystyle{elsarticle-num}
+\bibliography{myref}
 
 \end{document}

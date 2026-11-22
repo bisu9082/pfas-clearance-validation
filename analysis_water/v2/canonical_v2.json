@@ -1,0 +1,52 @@
+{
+ "species_equalised_s3": {
+  "n": 1953,
+  "baseline": -0.324,
+  "equalised": -0.131,
+  "depth_component": 0.194,
+  "pct_removed": 59.7
+ },
+ "species_equalised_s5": {
+  "n": 1175,
+  "baseline": -0.294,
+  "equalised": -0.116,
+  "depth_component": 0.178,
+  "pct_removed": 60.7
+ },
+ "species_equalised_s10": {
+  "n": 541,
+  "baseline": -0.308,
+  "equalised": -0.153,
+  "depth_component": 0.155,
+  "pct_removed": 50.2
+ },
+ "sd_control": {
+  "equalised_min_rho": -0.205,
+  "partial_given_sd": -0.004,
+  "rho_logn_sd": 0.783
+ },
+ "hc5_decomp_nd": {
+  "n": 16,
+  "rho_mu": -0.359,
+  "rho_sd": 0.721,
+  "d_mu": -0.368,
+  "z_d_sd": -0.825,
+  "total": -1.193,
+  "sigma_share_pct": 69
+ },
+ "hc5_decomp_d": {
+  "n": 13,
+  "rho_mu": -0.56,
+  "rho_sd": 0.549,
+  "d_mu": -0.447,
+  "z_d_sd": -0.756,
+  "total": -1.203,
+  "sigma_share_pct": 63
+ },
+ "hc5_ci_width_log": {
+  "min": 0.78,
+  "max": 7.21,
+  "median": 1.86
+ },
+ "n_ssd_able_duration_filtered": 13
+}
