@@ -80,6 +80,45 @@ quality-control results reported as percent recovery, isotopically labelled
 surrogate standards, and a small number of records reporting a value of zero
 together with a non-detect flag.
 
+\section{Composition of the curated extract}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_01_data.png}
+\caption{Composition of the curated ECOTOX extract. (A) Endpoint types; the
+1811 \textsf{LOEC} records shown in red report concentrations at which an effect
+was observed and enter the minimum used by convention C1. (B) Reported effect
+types across result rows; blue marks the apical effects regulatory derivation
+retains. (C) Curated records per substance, rank-ordered: the two most-studied
+PFAS hold 59\,\% of all records and the median substance has eight.}
+\label{fig:sdata}
+\end{figure}
+
+\section{Method detail}
+
+\subsection{The regulatory-style screen}
+Records were retained only if the endpoint was \textsf{NOEC}, \textsf{NOEL},
+\textsf{MATC} or \textsf{EC10}; the reported effect was \textsf{MOR},
+\textsf{GRO}, \textsf{REP}, \textsf{DVP} or \textsf{POP}; and
+\textsf{conc1\_type} was \textsf{A} (active ingredient). Excluded effect codes
+include \textsf{GEN} (gene expression), \textsf{BCM} (biochemistry),
+\textsf{ENZ}, \textsf{HRM}, \textsf{BEH}, \textsf{HIS}, \textsf{CEL} and
+\textsf{ACC}. Species mean chronic values are geometric means within species
+and substance. The log-normal SSD is fitted by moments on the $\log_{10}$
+species means and the fifth percentile taken as
+$\mu + z_{0.05}\sigma$, with no further assessment factor, where five or more
+species remain.
+
+\subsection{Model experiment}
+Morgan fingerprints were generated with the RDKit Morgan generator at radius 2
+and 1024 bits. Random forest regressors used 150 trees and a minimum leaf size
+of 3, cross-validated over five shuffled folds with a fixed seed. Three targets
+were fitted independently: the minimum acute value, the median acute value and
+$\log_{10}$ of the record count. Out-of-fold predictions were pooled and then
+evaluated within strata of record count. The detrended fits used targets from
+which an ordinary least-squares line on $\log_{10}$(records) had been
+subtracted, so that any remaining fit cannot be attributed to the effort trend.
+
 \section{Reproduction gates}
 
 Three assertions run before any result is computed and all must pass.
